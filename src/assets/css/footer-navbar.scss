@@ -1,0 +1,38 @@
+.footer-nav {
+  li {
+    font-weight: bold;
+    color: $mainColor;
+    list-style: none;
+
+    &.router-link-exact-active {
+      color: $activeColor;
+    }
+  }
+  .wrapper{
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 30px;
+    transition: 0.3s;
+    font-size: 20px;
+    .item {
+      margin: 10px 0px;
+      span {
+        width: auto;
+        transition: 0.3s;
+      }
+    }
+  }
+
+  .copyright{
+    font-size: 13px;
+    display: flex;
+    flex-flow: column;
+    text-align: right;
+    padding: 20px 0px 0px 0px;
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+  }
+
+}

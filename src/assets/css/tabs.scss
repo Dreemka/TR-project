@@ -1,0 +1,28 @@
+.tabs-wrapper{
+    display: flex;
+    margin: 10px 0px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #002F6D;
+    justify-content: flex-start;
+
+    .item-tabs{
+        cursor: pointer;
+        margin: 0 0px;
+        padding: 8px 16px;
+        border-bottom: 1px solid #ccc;
+        transition: 0.3s;
+
+        i{
+            margin-right: 3px;
+        }
+    }
+    .active{
+        border: 1px solid #ccc;
+        border-bottom: 0px;
+        transition: 0.3s;
+    }
+
+}

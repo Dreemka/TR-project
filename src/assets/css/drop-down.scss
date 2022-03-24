@@ -1,0 +1,19 @@
+.dropDown-wrapper{
+  position: relative;
+  .dropDown-list{
+    padding: 10px;
+    position: absolute;
+    background: $mainColor;
+    top: 35px;
+    border-radius: 6px;
+    ul{
+      padding-left: 0px;
+      margin-bottom: 0px;
+      li{
+        color: $textColorIn;
+        margin: 5px;
+        font-weight: 400;
+      }
+    }
+  }
+}

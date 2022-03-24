@@ -1,0 +1,104 @@
+
+body{
+  font-family: $mainFontFamaly;
+  font-size: $mainFontSize;
+}
+#app{
+  h1,h2,h3,h4,h5,h6{
+    margin-bottom: 0px;
+  }
+}
+.f-size-08{
+  font-size: 0.8rem;
+}
+//display-flex BEGIN
+.display-flex{
+  display: flex;
+}
+.flex-center-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.display-flex-start{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.flex-column-between{
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+//display-flex END
+
+#app {
+  button, input, optgroup, select, textarea {
+    font-family: sans-serif;
+    font-size: initial;
+    line-height: 1.5;
+    margin: 10 auto;
+    //padding: 0px;
+  }
+  input:not([type]),
+  input[type=text]:not(.browser-default),
+  input[type=password]:not(.browser-default),
+  input[type=email]:not(.browser-default),
+  input[type=url]:not(.browser-default),
+  input[type=time]:not(.browser-default),
+  input[type=date]:not(.browser-default),
+  input[type=datetime]:not(.browser-default),
+  input[type=datetime-local]:not(.browser-default),
+  input[type=tel]:not(.browser-default),
+  input[type=number]:not(.browser-default),
+  input[type=search]:not(.browser-default),
+  textarea.materialize-textarea {
+    padding: 0px;
+  }
+}
+.cursor-pointer{
+  cursor:pointer;
+}
+
+//margin BEGIN
+.mr-10 {
+  margin-right: 10px;
+}
+//margin END
+
+//toast BEGIN
+.toast {
+  background: #24b742!important;
+  border-radius: 6px!important;
+  bottom: 0px!important;
+}
+.toast-error {
+  background: red!important;
+  border-radius: 6px!important;
+}
+//toast END
+
+//unselect BEGIN
+.unselectable {
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */
+}
+//unselect END
+
+//css for list page BEGIN
+.title-wrapper {
+  position: relative;
+  display: flex;
+  margin: 10px 0px;
+  justify-content: start;
+  align-items: center;
+}
+.list-h{
+  font-style: normal;
+  font-weight: 700;
+  color: $mainColor;
+  margin-right: 20px;
+}
+//css for list page END

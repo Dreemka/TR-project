@@ -1,0 +1,40 @@
+.btn-sec {
+    color: #002f6d;
+    border-radius: 4px;
+    background: none;
+    border: 1px solid #002f6d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 8px;
+    max-width: 100%;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.todo{
+    color: $todoColor;
+    border-color: $todoColor;
+}
+.accept{
+    color: $acceptColor;
+    border-color: $acceptColor;
+}
+.cancel{
+    color: $cancelColor;
+    border-color: $cancelColor;
+}
+.todo-bg{
+    color: $textColorIn;
+    border-color: $todoColor;
+    background: $todoColor;
+}
+.accept-bg{
+    color: $textColorIn;
+    border-color: $acceptColor;
+    background: $acceptColor;
+}
+.cancel-bg{
+    color: $textColorIn;
+    border-color: $cancelColor;
+    background: $cancelColor;
+}

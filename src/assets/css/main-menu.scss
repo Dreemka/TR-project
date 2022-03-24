@@ -1,0 +1,42 @@
+
+.main-menu {
+  li {
+    font-weight: bold;
+    color: $mainColor;
+    list-style: none;
+
+    &.router-link-active {
+      color: $activeColor;
+      .child-el-menu{
+        display: block;
+      }
+    }
+    &.router-link-exact-active {
+      color: $activeColor;
+    }
+  }
+  .wrapper{
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 30px;
+    transition: 0.3s;
+    font-size: 20px;
+    .item {
+      margin: 10px 0px;
+      span {
+        width: auto;
+        transition: 0.3s;
+      }
+    }
+  }
+  .child-el-menu{
+    display: none;
+    font-size: 0.8rem;
+
+    li {
+      color: $childColor;
+    }
+  }
+}

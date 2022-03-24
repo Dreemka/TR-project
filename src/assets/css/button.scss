@@ -1,0 +1,55 @@
+
+@mixin center($extend: true) {
+  @if $extend {
+    @extend %center;
+  } @else {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+}
+
+%center {
+  @include center($extend: true);
+}
+
+.btn-first{
+  @include center;
+  position: relative;
+  top: 0px;
+  box-shadow: 0px 0px 0px 0px #ccc;
+  background: $mainColor;
+  background: $mainGradientColor;
+
+  -webkit-transition: background 0.2s ease-out;
+  -moz-transition: background 0.2s ease-out;
+  -o-transition: background 0.2s ease-out;
+  transition: background 0.2s ease-out;
+  color: $textColorIn;
+  padding: 6px 12px;
+  border: 0;
+  font-size: 18px;
+  border-radius: 4px;
+  font-family: 'Raleway', sans-serif;
+  transition: 0.2s;
+  overflow: hidden;
+  &:hover{
+    position: relative;
+    top: -5px;
+    box-shadow: 0px 3px 9px -4px #20063a;
+    background: linear-gradient(38deg, rgba(32,6,58,1) 24%, rgba(36,183,66,1) 100%);
+
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+  }
+  &:active {
+    box-shadow: 0px 0px 0px 0px;
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+  }
+}

@@ -1,0 +1,83 @@
+
+#app{
+  aside {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
+    transition: 0.2s;
+  
+    .logo-wrapper {
+      font-size: 34px;
+      font-weight: 100;
+      color: #24af42;
+    }
+    .logo {
+      width: auto;
+    }
+  
+    .logo-wrapper {
+      justify-content: space-between;
+      padding-right: 20px;
+    }
+    .main-menu {
+      position: absolute;
+      top: 65px;
+      padding: 0px;
+      /* width: 0px; */
+      overflow: hidden;
+      transition: 0.2s;
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width:980px) { /* Максимум ширина 980px */
+  #app{
+    aside {
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+      transition: 0.2s;
+      box-shadow: 0px 0px 3px 1px #ccc;
+      height: 80px;
+  
+        .logo-wrapper {
+          justify-content: space-between;
+          padding-right: 20px;
+        }
+        &.no-active {
+          .main-menu {
+            display: block;
+            position: absolute;
+            top: 82px;
+            left: -302px;
+            padding: 0px;
+            box-shadow: 2px 0px 2px -1px #ccc;
+            overflow: hidden;
+            transition: 0.2s;
+            background: $mainBackground;
+            z-index: 2;
+          }
+        }
+        &.active {
+          .main-menu {
+            display: block;
+            position: absolute;
+            top: 82px;
+            left: 0px;
+            padding: 0px;
+            overflow: hidden;
+            transition: 0.2s;
+            height: calc(100% - 82px);
+            background: $mainBackground;
+            z-index: 2;
+          }
+        }
+  
+      }
+  }
+  }

@@ -1,0 +1,83 @@
+.acceptance{
+    .wrap{
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        grid-gap: 20px;
+    }
+    h4{
+        color: #002F6D;
+        margin-right: 20px;
+        font-style: normal;
+        font-weight: 700!important;
+        font-size: 20px;
+        line-height: 24px;
+    }
+    .element-tech-wrap{
+        min-width: 350px;
+        height: auto;
+        /*max-height: 250px;*/
+        /*background: #FFFFFF;*/
+        border: 1px solid #DFDFDF;
+        box-sizing: border-box;
+        /*box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);*/
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding: 0px;
+        position: relative;
+        border-radius: 4px;
+    
+        .element-tech{
+            width: 100%;
+            /*background: #fff;*/
+            top: 0px;
+            left: 0px;
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 10px;
+            border-right: 0px solid #ccc;
+            word-wrap: break-word;
+            display: flex;
+            flex-flow: column;
+            .tech-button-wrap {
+                position: relative;
+                display: flex;
+                margin: 10px 0px;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+                    
+            p{
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 24px;
+                align-items: center;
+                color: #212529;
+                margin: 12px 0px;
+            }
+            .title-tech-wrp {
+                position: relative;
+                display: flex;
+                margin: 10px 0px;
+                justify-content: start;
+                align-items: center;
+            }
+        }
+    }
+    .tabs-search-wrapper{
+        display: flex;
+        justify-content: space-between;
+        height: 68px;
+    }
+    .search-wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        margin: 10px 0px;
+    }
+}
