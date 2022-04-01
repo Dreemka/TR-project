@@ -20,7 +20,7 @@ body{
   justify-content: center;
   align-items: center;
 }
-.display-flex-start{
+.ui-display-flex-start{
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -32,6 +32,11 @@ body{
 }
 //display-flex END
 
+//width BEGIN
+.ui-width-100-pr{
+  width: 100%;
+}
+//width END
 #app {
   button, input, optgroup, select, textarea {
     font-family: sans-serif;

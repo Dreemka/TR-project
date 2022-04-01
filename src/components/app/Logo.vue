@@ -1,6 +1,6 @@
 <template>
-  <div class="logo">
-    <img alt="Vue logo" src="@/assets/logo.svg">
+  <div class="el-logo">
+    <img alt="Vue logo" src="@/assets/img/logo/logofull.svg">
   </div>
 </template>
 <style lang="scss">

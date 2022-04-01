@@ -13,7 +13,31 @@
 %center {
   @include center($extend: true);
 }
-
+.el-btn-standart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  background-color: $accentOne;
+  transition: 0.3s;
+  color: $white;
+    &-disabled {
+      background-color: $greyOne;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    &:hover {
+      box-shadow: 0px 4px 13px rgba(19, 38, 134, 0.33);
+      transition: 0.3s;
+    }
+    &:active {
+      background: $accenttwo;
+      transition: 0.3s;
+      box-shadow: none;
+    }
+}
 .btn-first{
   @include center;
   position: relative;

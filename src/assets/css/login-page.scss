@@ -1,37 +1,46 @@
 
-.container{
+.t-rr-s-container{
   display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
   width: 100%;
   max-width: 100%;
-  background: linear-gradient(120grad, #24ad42, #98aed5);
-  background: url('../assets/img/e8b4b44607411645ac1b1977724871a6.jpg') center no-repeat;
-  background-size: cover;
-  background-position-y: 0px;
 
-  .login-wrapper{
+  .t-rr-s-logo-wrapper{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $mainColor;
+    width: 70%;
+  }
+
+  .t-rr-s-login-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-flow: column;
     padding: 30px;
     border-radius: 10px;
-    width: 320px;
+    width: 30%;
+    min-width: 320px;
     background: #fff;
     box-shadow: 0px 10px 34px -12px #002f6d;
     //padding: 30px;
 
     form{
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       flex-flow: column;
       width: 100%;
 
-      input, textarea, button{
+      input, textarea {
         width: 100%;
         margin: 10px auto;
         padding: 5px;
+      }
+      button {
+        width: 200px;
+        padding: 10px;
       }
     }
   }
