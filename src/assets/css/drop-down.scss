@@ -1,11 +1,13 @@
 .dropDown-wrapper{
   position: relative;
   .dropDown-list{
+    width: 100%;
     padding: 10px;
     position: absolute;
     background: $mainColor;
     top: 35px;
     border-radius: 6px;
+    z-index: 1;
     ul{
       padding-left: 0px;
       margin-bottom: 0px;
@@ -13,6 +15,7 @@
         color: $textColorIn;
         margin: 5px;
         font-weight: 400;
+        list-style: none;
       }
     }
   }

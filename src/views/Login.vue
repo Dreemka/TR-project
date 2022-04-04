@@ -9,11 +9,13 @@
       <Input 
             mask="Email" 
             icon="contrust-Mail_outline" 
-            v-model.trim="email" />
+            v-model.trim="email"
+            class="mb-10" />
       <Input 
             mask="Password" 
             icon="contrust-Safety" 
-            v-model.trim="password" />
+            v-model.trim="password"
+            class="mb-10" />
       <div class="ui-display-flex-start ui-width-100-pr">
         <UiButton 
                 :title="title"

@@ -1,0 +1,102 @@
+
+#app{
+  .t-rr-s-header-wrapper {
+    width: 100%;
+    .t-rr-s-header-authorize-bar{
+      display: flex;
+      background: $mainColor;
+      justify-content: space-between;
+      align-items: center;
+      height: 76px;
+      padding: 0px 30px;
+      .t-rr-s-profile-wrapper {
+        color: $white;
+        font-size: 1.2em;
+      }
+      .el-logo {
+        width: 134px;
+      }
+      .logo {
+        width: auto;
+      }
+    
+      .logo-wrapper {
+        justify-content: space-between;
+        padding-right: 20px;
+      }
+      .main-menu {
+        position: absolute;
+        top: 65px;
+        padding: 0px;
+        /* width: 0px; */
+        overflow: hidden;
+        transition: 0.2s;
+        display: none;
+      }
+    }
+    .t-rr-s-header-function-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #D7D7DB;
+      height: 66px;
+      .t-rr-s-header-function-bar-filter {
+        width: 400px;
+        font-size: 14px;
+        padding-left: 30px;
+      }
+      .t-rr-s-header-function-bar-search {
+        width: 95px;
+        font-size: 14px;
+        margin-right: 30px;
+      }
+      .t-rr-s-download-upload-wrapper {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 57%;
+        padding-left: 20px;
+      }
+    }
+  }
+}
+
+// @media screen and (max-width:980px) { /* Максимум ширина 980px */
+  #app{
+    .t-rr-s-header-wrapper {  
+        .logo-wrapper {
+          justify-content: space-between;
+          padding-right: 20px;
+        }
+        &.no-active {
+          .main-menu {
+            display: block;
+            position: absolute;
+            top: 82px;
+            left: -302px;
+            padding: 0px;
+            box-shadow: 2px 0px 2px -1px #ccc;
+            overflow: hidden;
+            transition: 0.2s;
+            background: $mainBackground;
+            z-index: 2;
+          }
+        }
+        &.active {
+          .main-menu {
+            display: block;
+            position: absolute;
+            top: 82px;
+            left: 0px;
+            padding: 0px;
+            overflow: hidden;
+            transition: 0.2s;
+            height: calc(100% - 82px);
+            background: $mainBackground;
+            z-index: 2;
+          }
+        }
+  
+      }
+  }
+  // }

@@ -50,7 +50,6 @@ export default {
     .catch(err => {
       console.log(err)
     })
-
   },
   computed: mapGetters(['dataSectors']),
   methods: mapActions(['Sectors']),

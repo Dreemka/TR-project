@@ -37,6 +37,12 @@
       transition: 0.3s;
       box-shadow: none;
     }
+    .ui-i-before {
+      margin-right: 10px;
+    }
+    .ui-i-after {
+      margin-left: 10px;
+    }
 }
 .btn-first{
   @include center;

@@ -1,7 +1,9 @@
 <template>
 <div class="dropDown-wrapper">
   <div class="mask" @click="active = !active; clickDropDown(active);">
-    <i class="mr-10 " :class="[dropDownData.mask.icon]"></i><span>{{ dropDownData.mask.title }}</span>
+    <i class="mr-10 " v-if="dropDownData.mask.iconAfter" :class="[dropDownData.mask.iconAfter]" />
+    <span>{{ dropDownData.mask.title }}</span>
+    <i class="ml-10 " v-if="dropDownData.mask.iconBefore" :class="[dropDownData.mask.iconBefore]" />
   </div>
   <div class="dropDown-list" v-if="active">
   <ul >
@@ -9,10 +11,9 @@
         v-for="item in dropDownData.arrayData"
         :key="item.id"
         class="cursor-pointer"
-        @click="eventClick(item)"
-
-    >
-      <i class="mr-10 " :class="[item.icon]"></i><span>{{ item.title }}</span>
+        @click="eventClick(item)">
+      <i class="mr-10 " :class="[item.icon]" />
+      <span>{{ item.title }}</span>
     </li>
   </ul>
   </div>

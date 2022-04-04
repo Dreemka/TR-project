@@ -8,6 +8,7 @@ import router from './router'
 import Axios from 'axios'
 import dateFilter from "@/filters/date.filters"
 import langFilter from "@/filters/lang.filters"
+import {i18n} from './plugins/i18n'
 import '@babel/polyfill'
 import 'mutationobserver-shim'
 import './plugins/bootstrap-vue'
@@ -46,5 +47,6 @@ Vue.use(BroadcastData);
 new Vue({
   router,
   store,
+  i18n,
   render: h => h(App)
 }).$mount('#app')

@@ -1,31 +1,51 @@
 <template>
-<aside class="no-active" v-bind:class="{ active: isActive }">
-  <Logo />
-  <div class="logo-wrapper">
-    <i class="contrust-Burger-menu cursor-pointer" v-on:click="convertNav(); isActive = !isActive"></i>
+  <div class="t-rr-s-sidebar-wrapper unselectable">
+    <h5 class="first-uppercase">{{ $t('project_files') }}</h5>
+    <nav>
+      <ul class="t-rr-s-nav-list">
+        <li v-for="(item, index) in query" :key="index">
+          <!-- <i class="contrust-Forward" style="font-size: 24px"/> -->
+          <i class="contrust-doc" style="font-size: 24px"/>
+          {{item.name}}
+        </li>
+      </ul>
+    </nav>
+    <div class="flex-column-between nav-main-block">
+        <FooterNavbar :actives="isActive" />
+    </div>
   </div>
-  <mainMenu />
-</aside>
 </template>
 
 <script>
-import Logo from '@/components/app/Logo'
-import mainMenu from "@/components/app/mainMenu";
+import FooterNavbar from "@/components/app/FooterNavbar";
+
 export default {
   name: "Sidebar",
   components: {
-    Logo, mainMenu
+    FooterNavbar
   },
   data(){
     return {
       isActive: false,
+      query: [
+        {
+          "name": "01_Project Development"
+        },
+        {
+          "name": "01_Project Development"
+        },
+        {
+          "name": "01_Project Development"
+        },
+        {
+          "name": "01_Project Development"
+        }
+      ],
     }
   },
+  created(){    
+  },
   methods: {
-    convertNav() {
-
-      console.log('click')
-    }
   }
 }
 </script>

@@ -1,14 +1,17 @@
 <template>
   <div class="footer-nav">
     <div class="wrapper">
-      <ProfileMenu :actives="actives"/>
       <div class="copyright" v-if="!actives">
-        <span>2021&#169; ГК"ЭТАЛОН"
+        <span>2021&#169; Transporter
           <br />
         Все права защищены</span>
 
         <a href="">Противодействие мошейничеству корупции и хищениям</a>
       </div>
+    </div>
+    <div class="t-rr-s-locale-wrapper">
+      <a href="#" @click="setLocale('en')">EN</a>
+      <a href="#" @click="setLocale('ru')">RU</a>
     </div>
 <!--    <ul class="wrapper">-->
 <!--      <router-link-->
@@ -25,7 +28,6 @@
 </template>
 
 <script>
-import ProfileMenu from '@/components/app/ProfileMenu'
 export default {
   name: "FooterNavbar",
   props: {
@@ -34,7 +36,15 @@ export default {
     }
   },
   components: {
-    ProfileMenu
+  },
+  methods: {
+    setLocale(locale){
+      console.log(locale);
+      import(`@/langs/${locale}.json`).then((msg) => {
+        this.$i18n.setLocaleMessage(locale , msg)
+        this.$i18n.locale = locale
+      })
+    }
   },
 }
 </script>
