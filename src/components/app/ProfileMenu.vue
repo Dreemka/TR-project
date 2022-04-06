@@ -21,7 +21,7 @@ export default {
         mask: {
           iconAfter: 'contrust-profile',
           iconBefore: 'contrust-menu_outline',
-          title: this.allUsers.first_name,
+          title: (this.allUsers) ? this.allUsers.first_name : null,
         },
         arrayData: [
           {
@@ -47,7 +47,7 @@ export default {
   created(){
   },
   mounted() {
-    this.$store.dispatch('mountedUserMe')
+    // this.$store.dispatch('mountedUserMe')
   },
   components: {
     DropDown

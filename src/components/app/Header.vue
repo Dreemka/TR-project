@@ -65,6 +65,7 @@ export default {
     }
     this.ProjectList(requestData)
     .then(response => {
+      console.log(this.dataProjectList)
       console.log(response)
     })
     .catch(err => {
