@@ -1,19 +1,18 @@
 //tech checkbox BEGIN
-.check_wrap {
+.el-check_wrap {
   display: flex; flex-flow: wrap;
 }
 
-.check {
+.el-check {
   cursor: pointer;
   position: relative;
   margin: inherit;
   width: max-content;
-  height: 18px;
   -webkit-tap-highlight-color: transparent;
   transform: translate3d(0, 0, 0);
 }
 
-.check:before {
+.el-check:before {
   content: "";
   position: absolute;
   top: -15px;
@@ -53,25 +52,25 @@ polyline:before {
   opacity: 1
 }
 
-.ui-checkbox-dr:checked+.check svg {
+.el-checkbox:checked+.el-check svg {
   stroke: #002F6D;
 }
 
-.ui-checkbox-dr:hover+.check svg {
+.el-checkbox:hover+.el-check svg {
   stroke: #002F6D;
 }
 
-.ui-checkbox-dr:checked+.check path {
+.el-checkbox:checked+.el-check path {
   stroke-dashoffset: 60;
   transition: all .3s linear;
 }
 
-.ui-checkbox-dr:checked+.check polyline {
+.el-checkbox:checked+.el-check polyline {
   stroke-dashoffset: 42;
   transition: all .2s linear;
   transition-delay: .15s;
 }
-.label-checkbox-dr{
+.el-label-checkbox{
   margin-right: 10px;
   margin-bottom: 0px;
 }

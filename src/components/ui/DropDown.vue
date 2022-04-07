@@ -1,8 +1,8 @@
 <template>
 <div class="dropDown-wrapper">
-  <div class="mask" @click="active = !active; clickDropDown(active);">
+  <div class="t-rr-s-dropDown-mask" @click="active = !active; clickDropDown(active);">
     <i class="mr-10 " v-if="dropDownData.mask.iconAfter" :class="[dropDownData.mask.iconAfter]" />
-    <span>{{ dropDownData.mask.title }}</span>
+    <span>{{ dropDownData.mask.title || "Дементий"}}</span>
     <i class="ml-10 " v-if="dropDownData.mask.iconBefore" :class="[dropDownData.mask.iconBefore]" />
   </div>
   <div class="dropDown-list" v-if="active">
@@ -36,7 +36,6 @@ export default {
     clickDropDown(active){
       let self = this;
       let listenerClick = function(e) {
-        console.log(123);
         let el = document.querySelector('.dropDown-wrapper');
         if (el && !el.contains(e.target)) self.active = false;
         if (!self.active) document.removeEventListener('click', listenerClick , false)
@@ -47,10 +46,8 @@ export default {
     },
     eventClick(item){
       let self = this;
-      console.log(item)
       if (item.method) this.$store.dispatch(item.method)
       if (item.url) this.$router.push(item.url)
-      console.log(self.active)
       self.active = false;
     }
   }

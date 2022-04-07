@@ -21,6 +21,10 @@ module.exports = {
       "/auth": {
         target: 'https://dev0api.transporter.geekchain.dev/',
       },
-    }
-  }
+    },
+    disableHostCheck: true,
+    port: 4000,
+    public: '0.0.0.0:4000'
+  },
+  publicPath: "/",
 }

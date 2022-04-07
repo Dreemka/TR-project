@@ -1,6 +1,6 @@
 <template>
   <section class="sectors unselectable">
-    <div class="title-wrapper">
+    <!-- <div class="title-wrapper">
       <h2 class="list-h">Сектора </h2>
       <UiButton :title="title"></UiButton>
     </div>
@@ -22,13 +22,13 @@
         <td>{{item.date_create | date('date')}}</td>
       </tr>
       </tbody>
-    </table>
+    </table> -->
   </section>
 </template>
 
 <script>
-import UiButton from '@/components/ui/Button'
-import {mapGetters , mapActions} from 'vuex'
+// import UiButton from '@/components/ui/Button'
+// import {mapGetters , mapActions} from 'vuex'
 export default {
   name: "Sector",
   data() {
@@ -40,21 +40,21 @@ export default {
     }
   },
   mounted() {
-    let requestData = {
-      references : ["project"]
-    }
-    this.Sectors(requestData)
-    .then(response => {
-      console.log(response)
-    })
-    .catch(err => {
-      console.log(err)
-    })
+    // let requestData = {
+    //   references : ["project"]
+    // }
+    // this.Sectors(requestData)
+    // .then(response => {
+    //   console.log(response)
+    // })
+    // .catch(err => {
+    //   console.log(err)
+    // })
   },
-  computed: mapGetters(['dataSectors']),
-  methods: mapActions(['Sectors']),
+  // computed: mapGetters(['dataSectors']),
+  // methods: mapActions(['Sectors']),
   components: {
-    UiButton ,
+    // UiButton ,
   },
 }
 </script>

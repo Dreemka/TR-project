@@ -8,7 +8,7 @@
         <UiTabs :getDataTabs="dataTabs" @tab-idx="tabIdx"/> 
     <div class="search-wrapper">
         <UiInput mask="Поиск" 
-                 icon="contrust-Search_tiny" 
+                 icon="transporter-Search_tiny" 
                  v-model.trim="searchRequest" 
                  class="mr-3" 
                  @keyup.enter.native="searchStart(searchRequest)" 
@@ -87,8 +87,8 @@ export default {
             searchRequest: '',
             iconData: {
                 new : '',
-                ended : 'contrust-users',
-                hot : 'contrust-Fire'
+                ended : 'transporter-users',
+                hot : 'transporter-Fire'
             },
             colorStatus: {
                 new : {
@@ -112,13 +112,13 @@ export default {
                 },
                 {
                     title: 'Горящие',
-                    icon: 'contrust-Fire',
+                    icon: 'transporter-Fire',
                     icon_color: '#d60000',
 
                 },
                 {
                     title: 'Гибкий график',
-                    icon: 'contrust-Filter_add',
+                    icon: 'transporter-Filter_add',
 
                 },
             ]

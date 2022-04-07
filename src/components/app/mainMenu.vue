@@ -27,27 +27,27 @@ export default {
       {
         title: 'Home',
         url: '/home',
-        icon: 'contrust-home_outline'
+        icon: 'transporter-home_outline'
       },
       {
         title: 'About',
         url: '/about',
-        icon: 'contrust-info_outline'
+        icon: 'transporter-info_outline'
       },
       {
         title: 'Login',
         url: '/login',
-        icon: 'contrust-users'
+        icon: 'transporter-users'
       },
       {
         title: 'Acceptance',
         url: '/acceptance',
-        icon: 'contrust-D'
+        icon: 'transporter-D'
       },
       {
         title: 'Sectors',
         url: '/sectors',
-        icon: 'contrust-D'
+        icon: 'transporter-D'
       },
     ]
   }),

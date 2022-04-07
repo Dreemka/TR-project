@@ -3,5 +3,10 @@
   "download": "Download",
   "upload": "Upload",
   "search": "Search",
-  "to_choise": "To choise..."
+  "to_choise": "To choise...",
+  "file_name": "File Name",
+  "version": "Version",
+  "size": "Size",
+  "date_of_change": "Date of change",
+  "who_changed": "Who changed"
 }

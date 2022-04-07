@@ -2,7 +2,7 @@
 <aside class="no-active" v-bind:class="{ active: isActive }">
   <Logo />
   <div class="logo-wrapper">
-    <i class="contrust-Burger-menu cursor-pointer" v-on:click="convertNav(); isActive = !isActive"></i>
+    <i class="transporter-Burger-menu cursor-pointer" v-on:click="convertNav(); isActive = !isActive"></i>
   </div>
   <mainMenu />  
 </aside>

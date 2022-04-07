@@ -1,5 +1,14 @@
 .dropDown-wrapper{
   position: relative;
+  .t-rr-s-dropDown-mask {
+    display: flex;
+    align-items: center;
+    padding: 0px 20px;
+    padding-right: 0px;
+    span {
+      font-size: 0.8em;
+    }
+  }
   .dropDown-list{
     width: 100%;
     padding: 10px;

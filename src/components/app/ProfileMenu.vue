@@ -19,18 +19,18 @@ export default {
     dropDownData: function() {
       return {
         mask: {
-          iconAfter: 'contrust-profile',
-          iconBefore: 'contrust-menu_outline',
+          iconAfter: 'transporter-profile',
+          iconBefore: 'transporter-menu_outline',
           title: (this.allUsers) ? this.allUsers.first_name : null,
         },
         arrayData: [
           {
-            icon: 'contrust-Book_filled',
+            icon: 'transporter-Book_filled',
             title: 'Профиль',
             url: '/user',
           },
           {
-            icon: 'contrust-logout',
+            icon: 'transporter-logout',
             title: 'Выйти',
             url: '/login?message=logout',
             method: 'logOut',

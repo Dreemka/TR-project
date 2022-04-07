@@ -40,29 +40,8 @@ export default {
   },
   methods: {
     action(item){
-      // console.log(999);
-      // console.log(item)
       this.$root.$emit('itemData' , item)
     },
-    // clickDropDown(active){
-    //   let self = this;
-    //   let listenerClick = function(e) {
-    //     let el = document.querySelector('.dropDown-wrapper');
-    //     if (el && !el.contains(e.target)) self.active = false;
-    //     if (!self.active) document.removeEventListener('click', listenerClick , false)
-    //   }
-    //   if (active) {
-    //     document.addEventListener('click', listenerClick , false);
-    //   }
-    // },
-    // eventClick(item){
-    //   let self = this;
-    //   console.log(item)
-    //   if (item.method) this.$store.dispatch(item.method)
-    //   if (item.url) this.$router.push(item.url)
-    //   console.log(self.active)
-    //   self.active = false;
-    // }
   }
 
 }

@@ -27,7 +27,7 @@ export default {
 <style lang="scss">
 //@import '~materialize-css/dist/css/materialize.min.css';
 @import 'assets/css/variables.scss';
-@import 'assets/contrust-icon/style.css';
+@import 'assets/transporter-icon/style.css';
 @import 'assets/css/ui-library.scss';
 
 </style>

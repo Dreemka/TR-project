@@ -5,6 +5,8 @@ import Vuex from 'vuex'
 // import Sectors from "./modules/sector"
 import ProjectList from "./modules/projectList"
 import HubtList from "./modules/hubList"
+import ContentList from "./modules/contentList"
+import FolderList from "./modules/folderList"
 // import QAQCReport from "./modules/qaqcReport"
 
 
@@ -17,6 +19,8 @@ export default new Vuex.Store ({
     // Sectors,
     // QAQCReport,
     HubtList,
+    ContentList,
     ProjectList,
+    FolderList,
   }
 })

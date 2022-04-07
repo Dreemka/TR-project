@@ -3,5 +3,10 @@
   "download": "Скачать",
   "upload": "Загрузить",
   "search": "Поиск",
-  "to_choise": "Выбрать..."
+  "to_choise": "Выбрать...",
+  "file_name": "Название файла",
+  "version": "Версия",
+  "size": "Размер",
+  "date_of_change": "Дата изменения",
+  "who_changed": "Кто изменил"
 }

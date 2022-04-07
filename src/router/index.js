@@ -24,6 +24,12 @@ const routes = [
     component: () => import('../views/Sectors.vue'),
   },
   {
+    path: '/hub/list',
+    name: 'list',
+    meta: {layout: 'main'},
+    component: () => import('../views/hub/List.vue'),
+  },
+  {
     path: '/acceptance',
     name: 'Acceptance',
     meta: {layout: 'QAQC'},

@@ -3,9 +3,12 @@
     <h5 class="first-uppercase">{{ $t('project_files') }}</h5>
     <nav>
       <ul class="t-rr-s-nav-list">
-        <li v-for="(item, index) in listHub" :key="index">
-          <!-- <i class="contrust-Forward" style="font-size: 24px"/> -->
-          <i class="contrust-doc" style="font-size: 24px"/>
+        <li v-for="(item, index) in listFolder" 
+            :key="index"
+            class="cursor-pointer"
+            @click="openContent(item)">
+          <i class="transporter-doc" 
+             style="font-size: 24px"/>
           {{item.name}}
         </li>
       </ul>
@@ -28,7 +31,7 @@ export default {
   data(){
     return {
       isActive: false,
-      listHub: [],
+      listFolder: [],
     }
   },
   created(){    
@@ -39,10 +42,10 @@ export default {
       console.log(item)
       self.query(item)
     })
-    let requestData = {
-      hub_id : null
-    }
-    this.HubList(requestData)
+    // let requestData = {
+    //   Folder_id : null
+    // }
+    // this.FolderList(requestData)
     // .then(response => {
     //   console.log(response)
     // })
@@ -50,12 +53,25 @@ export default {
     //   console.log(err)
     // })
   },
-  computed: mapGetters(['dataHubList']),
+  computed: {
+    ...mapGetters(['dataFolderList']),
+    ...mapGetters(['dataHubList']),
+  },
   methods: {
-    ...mapActions(['HubList']),
+    ...mapActions(['FolderList']),
     query(item){
-      this.HubList({hub_id: item.hub_id})
-      this.listHub = this.dataHubList
+      this.FolderList({parent_folder_id: item.top_folder_id, hub_id: this.dataHubList[0].hub_id})
+          .then(response => {
+            console.log(response)
+            this.listFolder = this.dataFolderList
+            this.openContent(this.dataFolderList[0])
+          })
+      
+    },
+    openContent(item) {
+      console.log(999)
+      console.log(item)
+      this.$root.$emit('folderItem' , item)
     }
   }
 }
