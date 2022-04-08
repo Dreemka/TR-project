@@ -12,6 +12,18 @@
     padding-left: 0px;
     li {
       margin: 10px 0px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-size: 0.9em;
+      display: flex;
+      align-items: center;
+      .t-rr-s-text-li {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-size: 0.9em;
+      }
     }
   }
 }

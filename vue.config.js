@@ -8,10 +8,10 @@ module.exports = {
     },
     // proxy: {
     //   '/api': {
-    //     target: 'https://dev0skks.etalongroup.com/',
+    //     target: 'https://dev0transporter.etalongroup.com/',
     //   },
     //   "/auth": {
-    //     target: 'https://dev0skks.etalongroup.com/',
+    //     target: 'https://dev0transporter.etalongroup.com/',
     //   }
     // }
     proxy: {

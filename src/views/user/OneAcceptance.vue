@@ -24,7 +24,7 @@
                              <li><span>Статус:</span>
                                  <span>
                                  <!-- <mark class="tech-mark" ng-class="{'tech-mark-pink' : vm.itemTakingOver.type === 'Горит' , 'tech-mark-yelow' : vm.itemTakingOver.type === 'Новая' , 'tech-mark-green' : vm.itemTakingOver.type === 'Ожидает проверки', 'tech-mark-grey' : vm.itemTakingOver.type === 'Ожидает ответственного'}">{{ReportData.status}}
-                                     <i ng-if="vm.itemTakingOver.type === 'Горит'" style="color: #d60000;" class="skks-Fire text-16" ></i>
+                                     <i ng-if="vm.itemTakingOver.type === 'Горит'" style="color: #d60000;" class="transporter-Fire text-16" ></i>
                                  </mark> -->
                                  <UiMark :title="ReportData.status | lang('ru')"
                                     :icon="iconChoise(ReportData)" 

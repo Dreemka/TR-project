@@ -80,6 +80,13 @@ body{
 }
 //margin END
 
+//rotate element BEGIN
+.rotate--90{
+  transform: rotate(-90deg);
+  display: inline-block;
+}
+//rotate element END
+
 //toast BEGIN
 .toast {
   background: #24b742!important;
@@ -124,3 +131,10 @@ body{
   }
 }
 //css for TEXT END
+
+//not allowed element Begin
+.el-not-allowed {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+//not allowed element END
