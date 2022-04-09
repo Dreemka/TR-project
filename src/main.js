@@ -21,6 +21,11 @@ Vue.use(messagePlugin)
 Vue.use(Vuelidate)
 Vue.filter('date' , dateFilter)
 Vue.filter('lang' , langFilter)
+Vue.directive('init', { 
+  bind: function(el, binding, vnode) { 
+    vnode.context[binding.arg] = binding.value; 
+  } 
+});
 
 Vue.prototype.$http = Axios;
 const token = localStorage.getItem('token')

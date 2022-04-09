@@ -1,8 +1,8 @@
 <template>
-  <li :key="componentKey">
-    <i class="cursor-pointer"
+  <li>
+    <!-- <i class="cursor-pointer"
        v-if="listStyleIcon"
-       :class="[listStyleIcon , {'rotate--90' : !openFolder} , {'el-not-allowed' : !response}]" />
+       :class="[listStyleIcon , {'rotate--90' : !openFolder} , {'el-not-allowed' : !response.chaildValue.length}]" /> -->
     <i :class="iconBefore"
        v-if="iconBefore"
        style="font-size: 24px"/>
@@ -26,8 +26,8 @@
     data(){
       return {
         openFolder: false,
-        response: null,
         componentKey: 0,
+        response: [],
       }
     },
     props: {
@@ -54,18 +54,16 @@
       }
     },
     created(){
-      this.postData(this.urlQuery, this.paramsQuery)
+      if(this.urlQuery) {
+        this.postData(this.urlQuery, this.paramsQuery)
         .then((data) => {
-          this.response = data.ok
+          console.log(data)
           this.$emit('itemQueryData' , this.idParent , data)
-          console.log(data);
         });
+      }
     },
     methods: {
-    forceRerender() {
-      this.componentKey += 1;  
     }
-    },
   }
 </script>
 

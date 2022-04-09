@@ -8,16 +8,16 @@
             iconBefore="transporter-doc"
             listStyleIcon="transporter-Dropdown"
             :item="item"
-            urlQuery="/api/v1/Folder.getFolderList"
             :idParent='index'
-            :paramsQuery="{
-                      parent_folder_id: item.folder_id,
-                      hub_id: item.hub_id
-            }"
+            v-init:myvar="queryСhildFolders(item)"
             @itemQueryData="itemQueryDataFu">
-          <div @click="openContent(item)" 
+          <i class="cursor-pointer transporter-Dropdown"
+             @click="openChildFolder(item)"
+             :class="[{'rotate--90' : !openFolder} , {'el-not-allowed' : !item.valueFlag}]" />
+          <div @click="openContent(item)"
+               :key="item.test"
                class="cursor-pointer t-rr-s-text-li">
-               {{item.chaildValue}}
+               <!-- {{item.chaildValue}} -->
             {{item.name}}
           </div>
         </ListItem>
@@ -33,6 +33,8 @@
 import FooterNavbar from "@/components/app/FooterNavbar";
 import {mapGetters , mapActions} from 'vuex'
 import ListItem from '../ui/listItem.vue';
+import QueryMixin from '@/mixins/query-mixin';
+
 
 export default {
   name: "Sidebar",
@@ -40,6 +42,9 @@ export default {
     FooterNavbar,
     ListItem
   },
+  mixins: [
+    QueryMixin,
+  ],
   data(){
     return {
       isActive: false,
@@ -55,16 +60,6 @@ export default {
       console.log(item)
       self.query(item)
     })
-    // let requestData = {
-    //   Folder_id : null
-    // }
-    // this.FolderList(requestData)
-    // .then(response => {
-    //   console.log(response)
-    // })
-    // .catch(err => {
-    //   console.log(err)
-    // })
   },
   computed: {
     ...mapGetters(['dataFolderList']),
@@ -89,8 +84,24 @@ export default {
       // item.itemQueryData = value
       console.log(value)
       console.log(this.listFolder[index])
-      this.listFolder[index].chaildValue = value
-      this.$forceUpdate();
+      // this.listFolder[index].chaildValue = value
+    },
+    queryСhildFolders(item){
+      if(!item.chaildValue) {
+        this.postData('/api/v1/Folder.getFolderList', {
+                      parent_folder_id: item.folder_id,
+                      hub_id: item.hub_id
+            })
+        .then((data) => {
+          console.log(data)
+          item.chaildValue = data
+          if(item.chaildValue.length) item.valueFlag = true
+          this.$set(this.listFolder, this.listFolder.indexOf(item), item)
+      });
+      }
+    },
+    openChildFolder(item){
+      console.log(item)
     },
   }
 }
