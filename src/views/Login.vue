@@ -7,13 +7,15 @@
     <form @submit.prevent="onSubmit(email , password)">
       <br>
       <Input 
-            mask="Email" 
+            mask="Email"
+            type="text"
             icon="transporter-Mail_outline" 
             v-model.trim="email"
             class="mb-10" />
       <Input 
             mask="Password" 
-            icon="transporter-Safety" 
+            icon="transporter-Safety"
+            type="password"
             v-model.trim="password"
             class="mb-10" />
       <div class="ui-display-flex-start ui-width-100-pr">
@@ -47,16 +49,20 @@ export default {
   },
   methods: {
     async onSubmit(email , password){
-        const formData = {
-          email: email,
-          password: password,
-        }
-        await this.$store.dispatch('login', formData)
-              .then(() => this.$router.push('/'))
-              .catch(err => {
-                console.log(err)
-                this.$router.push('/login')
-              })
+      console.log(email)
+      console.log(password)
+      this.$router.push({ name: 'list' } )
+
+        // const formData = {
+        //   email: email,
+        //   password: password,
+        // }
+        // await this.$store.dispatch('login', formData)
+        //       .then(() => this.$router.push('/'))
+        //       .catch(err => {
+        //         console.log(err)
+        //         this.$router.push('/login')
+        //       })
     },
     test(e){
       
@@ -65,7 +71,7 @@ export default {
     test2(e){
       this.elRemember = e.target
 
-    }
+    },
   },
   data() {
     return {
@@ -82,7 +88,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 // @import '~materialize-css/dist/css/materialize.min.css';
 @import 'src/assets/css/variables.scss';
 @import 'src/assets/css/login-page.scss';

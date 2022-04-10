@@ -1,7 +1,7 @@
 <template>
 <div class="input-wrapper">
     <!-- <div class="select-label">Проектное название объекта</div> -->
-    <input type="text"
+    <input :type="type"
            name="name"
            id="name"
            required
@@ -25,6 +25,9 @@ props: {
     type: [String, Number]
   },
   icon : {
+    type : String,
+  },
+  type: {
     type : String,
   }
 },

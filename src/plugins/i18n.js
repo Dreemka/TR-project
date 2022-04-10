@@ -7,8 +7,8 @@ import ru from '../langs/ru.json'
 Vue.use(VueI18n)
 
 export const i18n = new VueI18n({
-  locale: 'en',
-  fallbackLocale: 'en',
+  locale: 'ru',
+  fallbackLocale: 'ru',
   messages: {
     en,
     ru,
