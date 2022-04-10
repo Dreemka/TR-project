@@ -10,19 +10,20 @@
   .t-rr-s-nav-list {
     list-style-type: none;
     padding-left: 0px;
+    font-size: $size-sm;
     li {
-      margin: 10px 0px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      font-size: 0.9em;
-      display: flex;
-      align-items: center;
       .t-rr-s-text-li {
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-        font-size: 0.9em;
+      }
+      .t-rr-s-nav-list-wrapper-content {
+        margin: 10px 0px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: flex;
+        align-items: center;
       }
     }
   }

@@ -1,6 +1,7 @@
 <template>
   <div class="t-rr-s-sidebar-wrapper unselectable">
     <h5 class="first-uppercase">{{ $t('project_files') }}</h5>
+    <!-- <Tree :treeData="tree"></Tree> -->
     <nav>
       <ul class="t-rr-s-nav-list">
         <ListItem v-for="(item, index) in listFolder" 
@@ -10,16 +11,18 @@
             :item="item"
             :idParent='index'
             v-init:myvar="queryСhildFolders(item)"
-            @itemQueryData="itemQueryDataFu">
-          <i class="cursor-pointer transporter-Dropdown"
-             @click="openChildFolder(item)"
-             :class="[{'rotate--90' : !openFolder} , {'el-not-allowed' : !item.valueFlag}]" />
-          <div @click="openContent(item)"
-               :key="item.test"
-               class="cursor-pointer t-rr-s-text-li">
-               <!-- {{item.chaildValue}} -->
-            {{item.name}}
-          </div>
+            @childAction="childActionFu">
+          <div class="t-rr-s-nav-list-wrapper-content"> 
+            <i class="cursor-pointer transporter-Dropdown"
+               @click="openChildFolder(item)"
+               :class="[{'rotate--90' : !item.openFolder} , {'el-not-allowed' : !item.child_folders}]" />
+            <i class="transporter-doc"
+               style="font-size: 24px"/>   
+            <div @click="openContent(item)"
+                 class="cursor-pointer t-rr-s-text-li">
+              {{item.name}}
+            </div>
+          </div> 
         </ListItem>
       </ul>
     </nav>
@@ -34,13 +37,14 @@ import FooterNavbar from "@/components/app/FooterNavbar";
 import {mapGetters , mapActions} from 'vuex'
 import ListItem from '../ui/listItem.vue';
 import QueryMixin from '@/mixins/query-mixin';
+// import Tree from '../ui/Tree';
 
 
 export default {
   name: "Sidebar",
   components: {
     FooterNavbar,
-    ListItem
+    ListItem,
   },
   mixins: [
     QueryMixin,
@@ -49,7 +53,7 @@ export default {
     return {
       isActive: false,
       listFolder: [],
-      openFolder: false,
+      // openFolder: false,
     }
   },
   created(){    
@@ -80,10 +84,11 @@ export default {
       console.log(item)
       this.$root.$emit('folderItem' , item)
     },
-    itemQueryDataFu(index , value) {
+    childActionFu(value) {
       // item.itemQueryData = value
       console.log(value)
-      console.log(this.listFolder[index])
+      this.openContent(value)
+      // console.log(this.listFolder[index])
       // this.listFolder[index].chaildValue = value
     },
     queryСhildFolders(item){
@@ -102,6 +107,17 @@ export default {
     },
     openChildFolder(item){
       console.log(item)
+      item.openFolder = !item.openFolder
+
+      if(!item.children){
+        item.children = item.chaildValue
+        this.$set(this.listFolder, this.listFolder.indexOf(item), item)
+      } else {
+        item.children = false
+        this.$set(this.listFolder, this.listFolder.indexOf(item), item)
+      }
+
+
     },
   }
 }

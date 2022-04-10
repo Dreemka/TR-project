@@ -45,7 +45,11 @@
         <th scope="row">
           <Checkbox :index="idx"  v-model="item.check"/>
         </th>
-        <td>{{item.name}}</td>
+        <td>
+          <i :class="[{'transporter-doc' : item.type === 'folder'}]"
+             style="font-size: 24px"/>   
+          {{item.name}}
+        </td>
         <td>{{item.version}}</td>
         <td>{{item.size}}</td>
         <td>{{item.modified_time | date('date')}}</td>

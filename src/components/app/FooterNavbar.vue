@@ -2,7 +2,7 @@
   <div class="footer-nav">
     <div class="wrapper">
       <div class="copyright" v-if="!actives">
-        <span>2021&#169; Transporter
+        <span>2022&#169; Transporter
           <br />
         Все права защищены</span>
 
@@ -13,17 +13,6 @@
       <a href="#" @click="setLocale('en')">EN</a>
       <a href="#" @click="setLocale('ru')">RU</a>
     </div>
-<!--    <ul class="wrapper">-->
-<!--      <router-link-->
-<!--          v-for="link in links"-->
-<!--          :key="link.url"-->
-<!--          tag="li"-->
-<!--          class="item cursor-pointer"-->
-<!--          :to="link.url"-->
-<!--      >-->
-<!--        <i class="mr-10" :class="[link.icon]"></i><span>{{ link.title }}</span>-->
-<!--      </router-link>-->
-<!--    </ul>-->
   </div>
 </template>
 

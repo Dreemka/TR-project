@@ -23,7 +23,7 @@ export default {
       })
       .then(function (response) {
         self.response = response.data.result
-        console.log(response);
+        // console.log(response);
       })
       .catch(function (error) {
         console.log(error);
