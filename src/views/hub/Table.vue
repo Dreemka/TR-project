@@ -4,7 +4,9 @@
       <thead>
       <tr>
         <th scope="col">
-          <Checkbox index="h1"  v-model="checkAll"/>  
+          <Checkbox index="h1"  
+                    v-model="checkAll"
+                    @change="allchoiseFu(checkAll)"/>  
         </th>
         <th scope="col">
           <div>
@@ -43,7 +45,9 @@
           :key="idx"
           :class="{'t-rr-s-choise-item-active' : item.check}">
         <th scope="row">
-          <Checkbox :index="idx"  v-model="item.check"/>
+          <Checkbox :index="idx"  
+                    v-model="item.check"
+                    @change="choiseFu(item)"/>
         </th>
         <td>
           <i :class="[{'transporter-doc' : item.type === 'folder'}]"
@@ -63,51 +67,39 @@
 <script>
 import Checkbox from '@/components/ui/Checkbox'
 export default {
-name: "Table",
-components: {
-  Checkbox,
-},
-data() {
-  return {
-    checkAll: false,
-    lovingVue: false,
-    tableTest: [
-      {
-        nameFile: 'A01',
-        version: 'V1',
-        size: '23,k KB',
-        date: '22 марта 2022',
-        author: 'Овчинников Александр' 
-      },
-            {
-        nameFile: 'A01',
-        version: 'V1',
-        size: '23,k KB',
-        date: '22 марта 2022',
-        author: 'Овчинников Александр' 
-      },
-            {
-        nameFile: 'A01',
-        version: 'V1',
-        size: '23,k KB',
-        date: '22 марта 2022',
-        author: 'Овчинников Александр' 
+  name: "Table",
+  components: {
+    Checkbox,
+  },
+  data() {
+    return {
+      checkAll: false,
+      lovingVue: false,
+    }
+  },
+  props: {
+    data: {
+      type: Array
+    }
+  },
+  methods: {
+    allchoiseFu(checkAll) {
+      if(checkAll) this.data.map(one=>one.check = true)
+      if(!checkAll) this.data.map(one=>one.check = false)
+    },
+    choiseFu(item) {
+      let checkFu = this.data.filter(one=>one.check)
+      if(!item.check) this.checkAll = !!checkFu.length
+      if(item.check && checkFu.length === this.data.length) this.checkAll = true
       }
-    ]
-  }
-},
-props: {
-  data: {
-    type: Array
-  }
-},
-methods: {
-  // eventCheck(value) {
-  //   console.log(value);
-  //   // console.log(item)
-  //   // item.check = value
-  // }
-},
+      
+    
+    // eventCheck(value) {
+    //   console.log(value);
+    //   // console.log(item)
+    //   // item.check = value
+    // }
+  },
 }
 </script>
 
