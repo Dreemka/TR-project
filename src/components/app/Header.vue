@@ -1,7 +1,8 @@
 <template>
   <div class="t-rr-s-header-wrapper">
     <div class="t-rr-s-header-authorize-bar">
-      <Logo />
+      <Logo @click="goToLink"
+            class="cursor-pointer"/>
         <div class="t-rr-s-profile-wrapper">
           <ProfileMenu />
         </div>
@@ -21,7 +22,8 @@
           :title="$t('download')"
           iconAfter="transporter-cloud_outline"
           :disabled="false"
-          class="mr-20" />
+          class="mr-20"
+          @click="download()" />
 
         <UiButton 
           :title="$t('upload')"
@@ -43,7 +45,9 @@ import Input from "@/components/ui/Input";
 import UiButton from '@/components/ui/Button';
 import DropDownSt from '@/components/ui/DropDownSt';
 import ProfileMenu from '@/components/app/ProfileMenu';
-import {mapGetters , mapActions} from 'vuex'
+import {mapGetters , mapActions} from 'vuex';
+import QueryMixin from '@/mixins/query-mixin'
+
 
 
 
@@ -51,8 +55,15 @@ import {mapGetters , mapActions} from 'vuex'
 export default {
   name: "Sidebar",
   components: {
-    Logo, Input, UiButton, ProfileMenu, DropDownSt
+    Logo, 
+    Input, 
+    UiButton, 
+    ProfileMenu, 
+    DropDownSt
   },
+  mixins: [
+    QueryMixin,
+  ],
   data(){
     return {
       isActive: false,
@@ -69,14 +80,12 @@ export default {
         .catch(err => {
           console.log(err)
         })
-
-
-    
   },
   computed: {
     ...mapGetters(['dataProjectList']),
     ...mapGetters(['dataHubList']),
     ...mapGetters(['dataContentList']),
+    ...mapGetters(['datalistContentDownload']),
   },
   methods: {
     ...mapActions(['ProjectList']),
@@ -110,9 +119,35 @@ export default {
       .catch(err => {
         console.log(err)
       })
-    }
+    },
+    goToLink() {
+      if (this.$route.path !== "/list") this.$router.push({ name: 'list'})
+    },
+    download() {
+      console.log(55)
+      console.log(this.datalistContentDownload)
 
-  }
+      this.datalistContentDownload.map(one => {
+        this.postData('/api/v2/Version.download', {
+          version_id: one.version_id,
+          hub_id: one.hub_id
+        })
+        .then((data) => {
+          console.log(data)
+          document.location.href = data.location;
+        });
+      })
+  
+    }
+  },
+  watch: {
+  '$route.params.id': {
+    immediate: true,
+    handler() {
+      // if (!this.$route.params.id) this.getContentList({})
+    },
+  },
+},
 }
 </script>
 

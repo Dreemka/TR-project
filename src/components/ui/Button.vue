@@ -1,5 +1,7 @@
 <template>
-  <button class="el-btn-standart" :class="{'el-btn-standart-disabled' : disabled}">
+  <button class="el-btn-standart" 
+          :class="{'el-btn-standart-disabled' : disabled}"
+          @click="$emit('click')">
     <i v-if="iconBefore" class="ui-i-before" :class="[iconBefore]"/>
     <span  class="text-in-button" >
       {{title}}

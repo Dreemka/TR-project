@@ -4,7 +4,7 @@ export default {
   name: 'ContentListMethod',
   actions: {
     async ContentList(ctx , requestData = {}){
-      await HTTP.get('/api/v1/Folder.getContent',{
+      await HTTP.get('/api/v2/Folder.getContent',{
         params: requestData
       })
           .then(response => {

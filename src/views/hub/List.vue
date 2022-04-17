@@ -1,7 +1,6 @@
 <template>
   <section class="t-rr-s-hub-list">
-    <Table :data="listContent">
-    </Table>
+    <Table :data="listContent" />
   </section>
 </template>
 
@@ -17,18 +16,22 @@ export default {
   data() {
     return {
       listContent: [],
+      routerData: this.$route.params,
     }
   },
+  props: ["parentFolderId", "hubId" , "name"],
   methods: {
     ...mapActions(['ContentList']),
     query(item){
-      console.log(333)
       this.ContentList({hub_id: item.hub_id , parent_folder_id: item.folder_id})
-        .then(response => {
-          console.log(this.dataContentList)
-          console.log(response)
-          this.listContent = this.dataContentList
+        .then(() => {
+          console.log(item.hub_id)
+          console.log(item.parent_folder_id)
+          console.log(this.$route.params)
 
+          this.$router.push({ name: 'folder', params: { parentFolderId: item.parent_folder_id, hubId: item.hub_id, name: item.local_path} })
+          console.log(item.name)
+          this.listContent = this.dataContentList
         })
         .catch(err => {
           console.log(err)
@@ -37,15 +40,24 @@ export default {
   },
   computed: mapGetters(['dataContentList']),
   mounted() {
+    console.log(this.parentFolderId)
+    console.log(this.hubId)
+    console.log(this.name)
+
+
+    this.ContentList({hub_id: this.$route.params.hub_id , parent_folder_id: this.$route.params.folder_id})
+        .then(() => {
+          // this.$router.push({ name: 'folder', params: { parent_folder_id: item.parent_folder_id, hub_id: item.hub_id, name: item.local_path.replace(/ /ig, '_') } })
+          // console.log(item.name)
+          this.listContent = this.dataContentList
+        })
+        .catch(err => {
+          console.log(err)
+        })
     let self = this
     this.$root.$on('folderItem', function (item) {
-      console.log(item)
       self.query(item)
     })
-    // let requestData = {
-    //   hub_id : null
-    // }
-    // this.ContentList(requestData)
   },
 }
 </script>

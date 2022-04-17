@@ -5,7 +5,7 @@ import BroadcastData from '@/plugins/broadcast-data'
 import Vuelidate from "vuelidate"
 import messagePlugin from "./plugins/utils/message.plugin"
 import router from './router'
-import Axios from 'axios'
+// import Axios from 'axios'
 import dateFilter from "@/filters/date.filters"
 import langFilter from "@/filters/lang.filters"
 import {i18n} from './plugins/i18n'
@@ -26,12 +26,19 @@ Vue.directive('init', {
     vnode.context[binding.arg] = binding.value; 
   } 
 });
+// function b64DecodeUnicode(str) {
+//   // Going backwards: from bytestream, to percent-encoding, to original string.
+//   return decodeURIComponent(atob(str).split('').map(function(c) {
+//       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+//   }).join(''));
+// }
+// Vue.prototype.$http = Axios;
+// const token = localStorage.getItem('token')
 
-Vue.prototype.$http = Axios;
-const token = localStorage.getItem('token')
-if (token) {
-  Vue.prototype.$http.defaults.headers.common['Authorization'] = token
-}
+// console.log(localStorage.getItem('token'));
+// if (token) {
+//   Vue.prototype.$http.defaults.headers.common['Authorization'] = token;
+// }
 
 Vue.use(BroadcastData);
 // Vue.use({

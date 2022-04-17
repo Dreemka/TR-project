@@ -1,5 +1,5 @@
 <template>
-  <div class="el-logo">
+  <div class="el-logo" @click="$emit('click', $event)">
     <img alt="Vue logo" src="@/assets/img/logo/logofull.svg">
   </div>
 </template>

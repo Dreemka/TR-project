@@ -15,11 +15,15 @@ export default {
     //   return await response.json();
     // }
 
+    const token = localStorage.getItem('token')
 
     this.postData = async function postData(url = '', data = {}) {
       let self = this
       await axios.get(url , {
         params: data,
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       })
       .then(function (response) {
         self.response = response.data.result

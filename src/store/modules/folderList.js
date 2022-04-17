@@ -4,7 +4,7 @@ export default {
   name: 'FolderListMethod',
   actions: {
     async FolderList(ctx , requestData = {}){
-      await HTTP.get('/api/v1/Folder.getFolderList',{
+      await HTTP.get('/api/v2/Folder.getFolderList',{
         params: requestData
       })
           .then(response => {

@@ -75,7 +75,6 @@
       if(this.urlQuery) {
         this.postData(this.urlQuery, this.paramsQuery)
         .then((data) => {
-          console.log(data)
           this.$emit('itemQueryData' , this.idParent , data)
         });
       }
@@ -84,9 +83,6 @@
       go(child){
         let self = this
         child.openFolder = !child.openFolder
-
-        console.log(8888);
-        console.log(child)
         if(child.children) {
           child.children = false;
           self.renderComponent = false;
@@ -101,11 +97,10 @@
                 hub_id: child.hub_id
             })
             .then((data) => {
-              console.log(data)
               child.children = data
-            self.renderComponent = false;
-            
-            self.$nextTick(() => {
+              self.renderComponent = false;
+              
+              self.$nextTick(() => {
               // А потом покажем снова
               self.renderComponent = true;
             });

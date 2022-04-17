@@ -26,7 +26,7 @@
         </ListItem>
       </ul>
     </nav>
-    <div class="flex-column-between nav-main-block">
+    <div class="flex-column-between">
         <FooterNavbar :actives="isActive" />
     </div>
   </div>
@@ -61,7 +61,6 @@ export default {
   mounted() {
     let self = this
     this.$root.$on('itemData', function (item) {
-      console.log(item)
       self.query(item)
     })
   },
@@ -73,23 +72,16 @@ export default {
     ...mapActions(['FolderList']),
     query(item){
       this.FolderList({parent_folder_id: item.top_folder_id, hub_id: this.dataHubList[0].hub_id})
-          .then(response => {
-            console.log(response)
+          .then(() => {
             this.listFolder = this.dataFolderList
             this.openContent(this.dataFolderList[0])
           })
     },
     openContent(item) {
-      console.log(999)
-      console.log(item)
       this.$root.$emit('folderItem' , item)
     },
     childActionFu(value) {
-      // item.itemQueryData = value
-      console.log(value)
       this.openContent(value)
-      // console.log(this.listFolder[index])
-      // this.listFolder[index].chaildValue = value
     },
     queryСhildFolders(item){
       if(!item.chaildValue) {
@@ -98,7 +90,6 @@ export default {
                       hub_id: item.hub_id
             })
         .then((data) => {
-          console.log(data)
           item.chaildValue = data
           if(item.chaildValue.length) item.valueFlag = true
           this.$set(this.listFolder, this.listFolder.indexOf(item), item)

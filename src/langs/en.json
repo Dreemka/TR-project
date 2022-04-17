@@ -3,10 +3,13 @@
   "download": "Download",
   "upload": "Upload",
   "search": "Search",
+  "close": "Close",
   "to_choise": "To choise...",
   "file_name": "File Name",
   "version": "Version",
   "size": "Size",
   "date_of_change": "Date of change",
-  "who_changed": "Who changed"
+  "who_changed": "Who changed",
+  "version_history": "Version history",
+  "loaded": "Loaded"
 }

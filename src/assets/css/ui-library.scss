@@ -3,14 +3,15 @@ body{
   font-family: $mainFontFamaly;
   font-size: $mainFontSize;
 }
+label {
+  margin-bottom: 0px!important;
+}
 #app{
   h1,h2,h3,h4,h5,h6{
     margin-bottom: 0px;
   }
 }
-.f-size-08{
-  font-size: 0.8rem;
-}
+
 //display-flex BEGIN
 .display-flex{
   display: flex;
@@ -20,9 +21,14 @@ body{
   justify-content: center;
   align-items: center;
 }
-.ui-display-flex-start{
+.flex-center-start{
   display: flex;
   justify-content: flex-start;
+  align-items: center;
+}
+.flex-center-end{
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
 }
 .flex-column-between{
@@ -30,7 +36,17 @@ body{
   flex-flow: column;
   justify-content: space-between;
 }
+.el-overflow-white-space{
+  white-space: nowrap; /* Запрещаем перенос строк */
+  overflow: hidden; /* Обрезаем все, что не помещается в область */
+  text-overflow: ellipsis; /* Добавляем многоточие */
+}
 //display-flex END
+
+//display-none
+.el-display-none {
+  display: none;
+}
 
 //width BEGIN
 .ui-width-100-pr{
@@ -79,6 +95,48 @@ body{
   margin-bottom: 10px;
 }
 //margin END
+
+//font-size BEGIN
+.fz-8 {
+  font-size: 8px;
+}
+.fz-12 {
+  font-size: 12px;
+}
+.fz-14 {
+  font-size: 14px;
+}
+.fz-16 {
+  font-size: 16px;
+}
+.fz-18 {
+  font-size: 18px;
+}
+.fz-20 {
+  font-size: 20px;
+}
+.fz-22 {
+  font-size: 22px;
+}
+.fz-24 {
+  font-size: 24px;
+}
+.fz-26 {
+  font-size: 26px;
+}
+.fz-28 {
+  font-size: 28px;
+}
+.fz-30 {
+  font-size: 30px;
+}
+.fz-32 {
+  font-size: 32px;
+}
+.f-size-08{
+  font-size: 0.8rem;
+}
+//font-size END
 
 //rotate element BEGIN
 .rotate--90{

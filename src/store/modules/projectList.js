@@ -4,7 +4,8 @@ export default {
   name: 'projectListMethod',
   actions: {
     async ProjectList(ctx , requestData = {}){
-      await HTTP.get('/api/v1/Project.getList',{
+      console.log(99)
+      await HTTP.get('/api/v2/Project.getList',{
         params: requestData
       })
           .then(response => {

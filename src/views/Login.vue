@@ -4,13 +4,13 @@
       <Logo />
   </div>
   <div class="t-rr-s-login-wrapper" >
-    <form @submit.prevent="onSubmit(email , password)">
+    <form @submit.prevent="onSubmit(login , password)">
       <br>
       <Input 
-            mask="Email"
+            mask="login"
             type="text"
             icon="transporter-Mail_outline" 
-            v-model.trim="email"
+            v-model.trim="login"
             class="mb-10" />
       <Input 
             mask="Password" 
@@ -18,11 +18,11 @@
             type="password"
             v-model.trim="password"
             class="mb-10" />
-      <div class="ui-display-flex-start ui-width-100-pr">
+      <div class="flex-center-start ui-width-100-pr">
         <UiButton 
                 :title="title"
                 icon="false"
-                :disabled="(!email.includes('@') || password.length < 8)" />
+                :disabled="(!login.includes('@') || password.length < 8)" />
       </div>
     </form>
   </div>
@@ -31,7 +31,7 @@
 
 <script>
 import UiButton from '@/components/ui/Button'
-import {email , required , minLength} from 'vuelidate/lib/validators'
+import {login , required , minLength} from 'vuelidate/lib/validators'
 import messages from "@/plugins/utils/messages"
 import Input from "@/components/ui/Input";
 import Logo from '@/components/app/Logo'
@@ -41,28 +41,27 @@ import Logo from '@/components/app/Logo'
 export default {
   name: "Login",
   validations: {
-    email: {email , required},
+    login: {login , required},
     password: {required , minLength: minLength(8)},
   },
   components: {
     UiButton , Input , Logo
   },
   methods: {
-    async onSubmit(email , password){
-      console.log(email)
-      console.log(password)
-      this.$router.push({ name: 'list' } )
-
-        // const formData = {
-        //   email: email,
-        //   password: password,
-        // }
-        // await this.$store.dispatch('login', formData)
-        //       .then(() => this.$router.push('/'))
-        //       .catch(err => {
-        //         console.log(err)
-        //         this.$router.push('/login')
-        //       })
+    async onSubmit(login , password){
+        const formData = {
+          login: login,
+          password: password,
+        }
+        await this.$store.dispatch('login', formData)
+              .then((response) => {
+                console.log(response)
+                this.$router.push({ name: 'list' })
+              })
+              .catch(err => {
+                console.log(err.response.data)
+                this.$router.push('/login')
+              })
     },
     test(e){
       
@@ -76,7 +75,7 @@ export default {
   data() {
     return {
       title : 'Войти',
-      email : '',
+      login : '',
       password : '',
     }
   },

@@ -4,7 +4,7 @@ export default {
   name: 'hubListMethod',
   actions: {
     async HubList(ctx , requestData = {}){
-      await HTTP.get('/api/v1/Hub.getList',{
+      await HTTP.get('/api/v2/Hub.getList',{
         params: requestData
       })
           .then(response => {

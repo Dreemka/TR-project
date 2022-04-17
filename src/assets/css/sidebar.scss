@@ -1,12 +1,22 @@
 .t-rr-s-sidebar-wrapper {
-  background: $greyFour;
+  background: #f4f4f6;
   width: 100%;
   max-width: 400px;
   position: relative;
-  border-right: 1px solid $greyTwo;
+  border-right: 1px solid #d7d7db;
   transition: 0.3s;
   min-height: 83vh;
   padding: 30px;
+  overflow: hidden;
+  height: 84vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  nav {
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 100%;
+  }
   .t-rr-s-nav-list {
     list-style-type: none;
     padding-left: 0px;
