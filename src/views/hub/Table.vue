@@ -4,7 +4,7 @@
       <thead>
       <tr>
         <th scope="col">
-          <Checkbox index="h1"  
+          <Checkbox index="h1"
                     v-model="checkAll"
                     @change="allchoiseFu(checkAll)"/>
         </th>
@@ -91,7 +91,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="(item , idx) in data"
+      <tr v-for="(item , idx) in dataFilter"
           :key="idx"
           :class="{'t-rr-s-choise-item-active' : item.check}"
           >
@@ -147,7 +147,8 @@
                             </span>
                           </div>
 
-                          <div class="t-rr-s-popup-block-content-list-item-download">
+                          <div class="t-rr-s-popup-block-content-list-item-download cursor-pointer"
+                               @click="download(version)">
                             <i class="transporter-file" />
                           </div>
                       </li>
@@ -196,6 +197,8 @@ export default {
       size: false,
       whoChanged: false,
       dateOfChange: false,
+      search: '',
+      dataFilter: [],
     }
   },
   props: {
@@ -209,26 +212,25 @@ export default {
   methods: {
     ...mapActions(['listContentDownloadAdd']),
     allchoiseFu(checkAll) {
-      if(checkAll) this.data.map(one=>one.check = true)
-      if(!checkAll) this.data.map(one=>one.check = false)
-      let checkFu = this.data.filter(one=>one.check)
+      if(checkAll) this.dataFilter.map(one=>one.check = true)
+      if(!checkAll) this.dataFilter.map(one=>one.check = false)
+      let checkFu = this.dataFilter.filter(one=>one.check)
 
       console.log(checkFu)
       this.listContentDownloadAdd(checkFu)
 
     },
     choiseFu(item) {
-      let checkFu = this.data.filter(one=>one.check)
-      console.log(checkFu)
+      let checkFu = this.dataFilter.filter(one=>one.check)
       if(!item.check) this.checkAll = !!checkFu.length
-      if(item.check && checkFu.length === this.data.length) this.checkAll = true
+      if(item.check && checkFu.length === this.dataFilter.length) this.checkAll = true
       this.listContentDownloadAdd(checkFu)
 
     },
     sortLis(column) {
       switch (column) {
         case "file_name":
-          if(this.fileName) this.data.sort(function (a, b) {
+          if(this.fileName) this.dataFilter.sort(function (a, b) {
             if (a.name < b.name) {
               return 1;
             }
@@ -237,7 +239,7 @@ export default {
             }
             return 0;
           })
-          if(!this.fileName) this.data.sort(function (a, b) {
+          if(!this.fileName) this.dataFilter.sort(function (a, b) {
             if (a.name > b.name) {
               return 1;
             }
@@ -246,11 +248,9 @@ export default {
             }
             return 0;
           })
-          console.log(this.data)
           break;
         case "version":
-          console.log(this.version)
-          if(this.version) this.data.sort(function (a, b) {
+          if(this.version) this.dataFilter.sort(function (a, b) {
             if (a.version < b.version) {
               return 1;
             }
@@ -259,7 +259,7 @@ export default {
             }
             return 0;
           })
-          if(!this.version) this.data.sort(function (a, b) {
+          if(!this.version) this.dataFilter.sort(function (a, b) {
             if (a.version > b.version) {
               return 1;
             }
@@ -268,10 +268,9 @@ export default {
             }
             return 0;
           })
-          console.log(this.data)
           break;
         case "size":
-        if(this.size) this.data.sort(function (a, b) {
+        if(this.size) this.dataFilter.sort(function (a, b) {
           if (a.size < b.size) {
             return 1;
           }
@@ -280,7 +279,7 @@ export default {
           }
           return 0;
         })
-        if(!this.size) this.data.sort(function (a, b) {
+        if(!this.size) this.dataFilter.sort(function (a, b) {
           if (a.size > b.size) {
             return 1;
           }
@@ -291,7 +290,7 @@ export default {
         })
         break;
         case "date_of_change":
-        if(this.dateOfChange) this.data.sort(function (a, b) {
+        if(this.dateOfChange) this.dataFilter.sort(function (a, b) {
           if (a.modified_time < b.modified_time) {
             return 1;
           }
@@ -300,7 +299,7 @@ export default {
           }
           return 0;
         })
-        if(!this.dateOfChange) this.data.sort(function (a, b) {
+        if(!this.dateOfChange) this.dataFilter.sort(function (a, b) {
           if (a.modified_time > b.modified_time) {
             return 1;
           }
@@ -311,7 +310,7 @@ export default {
         })
         break;
         case "who_changed":
-        if(this.whoChanged) this.data.sort(function (a, b) {
+        if(this.whoChanged) this.dataFilter.sort(function (a, b) {
           if (a.modified_user_name < b.modified_user_name) {
             return 1;
           }
@@ -320,7 +319,7 @@ export default {
           }
           return 0;
         })
-        if(!this.whoChanged) this.data.sort(function (a, b) {
+        if(!this.whoChanged) this.dataFilter.sort(function (a, b) {
           if (a.modified_user_name > b.modified_user_name) {
             return 1;
           }
@@ -345,16 +344,44 @@ export default {
       .then((data) => {
         item.listVersion = data
         if(item.listVersion.length) item.popupOpen = true
-        this.$set(this.data, this.data.indexOf(item), item)
+        this.$set(this.dataFilter, this.dataFilter.indexOf(item), item)
       });
     },
     closePopup(item) {
       console.log(item)
       item.popupOpen = false
-      this.$set(this.data, this.data.indexOf(item), item)
+      this.$set(this.dataFilter, this.dataFilter.indexOf(item), item)
+    },
+    download(version) {
+        this.postData('/api/v2/Version.download', {
+          version_id: version.version_id,
+          hub_id: version.hub_id
+        })
+        .then((data) => {
+          console.log(data)
+          document.location.href = data.location;
+        });
+    },
+    searchFu(filterData) {
+      this.dataFilter = this.data.slice();
+      if (filterData) {
+        this.dataFilter = this.data.filter(one => {
+            return one.name.toLowerCase().includes(filterData.toLowerCase());
+        });
+      }
+    }
+  },
+  watch: {
+    'data': {
+      handler() {
+        this.dataFilter = this.data.slice();
+      }
     }
   },
   mounted() {
+    this.$root.$on('filterData', (filterData) => {
+      this.searchFu(filterData)
+    })
   },
 }
 </script>

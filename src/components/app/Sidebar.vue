@@ -78,6 +78,7 @@ export default {
           })
     },
     openContent(item) {
+      console.log(222)
       this.$root.$emit('folderItem' , item)
     },
     childActionFu(value) {

@@ -23,8 +23,8 @@ module.exports = {
       },
     },
     disableHostCheck: true,
-    port: 4000,
-    public: '0.0.0.0:4000'
+    port: 4001,
+    public: 'localhost'
   },
   publicPath: "/",
 }

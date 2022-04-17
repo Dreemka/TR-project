@@ -27,13 +27,14 @@
 
         <UiButton 
           :title="$t('upload')"
-          iconAfter="transporter-cloud_outline"
-          :disabled="false" />  
+          iconAfter="false"
+          :disabled="true" />  
       </div>
       <div class="t-rr-s-header-function-bar-search">
         <Input 
               :mask="$t('search')" 
-              icon='transporter-Search_tiny' />
+              icon='transporter-Search_tiny'
+              v-model="filterData" />
       </div>
     </div>
   </div>
@@ -68,6 +69,7 @@ export default {
     return {
       isActive: false,
       data: null,
+      filterData: '',
     }
   },
   mounted() {
@@ -147,6 +149,12 @@ export default {
       // if (!this.$route.params.id) this.getContentList({})
     },
   },
+  'filterData': {
+    handler() {
+      console.log(this.filterData)
+      this.$root.$emit('filterData' , this.filterData)
+    }
+  }
 },
 }
 </script>

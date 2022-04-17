@@ -1,7 +1,13 @@
 .t-rr-s-table-wrapper {
+    height: 84vh;
+    // display: inline-block;
+    overflow: auto;
   .table {
     thead {
       background: $greyFour;
+      position: sticky;
+      z-index: 2;
+      top: 0;
       th {
         font-weight: 400;
         font-size: 0.9em;
