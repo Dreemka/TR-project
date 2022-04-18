@@ -14,9 +14,11 @@
           <i class="cursor-pointer"
              @click="go(child)"
              :class="[listStyleIcon , {'rotate--90' : !child.openFolder} , {'el-not-allowed' : !child.child_folders}]" />
-          <i :class="iconBefore"
+          <!-- <i :class="iconBefore"
              v-if="iconBefore"
-             style="font-size: 24px"/>   
+             style="font-size: 24px"/>  -->
+          <img v-if="item.type === 'folder'" class="mr-2" src="@/assets/transporter-icon/Icon/folder.svg">
+
           <div @click="childAction(child)"
                class="cursor-pointer t-rr-s-text-li">
                {{ child.name }}

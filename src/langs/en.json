@@ -11,5 +11,6 @@
   "date_of_change": "Date of change",
   "who_changed": "Who changed",
   "version_history": "Version history",
-  "loaded": "Loaded"
+  "loaded": "Loaded",
+  "quit" : "Quit"
 }

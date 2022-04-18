@@ -21,7 +21,7 @@
                     type="checkbox" 
                     v-model="fileName"
                     class="el-display-none"
-                    @change="sortLis('file_name')">
+                    @change="sortList('file_name')">
           </div>
         </th>
         <th scope="col">
@@ -37,7 +37,7 @@
                     type="checkbox" 
                     v-model="version"
                     class="el-display-none"
-                    @change="sortLis('version')">
+                    @change="sortList('version')">
           </div>
         </th>
         <th scope="col">
@@ -53,7 +53,7 @@
                     type="checkbox" 
                     v-model="size"
                     class="el-display-none"
-                    @change="sortLis('size')">
+                    @change="sortList('size')">
           </div>
         </th>
         <th scope="col">
@@ -61,7 +61,7 @@
             <div class="el-overflow-white-space">
               {{$t('date_of_change')}}
             </div>
-            <label for="date_of_change">
+            <label for="dateOfChange">
               <i class="transporter-menu_outline" />
             </label>
              <input name="dateOfChange" 
@@ -69,7 +69,7 @@
                     type="checkbox" 
                     v-model="dateOfChange"
                     class="el-display-none"
-                    @change="sortLis('date_of_change')">
+                    @change="sortList('date_of_change')">
           </div>
         </th>
         <th scope="col">
@@ -77,7 +77,7 @@
             <div class="el-overflow-white-space">
               {{$t('who_changed')}}
             </div>
-             <label for="who_changed">
+             <label for="whoChanged">
                 <i class="transporter-menu_outline" />
              </label>
              <input name="whoChanged" 
@@ -85,7 +85,7 @@
                     type="checkbox" 
                     v-model="whoChanged"
                     class="el-display-none"
-                    @change="sortLis('who_changed')">
+                    @change="sortList('who_changed')">
           </div>
         </th>
       </tr>
@@ -106,11 +106,13 @@
                     <!-- <i :class="[{'transporter-doc' : item.type === 'folder'}]"
                       style="font-size: 24px"/> -->
                     <img v-if="item.extension === 'doc' && item.extension === 'docx'" class="mr-1" src="@/assets/transporter-icon/Icon/doc.svg">
-                    <!-- <img v-if="item.extension === 'rvt'" src="@/assets/transporter-icon/Icon/rvt.svg"> -->
+                    <!-- <img v-if="item.extension === 'rvt'" class="mr-1" src="@/assets/transporter-icon/Icon/rvt.svg"> -->
                     <img v-if="item.extension === 'pdf'" class="mr-1" src="@/assets/transporter-icon/Icon/pdf.svg">
                     <img v-if="item.extension === 'xlxs'" class="mr-1" src="@/assets/transporter-icon/Icon/xls.svg">
                     <img v-if="item.extension === 'dwg'" class="mr-1" src="@/assets/transporter-icon/Icon/dwg.svg">
                     <img v-if="item.type === 'folder'" class="mr-1" src="@/assets/transporter-icon/Icon/folder.svg">
+                    <i v-if="item.type !== 'folder' && item.extension !== 'dwg' && item.extension !== 'doc' && item.extension !== 'pdf' && item.extension !== 'xlxs'" class="transporter-file fz-24" />
+
                    {{item.name}}
                  </div>
               
@@ -118,7 +120,7 @@
         </td>
         <td v-if="item.type !== 'folder'">{{item.version}}</td>
         <td v-if="item.type === 'folder'"> - </td>
-        <td v-if="item.type !== 'folder'">{{item.size}}</td>
+        <td v-if="item.type !== 'folder'">{{convert(item)}} KB</td>
         <td v-if="item.type === 'folder'"> - </td>
         <td>{{item.modified_time | date('date')}}</td>
         <td>
@@ -168,6 +170,11 @@
                   </div>
 
               </Popup>
+        </td>
+      </tr>
+      <tr v-if="!dataFilter.length">
+        <td colspan="6" class="t-tt-s-empty-td fz-24">
+          Папка пустая
         </td>
       </tr>
       </tbody>
@@ -233,7 +240,8 @@ export default {
       this.listContentDownloadAdd(checkFu)
 
     },
-    sortLis(column) {
+    sortList(column) {
+      console.log(332)
       switch (column) {
         case "file_name":
           if(this.fileName) this.dataFilter.sort(function (a, b) {
@@ -296,7 +304,9 @@ export default {
         })
         break;
         case "date_of_change":
+          console.log(this.dataFilter)
         if(this.dateOfChange) this.dataFilter.sort(function (a, b) {
+          console.log(a.modified_time)
           if (a.modified_time < b.modified_time) {
             return 1;
           }
@@ -349,7 +359,11 @@ export default {
       })
       .then((data) => {
         item.listVersion = data
-        if(item.listVersion) item.popupOpen = true
+        if(item.type === "folder") {
+          item.popupOpen = false
+        } else {
+        if(item.listVersion.length) item.popupOpen = true
+        }
         this.$set(this.dataFilter, this.dataFilter.indexOf(item), item)
       });
     },
@@ -375,6 +389,9 @@ export default {
             return one.name.toLowerCase().includes(filterData.toLowerCase());
         });
       }
+    },
+    convert(item) {
+      return item.size * 0.001
     }
   },
   watch: {

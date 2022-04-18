@@ -16,8 +16,8 @@
             <i class="cursor-pointer transporter-Dropdown"
                @click="openChildFolder(item)"
                :class="[{'rotate--90' : !item.openFolder} , {'el-not-allowed' : !item.child_folders}]" />
-            <i class="transporter-doc"
-               style="font-size: 24px"/>   
+            <img v-if="item.type === 'folder'" class="mr-1" src="@/assets/transporter-icon/Icon/folder.svg">
+ 
             <div @click="openContent(item)"
                  class="cursor-pointer t-rr-s-text-li">
               {{item.name}}

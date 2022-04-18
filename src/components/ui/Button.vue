@@ -7,6 +7,7 @@
       {{title}}
     </span>
     <i v-if="iconAfter" class="ui-i-after" :class="[iconAfter]"/>
+    <!-- <img v-if="item.type === 'folder'" class="mr-2" :src="iconAfter"> -->
   </button>
 </template>
 
