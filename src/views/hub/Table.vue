@@ -120,7 +120,7 @@
         </td>
         <td v-if="item.type !== 'folder'">{{item.version}}</td>
         <td v-if="item.type === 'folder'"> - </td>
-        <td v-if="item.type !== 'folder'">{{convert(item)}} KB</td>
+        <td v-if="item.type !== 'folder'">{{convert(item.size)}}</td>
         <td v-if="item.type === 'folder'"> - </td>
         <td>{{item.modified_time | date('date')}}</td>
         <td>
@@ -390,8 +390,17 @@ export default {
         });
       }
     },
+    // convert(item) {
+    //   return item.size * 0.001
+    // }
     convert(item) {
-      return item.size * 0.001
+      var i = -1;
+      var byteUnits = [' kB', ' MB', ' GB', ' TB', 'PB', 'EB', 'ZB', 'YB'];
+      do {
+          item = item / 1024;
+          i++;
+      } while (item > 1024);
+      return Math.max(item, 0.1).toFixed(1) + byteUnits[i];
     }
   },
   watch: {
