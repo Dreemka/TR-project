@@ -4,12 +4,12 @@ export default {
   name: 'FolderListMethod',
   actions: {
     async FolderList(ctx , requestData = {}){
-      // const token = localStorage.getItem('token')
+      const token = localStorage.getItem('token')
       await HTTP.get('/api/v2/Folder.getFolderList',{
         params: requestData,
-        // headers: {
-        //   'Authorization': `Bearer ${token}`
-        // }
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       })
           .then(response => {
             let getFolderListData = response.data.result;
