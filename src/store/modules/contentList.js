@@ -4,8 +4,12 @@ export default {
   name: 'ContentListMethod',
   actions: {
     async ContentList(ctx , requestData = {}){
+      const token = localStorage.getItem('token')
       await HTTP.get('/api/v2/Folder.getContent',{
-        params: requestData
+        params: requestData,
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       })
           .then(response => {
             let getContentListData = response.data.result;
