@@ -29,8 +29,8 @@ export default {
           console.log(item.parent_folder_id)
           console.log(this.$route.params)
 
-          this.$router.push({ name: 'folder', params: { parentFolderId: item.parent_folder_id, hubId: item.hub_id, name: item.local_path} })
-          .catch(() => {})
+          // this.$router.push({ name: 'folder', params: { parentFolderId: item.parent_folder_id, hubId: item.hub_id, name: item.local_path} })
+          // .catch(() => {})
           console.log(item.name)
           this.listContent = this.dataContentList
           console.log(this.listContent)

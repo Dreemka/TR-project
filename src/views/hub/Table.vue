@@ -103,8 +103,14 @@
         <td>
           <div @click="openPopup(item)">
                  <div class="cursor-pointer">
-                    <i :class="[{'transporter-doc' : item.type === 'folder'}]"
-                      style="font-size: 24px"/>
+                    <!-- <i :class="[{'transporter-doc' : item.type === 'folder'}]"
+                      style="font-size: 24px"/> -->
+                    <img v-if="item.extension === 'doc' && item.extension === 'docx'" class="mr-1" src="@/assets/transporter-icon/Icon/doc.svg">
+                    <!-- <img v-if="item.extension === 'rvt'" src="@/assets/transporter-icon/Icon/rvt.svg"> -->
+                    <img v-if="item.extension === 'pdf'" class="mr-1" src="@/assets/transporter-icon/Icon/pdf.svg">
+                    <img v-if="item.extension === 'xlxs'" class="mr-1" src="@/assets/transporter-icon/Icon/xls.svg">
+                    <img v-if="item.extension === 'dwg'" class="mr-1" src="@/assets/transporter-icon/Icon/dwg.svg">
+                    <img v-if="item.type === 'folder'" class="mr-1" src="@/assets/transporter-icon/Icon/folder.svg">
                    {{item.name}}
                  </div>
               
@@ -183,7 +189,7 @@ export default {
   components: {
     Checkbox,
     Popup,
-    UiButton
+    UiButton,
   },
   mixins: [
     QueryMixin,
@@ -343,7 +349,7 @@ export default {
       })
       .then((data) => {
         item.listVersion = data
-        if(item.listVersion.length) item.popupOpen = true
+        if(item.listVersion) item.popupOpen = true
         this.$set(this.dataFilter, this.dataFilter.indexOf(item), item)
       });
     },
