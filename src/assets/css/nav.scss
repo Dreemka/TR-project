@@ -1,72 +1,81 @@
-nav{
-  width: 300px;
-  position: relative;
-  // height: 100vh;
-  box-shadow: 0px 0px 3px 1px #ccc;
-  background: #ffffff;
-  transition: 0.3s;
-
-  &.active {
-    width: 80px;
-    .logo {
-      width: 0px;
-      overflow: hidden;
-      transition: 0.3s;
-    }
-    .wrapper{
-      .item {
-        margin: 0px 0px;
-
-        span {
-          width: 0px;
-          overflow: hidden;
-          display: block;
-          height: 20px;
-          transition: 0.3s;
-        }
-      }
-    }
-    .logo-wrapper {
-      padding: 0px;
-      i {
-        width: 100%;
-      }
-    }
-  }
-  .nav-main-block{
-    height: calc(100% - 80px);
-  }
-  .logo {
-    width: 80%;
-    overflow: hidden;
-    transition: 0.3s;
-  }
-
-  .logo-wrapper{
+#app{
+  aside {
     display: flex;
-    justify-content: center;
+    flex-flow: row;
+    justify-content: space-between;
     align-items: center;
-    height: 80px;
-    padding-right: 10px;
-    transition: 0.3s;
-
-    i{
-      width: 20%;
+    width: 100%;
+    overflow: hidden;
+    transition: 0.2s;
+  
+    .logo-wrapper {
       font-size: 34px;
       font-weight: 100;
       color: #24af42;
-      justify-content: center;
-      align-items: center;
-      display: flex;
-
+    }
+    .logo {
+      width: auto;
+    }
+  
+    .logo-wrapper {
+      justify-content: space-between;
+      padding-right: 20px;
+    }
+    .main-menu {
+      position: absolute;
+      top: 65px;
+      padding: 0px;
+      /* width: 0px; */
+      overflow: hidden;
+      transition: 0.2s;
+      display: none;
     }
   }
 }
 
-@media screen and (max-width:980px) { /* Максимум ширина 980px */
-  nav {
-    left: -302px;
-    position: absolute;
+// @media screen and (max-width:980px) { /* Максимум ширина 980px */
+  #app{
+    aside {
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+      transition: 0.2s;
+      box-shadow: 0px 0px 3px 1px #ccc;
+      height: 80px;
+  
+        .logo-wrapper {
+          justify-content: space-between;
+          padding-right: 20px;
+        }
+        &.no-active {
+          .main-menu {
+            display: block;
+            position: absolute;
+            top: 82px;
+            left: -302px;
+            padding: 0px;
+            box-shadow: 2px 0px 2px -1px #ccc;
+            overflow: hidden;
+            transition: 0.2s;
+            background: $mainBackground;
+            z-index: 2;
+          }
+        }
+        &.active {
+          .main-menu {
+            display: block;
+            position: absolute;
+            top: 82px;
+            left: 0px;
+            padding: 0px;
+            overflow: hidden;
+            transition: 0.2s;
+            height: calc(100% - 82px);
+            background: $mainBackground;
+            z-index: 2;
+          }
+        }
+  
+      }
   }
-
-}
+  // }

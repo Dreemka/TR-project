@@ -1,11 +1,23 @@
 .dropDown-wrapper{
   position: relative;
+  .t-rr-s-dropDown-mask {
+    display: flex;
+    align-items: center;
+    padding: 0px 20px;
+    padding-right: 0px;
+    span {
+      font-size: 0.8em;
+    }
+  }
   .dropDown-list{
+    width: 100%;
     padding: 10px;
     position: absolute;
     background: $mainColor;
     top: 35px;
     border-radius: 6px;
+    z-index: 3;
+    font-size: $size-sm;
     ul{
       padding-left: 0px;
       margin-bottom: 0px;
@@ -13,6 +25,7 @@
         color: $textColorIn;
         margin: 5px;
         font-weight: 400;
+        list-style: none;
       }
     }
   }

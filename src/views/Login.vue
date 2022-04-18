@@ -1,51 +1,29 @@
 <template>
-<div class="container unselectable" @click.self="test($event)" @mousedown="test2($event)">
-  <div class="login-wrapper" >
-    <img alt="Contrust logo" src="../assets/logo.svg">
-    <form @submit.prevent="onSubmit(email , password , isChecked)">
+<div class="t-rr-s-container unselectable" @click.self="test($event)" @mousedown="test2($event)">
+  <div class="t-rr-s-logo-wrapper">
+      <Logo />
+  </div>
+  <div class="t-rr-s-login-wrapper" >
+    <form @submit.prevent="onSubmit(login , password)">
       <br>
-      <Input mask="Email" icon="contrust-Mail_outline" v-model.trim="email" />
-
-<!--      <small class="helper-text invalid"-->
-<!--             v-if="$v.email.$dirty && !$v.email.required"-->
-<!--      >Поле Email не должно быть пустым</small>-->
-<!--      <small class="helper-text invalid"-->
-<!--             v-else-if="$v.email.$dirty && !$v.email.email"-->
-<!--      >Введите корректный Email</small>-->
-      <Input mask="Password" icon="contrust-Safety" v-model.trim="password" />
-
-
-      <!-- <input type="text"
-             v-model.trim="email"
-             placeholder="Email"
-             :class="{invalid: $v.email.$dirty && !$v.email.required || $v.email.$dirty && !$v.email.email }"> -->
-
-      <!-- <small class="helper-text invalid"
-             v-if="$v.email.$dirty && !$v.email.required"
-      >Поле Email не должно быть пустым</small>
-      <small class="helper-text invalid"
-             v-else-if="$v.email.$dirty && !$v.email.email"
-      >Введите корректный Email</small> -->
-
-      <!-- <input
-          type="password"
-          v-model.trim="password"
-          placeholder="Password"
-          :class="{invalid: $v.password.$dirty && !$v.password.required || $v.password.$dirty && !$v.password.minLength }"> -->
-<!--      <small class="helper-text invalid"-->
-<!--             v-if="$v.password.$dirty && !$v.password.required"-->
-<!--      >Введите пароль</small>-->
-<!--      <small class="helper-text invalid"-->
-<!--             v-else-if="$v.password.$dirty && !$v.password.minLength"-->
-<!--      >Password должен быть {{$v.password.$params.minLength.min}} символов, сейчас он {{ password.length }}</small>-->
-      <div class="m-2">
-      <a href="">Забыли пароль?</a>
-      <UiCheckbox :title="title_checkbox"
-                  @new-model="isChecked = !isChecked"
-                  v-model="isChecked" ></UiCheckbox>
+      <Input 
+            mask="login"
+            type="text"
+            icon="transporter-Mail_outline" 
+            v-model.trim="login"
+            class="mb-10" />
+      <Input 
+            mask="Password" 
+            icon="transporter-Safety"
+            type="password"
+            v-model.trim="password"
+            class="mb-10" />
+      <div class="flex-center-start ui-width-100-pr">
+        <UiButton 
+                :title="title"
+                icon="false"
+                :disabled="(!login.includes('@') || password.length < 8)" />
       </div>
-      <UiButton :title="title"
-                icon="contrust-home_outline"></UiButton>
     </form>
   </div>
 </div>
@@ -53,32 +31,35 @@
 
 <script>
 import UiButton from '@/components/ui/Button'
-import UiCheckbox from '@/components/ui/Checkbox'
-import {email , required , minLength} from 'vuelidate/lib/validators'
+import {login , required , minLength} from 'vuelidate/lib/validators'
 import messages from "@/plugins/utils/messages"
 import Input from "@/components/ui/Input";
+import Logo from '@/components/app/Logo'
+
 
 
 export default {
   name: "Login",
   validations: {
-    email: {email , required},
+    login: {login , required},
     password: {required , minLength: minLength(8)},
   },
   components: {
-    UiButton , UiCheckbox , Input ,
+    UiButton , Input , Logo
   },
   methods: {
-    async onSubmit(email , password , isChecked){
+    async onSubmit(login , password){
         const formData = {
-          email: email,
+          login: login,
           password: password,
-          remember : isChecked
         }
         await this.$store.dispatch('login', formData)
-              .then(() => this.$router.push('/'))
+              .then((response) => {
+                console.log(response)
+                this.$router.push({ name: 'list' })
+              })
               .catch(err => {
-                console.log(err)
+                console.log(err.response.data)
                 this.$router.push('/login')
               })
     },
@@ -89,15 +70,13 @@ export default {
     test2(e){
       this.elRemember = e.target
 
-    }
+    },
   },
   data() {
     return {
       title : 'Войти',
-      title_checkbox : 'Оставаться в сети',
-      email : '',
+      login : '',
       password : '',
-      isChecked : false,
     }
   },
   mounted() {
@@ -108,7 +87,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 // @import '~materialize-css/dist/css/materialize.min.css';
 @import 'src/assets/css/variables.scss';
 @import 'src/assets/css/login-page.scss';

@@ -1,15 +1,16 @@
 <template>
 <div class="input-wrapper">
-
-    <input type="text"
+    <!-- <div class="select-label">Проектное название объекта</div> -->
+    <input :type="type"
            name="name"
            id="name"
            required
            :value="value"
            @input="dataValue">
-    <span class="spin"></span>
+         
+    <!-- <span class="spin"></span> -->
     
-    <label for="name"><i v-if="icon" class="ui-i search" :class="[icon]"/> {{mask}}</label>
+    <label for="name"><i v-if="icon" class="ui-i search" :class="[icon]"/>{{mask}}</label>
 </div>
 </template>
 
@@ -24,6 +25,9 @@ props: {
     type: [String, Number]
   },
   icon : {
+    type : String,
+  },
+  type: {
     type : String,
   }
 },

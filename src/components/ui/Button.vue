@@ -1,9 +1,12 @@
 <template>
-  <button class="btn-first">
-    <i v-if="icon" class="ui-i" :class="[icon]"/>
+  <button class="el-btn-standart" 
+          :class="{'el-btn-standart-disabled' : disabled}"
+          @click="$emit('click')">
+    <i v-if="iconBefore" class="ui-i-before" :class="[iconBefore]"/>
     <span  class="text-in-button" >
-{{title}}
-</span>
+      {{title}}
+    </span>
+    <i v-if="iconAfter" class="ui-i-after" :class="[iconAfter]"/>
   </button>
 </template>
 
@@ -11,12 +14,18 @@
 
 export default {
   props: {
-    title : {
-      type : String,
+    title: {
+      type: String,
     },
-    icon : {
-      type : String,
-    }
+    iconBefore: {
+      type: String,
+    },
+    iconAfter: {
+      type: String,
+    },
+    disabled: {
+      type: [String , Object , Boolean],
+    },
   },
   methods: {
     // todo(id){
@@ -24,7 +33,6 @@ export default {
     //   console.log(this)
     // }
   },
-
 }
 </script>
 

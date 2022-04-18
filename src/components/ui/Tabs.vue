@@ -25,7 +25,8 @@ export default {
     emits: ['tab-idx'],
     methods: {
         sendData(swithTabs){
-            console.log(swithTabs);
+            // console.log(swithTabs);
+            
 
             this.$emit('tab-idx' , swithTabs)
         }

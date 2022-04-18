@@ -24,6 +24,23 @@ const routes = [
     component: () => import('../views/Sectors.vue'),
   },
   {
+    path: '/list',
+    name: 'list',
+    meta: {layout: 'main'},
+    component: () => import('../views/hub/List.vue'),
+  },
+  {
+    path: '/list/:parentFolderId-:hubId-:name',
+    name: 'folder',
+    meta: {layout: 'main'},
+    component: () => import('../views/hub/List.vue'),
+    props: (route) => ({
+      parentFolderId: route.params.parentFolderId,
+      hubId: route.params.hubId,
+      name: route.params.name,
+    }),
+  },
+  {
     path: '/acceptance',
     name: 'Acceptance',
     meta: {layout: 'QAQC'},

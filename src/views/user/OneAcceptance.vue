@@ -1,7 +1,7 @@
 <template>
     <div class="one-acceptance">
         <div class="back-tech-wrp" ui-sref="tech.taking_over" @click="goToList()">
-            <i style="color: #1a3761;" class="contrust-Back-arrow"></i>
+            <i style="color: #1a3761;" class="transporter-Back-arrow"></i>
             К списку приемок
         </div>
         <div class="title-wrapper">
@@ -10,7 +10,7 @@
         <div class="display-flex-start">
                 <btn-sec title="Принять к осмотру" type="accept-bg" @click.native="goToList()" class="mr-2"></btn-sec>
                 <btn-sec title="Отклонить" type="cancel-bg" class="mr-2"></btn-sec>
-                <btn-sec title="Редактировать" type="todo-bg" icon="contrust-Edit" ></btn-sec>
+                <btn-sec title="Редактировать" type="todo-bg" icon="transporter-Edit" ></btn-sec>
         </div>
 
         <div class="mt-2" v-if="Object.keys(ReportData).length !== 0" >
@@ -24,7 +24,7 @@
                              <li><span>Статус:</span>
                                  <span>
                                  <!-- <mark class="tech-mark" ng-class="{'tech-mark-pink' : vm.itemTakingOver.type === 'Горит' , 'tech-mark-yelow' : vm.itemTakingOver.type === 'Новая' , 'tech-mark-green' : vm.itemTakingOver.type === 'Ожидает проверки', 'tech-mark-grey' : vm.itemTakingOver.type === 'Ожидает ответственного'}">{{ReportData.status}}
-                                     <i ng-if="vm.itemTakingOver.type === 'Горит'" style="color: #d60000;" class="skks-Fire text-16" ></i>
+                                     <i ng-if="vm.itemTakingOver.type === 'Горит'" style="color: #d60000;" class="transporter-Fire text-16" ></i>
                                  </mark> -->
                                  <UiMark :title="ReportData.status | lang('ru')"
                                     :icon="iconChoise(ReportData)" 
@@ -215,8 +215,8 @@ export default {
             ReportData: {},
             iconData: {
                 new : '',
-                ended : 'contrust-users',
-                hot : 'contrust-Fire'
+                ended : 'transporter-users',
+                hot : 'transporter-Fire'
             },
             colorStatus: {
                 new : {
@@ -240,13 +240,13 @@ export default {
                 },
                 {
                     title: 'Горящие',
-                    icon: 'contrust-Fire',
+                    icon: 'transporter-Fire',
                     icon_color: '#d60000',
 
                 },
                 {
                     title: 'Гибкий график',
-                    icon: 'contrust-Filter_add',
+                    icon: 'transporter-Filter_add',
 
                 },
             ]

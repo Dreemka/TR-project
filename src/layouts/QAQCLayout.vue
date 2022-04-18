@@ -1,23 +1,25 @@
 <template>
-  <section class="main-layout">
-    <Navbar />
-    <Sidebar />
-    <main class="app-content">
-      <div class="app-page">
-        <router-view />
-      </div>
-    </main>
+  <section class="t-rr-s-main-layout">
+    <Header />
+    <div class="t-rr-s-main-wrapper">
+      <Sidebar />
+      <main class="app-content">
+        <div class="app-page">
+          <router-view />
+        </div>
+      </main>
+    </div>
   </section>
 </template>
 
 <script>
-import Navbar from '@/components/app/Navbar'
-import Sidebar from '@/components/app/Sidebar'
+import Header from '@/components/app/Header'
+import Sidebar from '../components/app/Sidebar.vue'
 
 export default {
-  name: "QAQCLayout",
-  components: {
-  Navbar, Sidebar
+  name: "MainLayout",
+  components: { 
+    Header , Sidebar
   }
 }
 </script>

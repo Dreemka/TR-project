@@ -1,6 +1,5 @@
 <template>
   <div class="item cursor-pointer" v-if="!actives">
-    <br />
     <DropDown :dropDownData="dropDownData"  />
   </div>
 
@@ -20,22 +19,23 @@ export default {
     dropDownData: function() {
       return {
         mask: {
-        icon: 'contrust-profile',
-        title: this.allUsers.first_name,
-      },
-      arrayData: [
-        {
-          icon: 'contrust-Book_filled',
-          title: 'Профиль',
-          url: '/user',
+          iconAfter: 'transporter-profile',
+          iconBefore: 'transporter-menu_outline',
+          title: (this.allUsers) ? this.allUsers.first_name : null,
         },
-        {
-          icon: 'contrust-logout',
-          title: 'Выйти',
-          url: '/login?message=logout',
-          method: 'logOut',
-        },
-      ],
+        arrayData: [
+          {
+            icon: 'transporter-Book_filled',
+            title: 'Профиль',
+            url: '/user',
+          },
+          {
+            icon: 'transporter-logout',
+            title: 'Выйти',
+            url: '/login?message=logout',
+            method: 'logOut',
+          },
+        ],
     }
     }
   },
@@ -47,7 +47,7 @@ export default {
   created(){
   },
   mounted() {
-    this.$store.dispatch('mountedUserMe')
+    // this.$store.dispatch('mountedUserMe')
   },
   components: {
     DropDown
