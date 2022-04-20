@@ -4,9 +4,12 @@ export default {
   name: 'projectListMethod',
   actions: {
     async ProjectList(ctx , requestData = {}){
-      console.log(99)
+      const token = localStorage.getItem('token')
       await HTTP.get('/api/v2/Project.getList',{
-        params: requestData
+        params: requestData,
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       })
           .then(response => {
             let getProjectListData = response.data.result;

@@ -109,18 +109,19 @@ export default {
     },
     getContentList(hubdata , projectdata) {
       console.log(projectdata)
-      let requestData = {
-        hub_id: (hubdata) ? hubdata[0].hub_id : null,
-        parent_folder_id: (projectdata) ? projectdata[0].top_folder_id : null
-      }
-      this.ContentList(requestData)
-      .then(response => {
-        console.log(this.dataContentList)
-        console.log(response)
-      })
-      .catch(err => {
-        console.log(err)
-      })
+      console.log(hubdata)
+      // let requestData = {
+      //   hub_id: (hubdata) ? hubdata[0].hub_id : null,
+      //   parent_folder_id: (projectdata) ? projectdata[0].top_folder_id : null
+      // }
+      // this.ContentList(requestData)
+      // .then(response => {
+      //   console.log(this.dataContentList)
+      //   console.log(response)
+      // })
+      // .catch(err => {
+      //   console.log(err)
+      // })
     },
     goToLink() {
       if (this.$route.path !== "/list") this.$router.push({ name: 'list'})

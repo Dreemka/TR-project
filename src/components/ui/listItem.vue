@@ -10,13 +10,17 @@
                       :iconBefore="iconBefore"
                       :listStyleIcon="listStyleIcon"
                       @childAction="childAction">
-        <div class="t-rr-s-nav-list-wrapper-content">
+        <div class="t-rr-s-nav-list-wrapper-content"
+             :class="{'active': $route.params.name === child.name}">
           <i class="cursor-pointer"
              @click="go(child)"
              :class="[listStyleIcon , {'rotate--90' : !child.openFolder} , {'el-not-allowed' : !child.child_folders}]" />
-          <i :class="iconBefore"
+          <!-- <i :class="iconBefore"
              v-if="iconBefore"
-             style="font-size: 24px"/>   
+             style="font-size: 24px"/>  -->
+            <img v-if="child.type === 'folder' && $route.params.name !== child.name" class="mr-1" src="@/assets/transporter-icon/Icon/folder.svg">
+            <img v-if="child.type === 'folder' && $route.params.name === child.name" class="mr-1" src="@/assets/transporter-icon/Icon/folderLink.svg">
+
           <div @click="childAction(child)"
                class="cursor-pointer t-rr-s-text-li">
                {{ child.name }}

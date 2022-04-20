@@ -11,5 +11,6 @@
   "date_of_change": "Дата изменения",
   "who_changed": "Кто изменил",
   "version_history": "История версий",
-  "loaded": "Загрузил"
+  "loaded": "Загрузил",
+  "quit" : "Выйти"
 }
