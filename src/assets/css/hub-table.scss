@@ -20,6 +20,18 @@
           font-weight: 400;
           font-size: 0.9em;
         }
+        td:nth-child(3n) {
+          text-align: center;
+        }
+        td:nth-child(4n) {
+          text-align: right;
+        }
+        td:nth-child(5n) {
+          text-align: right;
+        }
+        td:nth-child(6n) {
+          text-align: left;
+        }
         th {
           font-weight: 400;
           font-size: 0.9em;

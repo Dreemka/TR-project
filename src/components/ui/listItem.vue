@@ -12,7 +12,7 @@
                       @childAction="childAction">
         <div class="t-rr-s-nav-list-wrapper-content"
              :class="{'active': $route.params.name === child.name}">
-          <i class="cursor-pointer"
+          <i class="cursor-pointer mr-2"
              @click="go(child)"
              :class="[listStyleIcon , {'rotate--90' : !child.openFolder} , {'el-not-allowed' : !child.child_folders}]" />
           <!-- <i :class="iconBefore"
@@ -83,16 +83,36 @@
         });
       }
     },
+    mounted() {
+      // this.$root.$on('folderData' , (item) => {
+      //   console.log(444)
+      //   console.log(item.id)
+      //   console.log(this.item.id)
+      //   console.log(555)
+      //   item.children = false
+
+      //   if(item.id === this.item.id) {
+      //     // console.table(item)
+      //     item.openFolder = false
+      //     item.children = false
+      //     // this.go(item)
+      //     this.childAction(item)
+      //     return
+      //   }
+        
+      // })
+    },
     methods: {
       go(child){
+        // console.log(child)
         let self = this
         child.openFolder = !child.openFolder
+        // child.openFolder = true
         if(child.children) {
           child.children = false;
           self.renderComponent = false;
           
           self.$nextTick(() => {
-            // А потом покажем снова
             self.renderComponent = true;
           })
         } else {
@@ -101,12 +121,16 @@
                 hub_id: child.hub_id
             })
             .then((data) => {
+              // console.log(8888888888)
               child.children = data
+              // console.log(child)
+
               self.renderComponent = false;
               
               self.$nextTick(() => {
-              // А потом покажем снова
+                
               self.renderComponent = true;
+              
             });
               // this.$emit('itemQueryData' , this.idParent , data)
             });
@@ -115,6 +139,7 @@
       childAction(child){
         // console.log(child)
         this.$emit('childAction' ,child)
+        // this.go(child)
       }
     }
   }

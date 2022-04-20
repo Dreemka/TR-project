@@ -50,6 +50,10 @@ export default {
     console.log(this.hubId)
     console.log(this.name)
 
+    this.$root.$on('folderData' , (item) => {
+      console.log(item)
+      this.query(item)
+    })
 
     this.ContentList({hub_id: this.$route.params.hub_id , parent_folder_id: this.$route.params.folder_id})
         .then(() => {
