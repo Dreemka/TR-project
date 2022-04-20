@@ -1,6 +1,6 @@
-import {HTTPAUTH} from "@/http-common";
+// import {HTTPAUTH} from "@/http-common";
 import {HTTP} from "@/http-common";
-import Axios from 'axios'
+// import Axios from 'axios'
 
 
 export default {
@@ -12,7 +12,7 @@ export default {
       for (let key in query) {
         form.append(key , query[key])
       }
-      await HTTPAUTH.post(`auth/v1/login`,form)
+      await HTTP.post(`auth/v1/login`,form)
             .then(response => {
               const getData = response.data.result
               console.log(getData)
@@ -20,7 +20,7 @@ export default {
               // const token = resp.data.token
         // const user = resp.data.user
         // localStorage.setItem('token', token)
-        Axios.defaults.headers.common['Authorization'] = `Bearer ${getData.access_token}`
+        // Axios.defaults.headers.common['Authorization'] = `Bearer ${getData.access_token}`
         // commit('auth_success', token, user)
         // resolve(resp)
             })

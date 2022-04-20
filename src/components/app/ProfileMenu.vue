@@ -24,14 +24,14 @@ export default {
           title: (this.allUsers) ? this.allUsers.first_name : null,
         },
         arrayData: [
-          {
-            icon: 'transporter-Book_filled',
-            title: 'Профиль',
-            url: '/user',
-          },
+          // {
+          //   icon: 'transporter-Book_filled',
+          //   title: 'Профиль',
+          //   url: '/user',
+          // },
           {
             icon: 'transporter-logout',
-            title: 'Выйти',
+            title: this.$t('quit'),
             url: '/login?message=logout',
             method: 'logOut',
           },

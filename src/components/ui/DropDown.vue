@@ -2,7 +2,7 @@
 <div class="dropDown-wrapper">
   <div class="t-rr-s-dropDown-mask" @click="active = !active; clickDropDown(active);">
     <i class="mr-10 " v-if="dropDownData.mask.iconAfter" :class="[dropDownData.mask.iconAfter]" />
-    <span>{{ dropDownData.mask.title || "Дементий"}}</span>
+    <span>{{ dropDownData.mask.title || "Демо пользователь"}}</span>
     <i class="ml-10 " v-if="dropDownData.mask.iconBefore" :class="[dropDownData.mask.iconBefore]" />
   </div>
   <div class="dropDown-list" v-if="active">

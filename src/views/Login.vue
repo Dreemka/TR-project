@@ -1,30 +1,33 @@
 <template>
-<div class="t-rr-s-container unselectable" @click.self="test($event)" @mousedown="test2($event)">
-  <div class="t-rr-s-logo-wrapper">
-      <Logo />
-  </div>
-  <div class="t-rr-s-login-wrapper" >
-    <form @submit.prevent="onSubmit(login , password)">
-      <br>
-      <Input 
-            mask="login"
-            type="text"
-            icon="transporter-Mail_outline" 
-            v-model.trim="login"
-            class="mb-10" />
-      <Input 
-            mask="Password" 
-            icon="transporter-Safety"
-            type="password"
-            v-model.trim="password"
-            class="mb-10" />
-      <div class="flex-center-start ui-width-100-pr">
-        <UiButton 
-                :title="title"
-                icon="false"
-                :disabled="(!login.includes('@') || password.length < 8)" />
-      </div>
-    </form>
+<div class="t-rr-s-container-login unselectable">
+  <div class="t-rr-s-container-login-block">
+
+    <div class="t-rr-s-logo-wrapper">
+        <Logo />
+    </div>
+    <div class="t-rr-s-login-wrapper" >
+      <form @submit.prevent="onSubmit(login , password)">
+        <br>
+        <Input 
+              mask="login"
+              type="text"
+              icon="transporter-Mail_outline" 
+              v-model.trim="login"
+              class="mb-10" />
+        <Input 
+              mask="Password" 
+              icon="transporter-Safety"
+              type="password"
+              v-model.trim="password"
+              class="mb-10" />
+        <div class="flex-center-start ui-width-100-pr">
+          <UiButton 
+                  :title="title"
+                  icon="false"
+                  :disabled="(!login.includes('@') || password.length < 8)" />
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 </template>
@@ -62,14 +65,6 @@ export default {
                 console.log(err.response.data)
                 this.$router.push('/login')
               })
-    },
-    test(e){
-      
-      if(this.elRemember === e.target) console.log(e.target)
-    },
-    test2(e){
-      this.elRemember = e.target
-
     },
   },
   data() {
