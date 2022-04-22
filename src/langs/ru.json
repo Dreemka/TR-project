@@ -12,5 +12,7 @@
   "who_changed": "Кто изменил",
   "version_history": "История версий",
   "loaded": "Загрузил",
-  "quit" : "Выйти"
+  "quit" : "Выход",
+  "settings" : "Настройки",
+  "language" : "Язык"
 }

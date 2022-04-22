@@ -9,7 +9,7 @@
       <form @submit.prevent="onSubmit(login , password)">
         <br>
         <Input 
-              mask="login"
+              mask="E-mail"
               type="text"
               icon="transporter-Mail_outline" 
               v-model.trim="login"

@@ -13,9 +13,16 @@
         class="cursor-pointer"
         @click="eventClick(item)">
       <i class="mr-10 " :class="[item.icon]" />
+      <!-- <img class="mr-1" src="@/assets/transporter-icon/Icon/logout.svg"> -->
+
       <span>{{ item.title }}</span>
     </li>
   </ul>
+      <div class="t-rr-s-locale-wrapper">
+        {{$t('language')}} :
+      <a href="#" @click="setLocale('en')">EN</a> /
+      <a href="#" @click="setLocale('ru')">RU</a>
+    </div>
   </div>
 </div>
 </template>
@@ -49,6 +56,13 @@ export default {
       if (item.method) this.$store.dispatch(item.method)
       if (item.url) this.$router.push(item.url)
       self.active = false;
+    },
+    setLocale(locale){
+      console.log(locale);
+      import(`@/langs/${locale}.json`).then((msg) => {
+        this.$i18n.setLocaleMessage(locale , msg)
+        this.$i18n.locale = locale
+      })
     }
   }
 

@@ -14,7 +14,7 @@
             @childAction="childActionFu">
           <div class="t-rr-s-nav-list-wrapper-content"
                 :class="{'active': $route.params.name === item.name}"> 
-            <i class="cursor-pointer transporter-Dropdown"
+            <i class="cursor-pointer transporter-Dropdown mr-2"
                @click="openChildFolder(item)"
                :class="[{'rotate--90' : !item.openFolder} , {'el-not-allowed' : !item.child_folders}]" />
             <img v-if="item.type === 'folder' && $route.params.name !== item.name" class="mr-1" src="@/assets/transporter-icon/Icon/folder.svg">
