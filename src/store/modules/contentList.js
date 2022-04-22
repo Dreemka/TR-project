@@ -5,7 +5,7 @@ export default {
   actions: {
     async ContentList(ctx , requestData = {}){
       const token = localStorage.getItem('token')
-      await HTTP.get('/api/v2/Folder.getContent',{
+      await HTTP.get('/api/v1/Folder.getContent',{
         params: requestData,
         headers: {
           'Authorization': `Bearer ${token}`

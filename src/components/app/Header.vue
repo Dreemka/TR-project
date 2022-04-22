@@ -4,7 +4,8 @@
       <Logo @click="goToLink"
             class="cursor-pointer"/>
         <div class="t-rr-s-profile-wrapper">
-          <ProfileMenu />
+          <ProfileMenu 
+            :profile="getProfile()"/>
         </div>
     </div>
     <div class="t-rr-s-header-function-bar">
@@ -34,7 +35,8 @@
         <Input 
               :mask="$t('search')" 
               icon='transporter-Search_tiny'
-              v-model="filterData" />
+              v-model="filterData"
+              style="padding: 5px;" />
       </div>
     </div>
   </div>
@@ -88,6 +90,7 @@ export default {
     ...mapGetters(['dataHubList']),
     ...mapGetters(['dataContentList']),
     ...mapGetters(['datalistContentDownload']),
+    ...mapGetters(['dataprofile']),
   },
   methods: {
     ...mapActions(['ProjectList']),
@@ -98,9 +101,8 @@ export default {
         hub_id : (hubdata) ? hubdata[0].hub_id : null
       }
       this.ProjectList(requestData)
-      .then(response => {
+      .then(() => {
         console.log(this.dataProjectList)
-        console.log(response)
         // this.getContentList(hubdata , this.dataProjectList)
       })
       .catch(err => {
@@ -127,20 +129,29 @@ export default {
       if (this.$route.path !== "/list") this.$router.push({ name: 'list'})
     },
     download() {
-      console.log(55)
+      console.log(55999)
       console.log(this.datalistContentDownload)
+      const foldersArr = this.datalistContentDownload.filter(one => one.type === "folder")
+      .map(one=>one.folder_id)
+      const itemsArr = this.datalistContentDownload.filter(one => one.type === "item")
+      .map(one=>one.version_id)
 
-      this.datalistContentDownload.map(one => {
-        this.postData('/api/v2/Version.download', {
-          version_id: one.version_id,
-          hub_id: one.hub_id
+
+      // this.datalistContentDownload.map(() => {
+        this.postData('/api/v1/Item.getArchive', {
+          version: itemsArr,
+          folders: foldersArr,
         })
         .then((data) => {
           console.log(data)
           document.location.href = data.location;
         });
-      })
+      // })
   
+    },
+    getProfile() {
+        let profile = JSON.parse(localStorage.getItem('profile'))
+        return profile
     }
   },
   watch: {

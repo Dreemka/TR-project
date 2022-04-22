@@ -24,7 +24,7 @@ export default {
         mask: {
           iconAfter: 'transporter-profile',
           iconBefore: 'transporter-Dropdown',
-          title: (this.allUsers) ? this.allUsers.first_name : null,
+          title: (this.profile.first_name) ? this.profile.first_name + ' ' + this.profile.last_name : null,
         },
         arrayData: [
           {
@@ -45,6 +45,9 @@ export default {
   props: {
     actives: {
       type: Boolean
+    },
+    profile: {
+      type: Object
     }
   },
 }

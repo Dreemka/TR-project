@@ -17,12 +17,6 @@ export default {
               const getData = response.data.result
               console.log(getData)
               ctx.commit('update' , getData)
-              // const token = resp.data.token
-        // const user = resp.data.user
-        // localStorage.setItem('token', token)
-        // Axios.defaults.headers.common['Authorization'] = `Bearer ${getData.access_token}`
-        // commit('auth_success', token, user)
-        // resolve(resp)
             })
             .catch(e => {
               console.log(e)

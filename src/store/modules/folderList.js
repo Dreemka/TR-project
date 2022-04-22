@@ -5,7 +5,7 @@ export default {
   actions: {
     async FolderList(ctx , requestData = {}){
       const token = localStorage.getItem('token')
-      await HTTP.get('/api/v2/Folder.getFolderList',{
+      await HTTP.get('/api/v1/Folder.getFolderList',{
         params: requestData,
         headers: {
           'Authorization': `Bearer ${token}`
