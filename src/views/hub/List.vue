@@ -46,27 +46,11 @@ export default {
   },
   computed: mapGetters(['dataContentList']),
   mounted() {
-    console.log(this.parentFolderId)
-    console.log(this.hubId)
-    console.log(this.name)
-
     this.$root.$on('folderData' , (item) => {
-      console.log(item)
       this.query(item)
     })
-
-    // this.ContentList({hub_id: this.$route.params.hub_id , parent_folder_id: this.$route.params.folder_id})
-    //     .then(() => {
-    //       // this.$router.push({ name: 'folder', params: { parent_folder_id: item.parent_folder_id, hub_id: item.hub_id, name: item.local_path.replace(/ /ig, '_') } })
-    //       // console.log(item.name)
-    //       this.listContent = this.dataContentList
-    //     })
-    //     .catch(err => {
-    //       console.log(err)
-    //     })
     let self = this
     this.$root.$on('folderItem', function (item) {
-      console.log(888)
       self.query(item)
     })
   },

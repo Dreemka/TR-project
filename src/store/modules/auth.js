@@ -39,6 +39,7 @@ export default {
       state.getData = getData
       // state.credentials.token = getData.access_token
       localStorage.setItem('token', getData.access_token)
+      localStorage.setItem('tokenData', JSON.stringify(getData))
     },
     deleteToken(state){
       console.log(state)

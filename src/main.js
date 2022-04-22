@@ -33,12 +33,14 @@ Vue.directive('init', {
 //   }).join(''));
 // }
 // Vue.prototype.$http = Axios;
-// const token = localStorage.getItem('token')
+
 
 // console.log(localStorage.getItem('token'));
 // if (token) {
 //   Vue.prototype.$http.defaults.headers.common['Authorization'] = token;
 // }
+// this.$router.push({ name: 'login'})
+
 
 Vue.use(BroadcastData);
 // Vue.use({
