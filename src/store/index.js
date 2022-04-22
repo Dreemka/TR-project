@@ -8,6 +8,7 @@ import HubtList from "./modules/hubList"
 import ContentList from "./modules/contentList"
 import FolderList from "./modules/folderList"
 import listContentDownload from "./modules/listContentDownload"
+import profile from "./modules/profile"
 
 
 Vue.use(Vuex)
@@ -23,6 +24,7 @@ export default new Vuex.Store ({
     ProjectList,
     FolderList,
     listContentDownload,
+    profile,
   },
   state: {
     error: null,

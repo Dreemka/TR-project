@@ -1,19 +1,19 @@
 import {HTTP} from "@/http-common";
 
 export default {
-  name: 'hubListMethod',
+  name: 'profileMethod',
   actions: {
-    async HubList(ctx , requestData = {}){
+    async profile(ctx , requestData = {}){
     const token = localStorage.getItem('token')
-      await HTTP.get('/api/v1/Hub.getList',{
+      await HTTP.get('/api/v1/Profile.getMe',{
         params: requestData,
         headers: {
           'Authorization': `Bearer ${token}`
         }
       })
           .then(response => {
-            let getHubListData = response.data.result;
-            ctx.commit('updateHubList' , getHubListData)
+            let getprofileData = response.data.result;
+            ctx.commit('updateprofile' , getprofileData)
           })
           .catch(e => {
             console.log(e)
@@ -22,16 +22,16 @@ export default {
     }
   },
   mutations: {
-    updateHubList(state , getHubListData){
-      state.getHubListData = getHubListData
+    updateprofile(state , getprofileData){
+      state.getprofileData = getprofileData
     }
   },
   state: {
-    getHubListData: [],
+    getprofileData: [],
   },
   getters: {
-    dataHubList(state){
-      return state.getHubListData
+    dataprofile(state){
+      return state.getprofileData
     }
   },
 }

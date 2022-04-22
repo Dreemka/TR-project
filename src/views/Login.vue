@@ -13,13 +13,13 @@
               type="text"
               icon="transporter-Mail_outline" 
               v-model.trim="login"
-              class="mb-10" />
+              class="mb-4" />
         <Input 
               mask="Password" 
               icon="transporter-Safety"
               type="password"
               v-model.trim="password"
-              class="mb-10" />
+              class="mb-4" />
         <div class="flex-center-start ui-width-100-pr">
           <UiButton 
                   :title="title"
@@ -35,9 +35,11 @@
 <script>
 import UiButton from '@/components/ui/Button'
 import {login , required , minLength} from 'vuelidate/lib/validators'
-import messages from "@/plugins/utils/messages"
-import Input from "@/components/ui/Input";
+// import messages from "@/plugins/utils/messages"
+import Input from "@/components/ui/Input"
 import Logo from '@/components/app/Logo'
+import {mapGetters , mapActions} from 'vuex';
+
 
 
 
@@ -50,7 +52,11 @@ export default {
   components: {
     UiButton , Input , Logo
   },
+  computed: {
+    ...mapGetters(['dataprofile']),
+  },
   methods: {
+    ...mapActions(['profile']),
     async onSubmit(login , password){
         const formData = {
           login: login,
@@ -58,7 +64,9 @@ export default {
         }
         await this.$store.dispatch('login', formData)
               .then((response) => {
+                console.log(5555)
                 console.log(response)
+                this.getProfile()
                 this.$router.push({ name: 'list' })
               })
               .catch(err => {
@@ -66,6 +74,13 @@ export default {
                 this.$router.push('/login')
               })
     },
+    getProfile() {
+      this.profile()
+      .then(() => {
+        console.log(this.dataprofile)
+        localStorage.setItem('profile', JSON.stringify(this.dataprofile))
+      })
+    }
   },
   data() {
     return {
@@ -75,9 +90,9 @@ export default {
     }
   },
   mounted() {
-    if (messages[this.$route.query.message]){
-      this.$message(messages[this.$route.query.message])
-    }
+    // if (messages[this.$route.query.message]){
+    //   this.$message(messages[this.$route.query.message])
+    // }
   },
 }
 </script>

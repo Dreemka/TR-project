@@ -14,5 +14,8 @@
   "loaded": "Загрузил",
   "quit" : "Выход",
   "settings" : "Настройки",
-  "language" : "Язык"
+  "language" : "Язык",
+  "TheFolderIsEmpty" : "Папка пустая",
+  "Current" : "Текущая"
+
 }
