@@ -1,6 +1,6 @@
 <template>
   <div class="el-table-wrapper">
-    <table class="table table-striped table-hover">
+    <table class="table table-hover">
       <thead>
       <tr>
         <th scope="col"></th>

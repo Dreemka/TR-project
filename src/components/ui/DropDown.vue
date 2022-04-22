@@ -2,7 +2,7 @@
 <div class="dropDown-wrapper">
   <div class="t-rr-s-dropDown-mask" @click="active = !active; clickDropDown(active);">
     <i class="mr-10 " v-if="dropDownData.mask.iconAfter" :class="[dropDownData.mask.iconAfter]" />
-    <span>{{ dropDownData.mask.title || "Дементий"}}</span>
+    <span>{{ dropDownData.mask.title || "Демо пользователь"}}</span>
     <i class="ml-10 " v-if="dropDownData.mask.iconBefore" :class="[dropDownData.mask.iconBefore]" />
   </div>
   <div class="dropDown-list" v-if="active">
@@ -13,9 +13,16 @@
         class="cursor-pointer"
         @click="eventClick(item)">
       <i class="mr-10 " :class="[item.icon]" />
+      <!-- <img class="mr-1" src="@/assets/transporter-icon/Icon/logout.svg"> -->
+
       <span>{{ item.title }}</span>
     </li>
   </ul>
+      <div class="t-rr-s-locale-wrapper">
+        {{$t('language')}} :
+      <a href="#" @click="setLocale('en')">EN</a> /
+      <a href="#" @click="setLocale('ru')">RU</a>
+    </div>
   </div>
 </div>
 </template>
@@ -49,6 +56,13 @@ export default {
       if (item.method) this.$store.dispatch(item.method)
       if (item.url) this.$router.push(item.url)
       self.active = false;
+    },
+    setLocale(locale){
+      console.log(locale);
+      import(`@/langs/${locale}.json`).then((msg) => {
+        this.$i18n.setLocaleMessage(locale , msg)
+        this.$i18n.locale = locale
+      })
     }
   }
 

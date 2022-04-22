@@ -1,6 +1,6 @@
 <template>
   <div class="t-rr-s-table-wrapper">
-    <table class="table table-striped table-hover">
+    <table class="table table-hover">
       <thead>
       <tr>
         <th scope="col">
@@ -8,7 +8,7 @@
                     v-model="checkAll"
                     @change="allchoiseFu(checkAll)"/>
         </th>
-        <th scope="col">
+        <th scope="col" width="40%"> 
           <div class="flex-center-start">
             <div class="el-overflow-white-space">
               {{$t('file_name')}}
@@ -21,7 +21,7 @@
                     type="checkbox" 
                     v-model="fileName"
                     class="el-display-none"
-                    @change="sortLis('file_name')">
+                    @change="sortList('file_name')">
           </div>
         </th>
         <th scope="col">
@@ -37,11 +37,11 @@
                     type="checkbox" 
                     v-model="version"
                     class="el-display-none"
-                    @change="sortLis('version')">
+                    @change="sortList('version')">
           </div>
         </th>
         <th scope="col">
-          <div class="flex-center-center">
+          <div class="flex-center-end">
             <div class="el-overflow-white-space">
               {{$t('size')}}
             </div>
@@ -53,15 +53,15 @@
                     type="checkbox" 
                     v-model="size"
                     class="el-display-none"
-                    @change="sortLis('size')">
+                    @change="sortList('size')">
           </div>
         </th>
         <th scope="col">
-          <div class="flex-center-center">
+          <div class="flex-center-end">
             <div class="el-overflow-white-space">
               {{$t('date_of_change')}}
             </div>
-            <label for="date_of_change">
+            <label for="dateOfChange">
               <i class="transporter-menu_outline" />
             </label>
              <input name="dateOfChange" 
@@ -69,15 +69,15 @@
                     type="checkbox" 
                     v-model="dateOfChange"
                     class="el-display-none"
-                    @change="sortLis('date_of_change')">
+                    @change="sortList('date_of_change')">
           </div>
         </th>
         <th scope="col">
-          <div class="flex-center-center">
+          <div class="flex-center-start">
             <div class="el-overflow-white-space">
               {{$t('who_changed')}}
             </div>
-             <label for="who_changed">
+             <label for="whoChanged">
                 <i class="transporter-menu_outline" />
              </label>
              <input name="whoChanged" 
@@ -85,7 +85,7 @@
                     type="checkbox" 
                     v-model="whoChanged"
                     class="el-display-none"
-                    @change="sortLis('who_changed')">
+                    @change="sortList('who_changed')">
           </div>
         </th>
       </tr>
@@ -103,21 +103,33 @@
         <td>
           <div @click="openPopup(item)">
                  <div class="cursor-pointer">
-                    <i :class="[{'transporter-doc' : item.type === 'folder'}]"
-                      style="font-size: 24px"/>
+                    <!-- <i :class="[{'transporter-doc' : item.type === 'folder'}]"
+                      style="font-size: 24px"/> -->
+                    <img v-if="item.extension === 'doc' || item.extension === 'docx'" class="mr-1" src="@/assets/transporter-icon/Icon/doc.svg">
+                    <!-- <img v-if="item.extension === 'rvt'" class="mr-1" src="@/assets/transporter-icon/Icon/rvt.svg"> -->
+                    <img v-if="item.extension === 'pdf'" class="mr-1" src="@/assets/transporter-icon/Icon/pdf.svg">
+                    <img v-if="item.extension === 'xlxs'" class="mr-1" src="@/assets/transporter-icon/Icon/xls.svg">
+                    <img v-if="item.extension === 'dwg'" class="mr-1" src="@/assets/transporter-icon/Icon/dwg.svg">
+                    <img v-if="item.type === 'folder'" class="mr-1" src="@/assets/transporter-icon/Icon/folder.svg">
+                    <i v-if="item.type !== 'folder' && item.extension !== 'dwg' && item.extension !== 'doc' && item.extension !== 'docx' && item.extension !== 'pdf' && item.extension !== 'xlxs'" class="transporter-file fz-24" />
+
                    {{item.name}}
                  </div>
               
           </div>
         </td>
-        <td v-if="item.type !== 'folder'">{{item.version}}</td>
+        <td v-if="item.type !== 'folder'">
+          <div class="t-rr-s-version-block">
+            <span v-if="item.type !== 'folder'">V</span>{{item.version || '-'}}
+          </div>
+        </td>
         <td v-if="item.type === 'folder'"> - </td>
-        <td v-if="item.type !== 'folder'">{{item.size}}</td>
-        <td v-if="item.type === 'folder'"> - </td>
+        <td>{{convert(item.size) || '-'}}</td>
+        <!-- <td v-if="item.type === 'folder'"> - </td> -->
         <td>{{item.modified_time | date('date')}}</td>
         <td>
-          <i class="mr-10  transporter-profile"></i>
-          {{item.modified_user_name}}
+          <i class="mr-10  transporter-profile" v-if="item.modified_user_name"></i>
+          {{item.modified_user_name || '-'}}
           <Popup :item="item"
                   v-if="item.popupOpen">
                   <div class="t-rr-s-popup-block-header">
@@ -145,11 +157,15 @@
                             <span>
                               {{version.create_time | date('date')}}
                             </span>
+                            <mark v-if="version.version === item.version">
+                              {{$t('Current')}}
+                            </mark>
                           </div>
 
                           <div class="t-rr-s-popup-block-content-list-item-download cursor-pointer"
                                @click="download(version)">
-                            <i class="transporter-file" />
+                            <img class="mr-1" src="@/assets/transporter-icon/Icon/downloadFile.svg">
+                            
                           </div>
                       </li>
                     </ul>
@@ -162,6 +178,11 @@
                   </div>
 
               </Popup>
+        </td>
+      </tr>
+      <tr v-if="!dataFilter.length">
+        <td colspan="6" class="t-tt-s-empty-td fz-24">
+          {{$t('TheFolderIsEmpty')}}
         </td>
       </tr>
       </tbody>
@@ -183,7 +204,7 @@ export default {
   components: {
     Checkbox,
     Popup,
-    UiButton
+    UiButton,
   },
   mixins: [
     QueryMixin,
@@ -227,7 +248,8 @@ export default {
       this.listContentDownloadAdd(checkFu)
 
     },
-    sortLis(column) {
+    sortList(column) {
+      console.log(332)
       switch (column) {
         case "file_name":
           if(this.fileName) this.dataFilter.sort(function (a, b) {
@@ -290,7 +312,9 @@ export default {
         })
         break;
         case "date_of_change":
+          console.log(this.dataFilter)
         if(this.dateOfChange) this.dataFilter.sort(function (a, b) {
+          console.log(a.modified_time)
           if (a.modified_time < b.modified_time) {
             return 1;
           }
@@ -334,18 +358,28 @@ export default {
           break;
       }
     },
-    openPopup(item) {
+    openFolder(item) {
       console.log(item)
-      // item.popupOpen = true
-      this.postData('/api/v1/Version.getList', {
-        item_id: item.item_id,
-        hub_id: item.hub_id
-      })
-      .then((data) => {
-        item.listVersion = data
-        if(item.listVersion.length) item.popupOpen = true
-        this.$set(this.dataFilter, this.dataFilter.indexOf(item), item)
-      });
+      this.$root.$emit('folderData' , item)
+    },
+    openPopup(item) {
+      if(item.type === "folder") this.openFolder(item)
+
+      if(item.type !== "folder") {
+        this.postData('/api/v1/Version.getList', {
+          item_id: item.item_id,
+          hub_id: item.hub_id
+        })
+        .then((data) => {
+          item.listVersion = data
+          if(item.type === "folder") {
+            item.popupOpen = false
+          } else {
+          if(item.listVersion.length) item.popupOpen = true
+          }
+          this.$set(this.dataFilter, this.dataFilter.indexOf(item), item)
+        });
+      }
     },
     closePopup(item) {
       console.log(item)
@@ -353,7 +387,7 @@ export default {
       this.$set(this.dataFilter, this.dataFilter.indexOf(item), item)
     },
     download(version) {
-        this.postData('/api/v2/Version.download', {
+        this.postData('/api/v1/Version.download', {
           version_id: version.version_id,
           hub_id: version.hub_id
         })
@@ -369,6 +403,18 @@ export default {
             return one.name.toLowerCase().includes(filterData.toLowerCase());
         });
       }
+    },
+    // convert(item) {
+    //   return item.size * 0.001
+    // }
+    convert(item) {
+      var i = -1;
+      var byteUnits = [' kB', ' MB', ' GB', ' TB', 'PB', 'EB', 'ZB', 'YB'];
+      do {
+          item = item / 1024;
+          i++;
+      } while (item > 1024);
+      return Math.max(item, 0.1).toFixed(1) + byteUnits[i];
     }
   },
   watch: {

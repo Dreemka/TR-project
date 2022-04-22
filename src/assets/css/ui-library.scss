@@ -75,6 +75,7 @@ label {
   input[type=search]:not(.browser-default),
   textarea.materialize-textarea {
     padding: 0px;
+    margin: 0 auto;
   }
 }
 .cursor-pointer{
@@ -197,3 +198,9 @@ label {
   pointer-events: none;
 }
 //not allowed element END
+
+//Style line scroll Start
+// ::-webkit-scrollbar {
+//   width: 0;
+// }
+//Style line scroll END

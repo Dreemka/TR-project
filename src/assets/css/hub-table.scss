@@ -19,24 +19,54 @@
         td {
           font-weight: 400;
           font-size: 0.9em;
+          .t-rr-s-version-block {
+            background: $greyFour;
+            padding: 3px 6px;
+            width: 31px;
+            height: 26px;
+            justify-content: center;
+            align-items: center;
+            display: initial;
+            border-radius: 2px;
+          }
+        }
+        td:nth-child(3n) {
+          text-align: center;
+        }
+        td:nth-child(4n) {
+          text-align: right;
+        }
+        td:nth-child(5n) {
+          text-align: right;
+        }
+        td:nth-child(6n) {
+          text-align: left;
         }
         th {
           font-weight: 400;
           font-size: 0.9em;
         }
+        .t-tt-s-empty-td {
+          height: 76vh;
+          background: $white;
+          text-align: center;
+          vertical-align: middle;
+          color: $greyOne;
+          font-size: 24px;
+        }
       }
       .t-rr-s-choise-item-active {
-        background: rgba(70, 96, 227, 0.05);
+        background: rgba(70, 96, 227, 0.08);
       }
       .t-rr-s-choise-item-active:nth-of-type(odd) {
-        background: rgba(70, 96, 227, 0.05);
+        background: rgba(70, 96, 227, 0.08);
       }
       tr:nth-of-type(odd) {
-        background-color: rgba(0,0,0,.02);
+        // background: rgba(70, 96, 227, 0.08);
       }
       tr:hover {
         color: #212529;
-        background-color: rgba(0,0,0,.035);
+        background: rgba(70, 96, 227, 0.08);
       }
     }
   }

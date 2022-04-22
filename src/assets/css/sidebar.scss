@@ -2,6 +2,7 @@
   background: #f4f4f6;
   width: 100%;
   max-width: 400px;
+  min-width: 400px;
   position: relative;
   border-right: 1px solid #d7d7db;
   transition: 0.3s;
@@ -14,7 +15,7 @@
   justify-content: space-between;
   nav {
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     height: 100%;
   }
   .t-rr-s-nav-list {
@@ -26,6 +27,9 @@
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+      }
+      .active {
+        color: $accenttwo;
       }
       .t-rr-s-nav-list-wrapper-content {
         margin: 10px 0px;

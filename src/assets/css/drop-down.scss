@@ -10,23 +10,34 @@
     }
   }
   .dropDown-list{
-    width: 100%;
+    width: 80%;
+    min-width: 170px;
     padding: 10px;
+    right: 0px;
     position: absolute;
-    background: $mainColor;
+    background: $white;
+    box-shadow: 0px 4px 13px rgba(19, 38, 134, 0.33);
     top: 35px;
-    border-radius: 6px;
     z-index: 3;
     font-size: $size-sm;
     ul{
       padding-left: 0px;
       margin-bottom: 0px;
       li{
-        color: $textColorIn;
-        margin: 5px;
+        color: $mainColor;
+        margin: 10px;
         font-weight: 400;
         list-style: none;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
       }
     }
+  }
+  .t-rr-s-locale-wrapper {
+    padding: 0 10px;
+    font-size: 0.8em;
+    color: $mainColor;
+
   }
 }

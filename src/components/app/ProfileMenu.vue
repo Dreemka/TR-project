@@ -11,6 +11,9 @@
 import DropDown from "@/components/ui/DropDown";
 export default {
   name: "ProfileMenu",
+  components: {
+    DropDown
+  },
   self: this,
   computed: {
     allUsers: function() {
@@ -20,18 +23,18 @@ export default {
       return {
         mask: {
           iconAfter: 'transporter-profile',
-          iconBefore: 'transporter-menu_outline',
-          title: (this.allUsers) ? this.allUsers.first_name : null,
+          iconBefore: 'transporter-Dropdown',
+          title: (this.profile.first_name) ? this.profile.first_name + ' ' + this.profile.last_name : null,
         },
         arrayData: [
           {
-            icon: 'transporter-Book_filled',
-            title: 'Профиль',
-            url: '/user',
+            icon: 'transporter-Settings_outline_tiny fz-20',
+            title: this.$t('settings'),
+            url: '/list',
           },
           {
-            icon: 'transporter-logout',
-            title: 'Выйти',
+            icon: 'transporter-Document_outline fz-20',
+            title: this.$t('quit'),
             url: '/login?message=logout',
             method: 'logOut',
           },
@@ -42,18 +45,11 @@ export default {
   props: {
     actives: {
       type: Boolean
+    },
+    profile: {
+      type: Object
     }
   },
-  created(){
-  },
-  mounted() {
-    // this.$store.dispatch('mountedUserMe')
-  },
-  components: {
-    DropDown
-  },
-  data: () => ({
-  })
 }
 </script>
 

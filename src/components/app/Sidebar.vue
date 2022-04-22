@@ -12,12 +12,14 @@
             :idParent='index'
             v-init:myvar="queryСhildFolders(item)"
             @childAction="childActionFu">
-          <div class="t-rr-s-nav-list-wrapper-content"> 
-            <i class="cursor-pointer transporter-Dropdown"
+          <div class="t-rr-s-nav-list-wrapper-content"
+                :class="{'active': $route.params.name === item.name}"> 
+            <i class="cursor-pointer transporter-Dropdown mr-2"
                @click="openChildFolder(item)"
                :class="[{'rotate--90' : !item.openFolder} , {'el-not-allowed' : !item.child_folders}]" />
-            <i class="transporter-doc"
-               style="font-size: 24px"/>   
+            <img v-if="item.type === 'folder' && $route.params.name !== item.name" class="mr-1" src="@/assets/transporter-icon/Icon/folder.svg">
+            <img v-if="item.type === 'folder' && $route.params.name === item.name" class="mr-1" src="@/assets/transporter-icon/Icon/folderLink.svg">
+ 
             <div @click="openContent(item)"
                  class="cursor-pointer t-rr-s-text-li">
               {{item.name}}
@@ -53,7 +55,7 @@ export default {
     return {
       isActive: false,
       listFolder: [],
-      // openFolder: false,
+      active: 'home',
     }
   },
   created(){    
@@ -78,8 +80,8 @@ export default {
           })
     },
     openContent(item) {
-      console.log(222)
       this.$root.$emit('folderItem' , item)
+      this.makeActive(item)
     },
     childActionFu(value) {
       this.openContent(value)
@@ -98,7 +100,6 @@ export default {
       }
     },
     openChildFolder(item){
-      console.log(item)
       item.openFolder = !item.openFolder
 
       if(!item.children){
@@ -108,9 +109,10 @@ export default {
         item.children = false
         this.$set(this.listFolder, this.listFolder.indexOf(item), item)
       }
-
-
     },
+    makeActive(item){
+      if (this.$route.params.parentFolderId === item.parent_folder_id) item.activeMenu = true;
+    }
   }
 }
 </script>

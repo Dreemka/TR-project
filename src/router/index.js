@@ -8,7 +8,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    meta: {layout: 'main'},
+    meta: {layout: 'main' , auth: true},
     component: Home
   },
   {
@@ -18,21 +18,15 @@ const routes = [
     component: () => import('../views/Login.vue'),
   },
   {
-    path: '/sectors',
-    name: 'sectors',
-    meta: {layout: 'main'},
-    component: () => import('../views/Sectors.vue'),
-  },
-  {
     path: '/list',
     name: 'list',
-    meta: {layout: 'main'},
+    meta: {layout: 'main', auth: true},
     component: () => import('../views/hub/List.vue'),
   },
   {
     path: '/list/:parentFolderId-:hubId-:name',
     name: 'folder',
-    meta: {layout: 'main'},
+    meta: {layout: 'main', auth: true},
     component: () => import('../views/hub/List.vue'),
     props: (route) => ({
       parentFolderId: route.params.parentFolderId,
@@ -40,33 +34,24 @@ const routes = [
       name: route.params.name,
     }),
   },
-  {
-    path: '/acceptance',
-    name: 'Acceptance',
-    meta: {layout: 'QAQC'},
-    component: () => import('../views/user/Acceptance.vue'),
-  },
-  {
-    path: '/acceptance/Acceptance-:Id-:status',
-    name: 'OneAcceptance',
-    meta: {layout: 'QAQC'},
-    component: () => import('../views/user/OneAcceptance.vue'),
-  },
-  {
-    path: '/about',
-    name: 'About',
-    meta: {layout: 'main'},
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to , from , next) => {
+  const token = JSON.parse(localStorage.getItem('tokenData'))
+
+  const requireAuth = to.matched.some(record => record.meta.auth)
+  if ((token.expires_in < 1) && requireAuth) {
+    next('/login')
+  } else {
+    next()
+  }
+
 })
 
 export default router
