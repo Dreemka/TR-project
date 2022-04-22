@@ -19,6 +19,16 @@
         td {
           font-weight: 400;
           font-size: 0.9em;
+          .t-rr-s-version-block {
+            background: $greyFour;
+            padding: 3px 6px;
+            width: 31px;
+            height: 26px;
+            justify-content: center;
+            align-items: center;
+            display: initial;
+            border-radius: 2px;
+          }
         }
         td:nth-child(3n) {
           text-align: center;
@@ -46,17 +56,17 @@
         }
       }
       .t-rr-s-choise-item-active {
-        background: rgba(70, 96, 227, 0.05);
+        background: rgba(70, 96, 227, 0.08);
       }
       .t-rr-s-choise-item-active:nth-of-type(odd) {
-        background: rgba(70, 96, 227, 0.05);
+        background: rgba(70, 96, 227, 0.08);
       }
       tr:nth-of-type(odd) {
-        background-color: rgba(0,0,0,.02);
+        // background: rgba(70, 96, 227, 0.08);
       }
       tr:hover {
         color: #212529;
-        background-color: rgba(0,0,0,.035);
+        background: rgba(70, 96, 227, 0.08);
       }
     }
   }

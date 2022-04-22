@@ -1,6 +1,6 @@
 <template>
   <div class="t-rr-s-table-wrapper">
-    <table class="table table-striped table-hover">
+    <table class="table table-hover">
       <thead>
       <tr>
         <th scope="col">
@@ -118,14 +118,18 @@
               
           </div>
         </td>
-        <td v-if="item.type !== 'folder'">{{item.version}}</td>
+        <td v-if="item.type !== 'folder'">
+          <div class="t-rr-s-version-block">
+            <span v-if="item.type !== 'folder'">V</span>{{item.version || '-'}}
+          </div>
+        </td>
         <td v-if="item.type === 'folder'"> - </td>
-        <td v-if="item.type !== 'folder'">{{convert(item.size)}}</td>
-        <td v-if="item.type === 'folder'"> - </td>
+        <td>{{convert(item.size) || '-'}}</td>
+        <!-- <td v-if="item.type === 'folder'"> - </td> -->
         <td>{{item.modified_time | date('date')}}</td>
         <td>
-          <i class="mr-10  transporter-profile"></i>
-          {{item.modified_user_name}}
+          <i class="mr-10  transporter-profile" v-if="item.modified_user_name"></i>
+          {{item.modified_user_name || '-'}}
           <Popup :item="item"
                   v-if="item.popupOpen">
                   <div class="t-rr-s-popup-block-header">
@@ -153,11 +157,15 @@
                             <span>
                               {{version.create_time | date('date')}}
                             </span>
+                            <mark v-if="version.version === item.version">
+                              {{$t('Current')}}
+                            </mark>
                           </div>
 
                           <div class="t-rr-s-popup-block-content-list-item-download cursor-pointer"
                                @click="download(version)">
-                            <i class="transporter-file" />
+                            <img class="mr-1" src="@/assets/transporter-icon/Icon/downloadFile.svg">
+                            
                           </div>
                       </li>
                     </ul>
@@ -174,7 +182,7 @@
       </tr>
       <tr v-if="!dataFilter.length">
         <td colspan="6" class="t-tt-s-empty-td fz-24">
-          Папка пустая
+          {{$t('TheFolderIsEmpty')}}
         </td>
       </tr>
       </tbody>
@@ -379,7 +387,7 @@ export default {
       this.$set(this.dataFilter, this.dataFilter.indexOf(item), item)
     },
     download(version) {
-        this.postData('/api/v2/Version.download', {
+        this.postData('/api/v1/Version.download', {
           version_id: version.version_id,
           hub_id: version.hub_id
         })

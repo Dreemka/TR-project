@@ -13,6 +13,8 @@
   "version_history": "Version history",
   "loaded": "Loaded",
   "quit" : "Quit",
-  "settings" : "settings",
-  "language" : "language"
+  "settings" : "Settings",
+  "language" : "language",
+  "TheFolderIsEmpty" : "The folder is empty",
+  "Current" : "Current"
 }

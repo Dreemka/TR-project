@@ -5,7 +5,7 @@ export default {
   actions: {
     async ProjectList(ctx , requestData = {}){
       const token = localStorage.getItem('token')
-      await HTTP.get('/api/v2/Project.getList',{
+      await HTTP.get('/api/v1/Project.getList',{
         params: requestData,
         headers: {
           'Authorization': `Bearer ${token}`
