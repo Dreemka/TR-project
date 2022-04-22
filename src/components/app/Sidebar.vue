@@ -100,7 +100,6 @@ export default {
       }
     },
     openChildFolder(item){
-      console.log(item)
       item.openFolder = !item.openFolder
 
       if(!item.children){
@@ -112,11 +111,7 @@ export default {
       }
     },
     makeActive(item){
-      
-      console.log(888)
-      console.log(this.$route.params)
       if (this.$route.params.parentFolderId === item.parent_folder_id) item.activeMenu = true;
-      console.log(item)
     }
   }
 }

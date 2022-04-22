@@ -11,14 +11,6 @@ export default {
       return this.$store.getters.error
     }
   },
-  watch: {
-    // error(baseError) {
-    //   console.log(baseError.response.data)
-    // }
-  },
-  mounted() {
-    console.log(333)
-  }
 }
 </script>
 

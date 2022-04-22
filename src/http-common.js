@@ -9,6 +9,7 @@
 //   baseUrl: 'https://dev0transporter.etalongroup.com/',
 // })
 // if (localStorage.getItem('token')) {}
+
 const token = localStorage.getItem('token')
 import axios from 'axios/dist/axios'
 export const HTTP = axios.create({
