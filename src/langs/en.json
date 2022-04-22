@@ -12,5 +12,7 @@
   "who_changed": "Who changed",
   "version_history": "Version history",
   "loaded": "Loaded",
-  "quit" : "Quit"
+  "quit" : "Quit",
+  "settings" : "settings",
+  "language" : "language"
 }

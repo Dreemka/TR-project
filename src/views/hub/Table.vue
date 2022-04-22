@@ -8,7 +8,7 @@
                     v-model="checkAll"
                     @change="allchoiseFu(checkAll)"/>
         </th>
-        <th scope="col">
+        <th scope="col" width="40%"> 
           <div class="flex-center-start">
             <div class="el-overflow-white-space">
               {{$t('file_name')}}
@@ -41,7 +41,7 @@
           </div>
         </th>
         <th scope="col">
-          <div class="flex-center-center">
+          <div class="flex-center-end">
             <div class="el-overflow-white-space">
               {{$t('size')}}
             </div>
@@ -57,7 +57,7 @@
           </div>
         </th>
         <th scope="col">
-          <div class="flex-center-center">
+          <div class="flex-center-end">
             <div class="el-overflow-white-space">
               {{$t('date_of_change')}}
             </div>
@@ -73,7 +73,7 @@
           </div>
         </th>
         <th scope="col">
-          <div class="flex-center-center">
+          <div class="flex-center-start">
             <div class="el-overflow-white-space">
               {{$t('who_changed')}}
             </div>
@@ -105,13 +105,13 @@
                  <div class="cursor-pointer">
                     <!-- <i :class="[{'transporter-doc' : item.type === 'folder'}]"
                       style="font-size: 24px"/> -->
-                    <img v-if="item.extension === 'doc' && item.extension === 'docx'" class="mr-1" src="@/assets/transporter-icon/Icon/doc.svg">
+                    <img v-if="item.extension === 'doc' || item.extension === 'docx'" class="mr-1" src="@/assets/transporter-icon/Icon/doc.svg">
                     <!-- <img v-if="item.extension === 'rvt'" class="mr-1" src="@/assets/transporter-icon/Icon/rvt.svg"> -->
                     <img v-if="item.extension === 'pdf'" class="mr-1" src="@/assets/transporter-icon/Icon/pdf.svg">
                     <img v-if="item.extension === 'xlxs'" class="mr-1" src="@/assets/transporter-icon/Icon/xls.svg">
                     <img v-if="item.extension === 'dwg'" class="mr-1" src="@/assets/transporter-icon/Icon/dwg.svg">
                     <img v-if="item.type === 'folder'" class="mr-1" src="@/assets/transporter-icon/Icon/folder.svg">
-                    <i v-if="item.type !== 'folder' && item.extension !== 'dwg' && item.extension !== 'doc' && item.extension !== 'pdf' && item.extension !== 'xlxs'" class="transporter-file fz-24" />
+                    <i v-if="item.type !== 'folder' && item.extension !== 'dwg' && item.extension !== 'doc' && item.extension !== 'docx' && item.extension !== 'pdf' && item.extension !== 'xlxs'" class="transporter-file fz-24" />
 
                    {{item.name}}
                  </div>
@@ -350,22 +350,28 @@ export default {
           break;
       }
     },
-    openPopup(item) {
+    openFolder(item) {
       console.log(item)
-      // item.popupOpen = true
-      this.postData('/api/v1/Version.getList', {
-        item_id: item.item_id,
-        hub_id: item.hub_id
-      })
-      .then((data) => {
-        item.listVersion = data
-        if(item.type === "folder") {
-          item.popupOpen = false
-        } else {
-        if(item.listVersion.length) item.popupOpen = true
-        }
-        this.$set(this.dataFilter, this.dataFilter.indexOf(item), item)
-      });
+      this.$root.$emit('folderData' , item)
+    },
+    openPopup(item) {
+      if(item.type === "folder") this.openFolder(item)
+
+      if(item.type !== "folder") {
+        this.postData('/api/v1/Version.getList', {
+          item_id: item.item_id,
+          hub_id: item.hub_id
+        })
+        .then((data) => {
+          item.listVersion = data
+          if(item.type === "folder") {
+            item.popupOpen = false
+          } else {
+          if(item.listVersion.length) item.popupOpen = true
+          }
+          this.$set(this.dataFilter, this.dataFilter.indexOf(item), item)
+        });
+      }
     },
     closePopup(item) {
       console.log(item)

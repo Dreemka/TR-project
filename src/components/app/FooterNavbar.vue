@@ -9,10 +9,6 @@
         <a href="">Противодействие мошейничеству корупции и хищениям</a>
       </div>
     </div>
-    <div class="t-rr-s-locale-wrapper">
-      <a href="#" @click="setLocale('en')">EN</a>
-      <a href="#" @click="setLocale('ru')">RU</a>
-    </div>
   </div>
 </template>
 
