@@ -46,12 +46,19 @@ router.beforeEach((to , from , next) => {
   const token = JSON.parse(localStorage.getItem('tokenData'))
 
   const requireAuth = to.matched.some(record => record.meta.auth)
-  if ((token.expires_in < 1) && requireAuth) {
-    next('/login')
+  const requireLogin = to.name === 'login'
+  console.log(requireLogin)
+  
+  if (token) {
+    if ((token.expires_in < 1) && requireAuth) {
+      next('/login')
+    } else {
+      next()
+    }
   } else {
-    next()
+    if (requireLogin) next()
+    if (!requireLogin) next('/login')
   }
-
 })
 
 export default router
