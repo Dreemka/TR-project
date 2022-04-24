@@ -20,6 +20,8 @@ bin-release/
 # Dependency directories
 node_modules/
 node_modules
+dist
+dist/
 
 # Optional npm cache directory
 .npm
