@@ -42,8 +42,16 @@ const router = new VueRouter({
   routes
 })
 
-// router.beforeEach((to , from , next) => {
+router.beforeEach((to , from , next) => {
+  const token = JSON.parse(localStorage.getItem('tokenData'))
 
-// })
+  const requireAuth = to.matched.some(record => record.meta.auth)
+  if ((token.expires_in < 1) && requireAuth) {
+    next('/login')
+  } else {
+    next()
+  }
+
+})
 
 export default router

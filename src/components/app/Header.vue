@@ -129,8 +129,6 @@ export default {
       if (this.$route.path !== "/list") this.$router.push({ name: 'list'})
     },
     download() {
-      console.log(55999)
-      console.log(this.datalistContentDownload)
       const foldersArr = this.datalistContentDownload.filter(one => one.type === "folder")
       .map(one=>one.folder_id)
       const itemsArr = this.datalistContentDownload.filter(one => one.type === "item")
@@ -143,7 +141,6 @@ export default {
           folders: foldersArr,
         })
         .then((data) => {
-          console.log(data)
           document.location.href = data.location;
         });
       // })
@@ -163,7 +160,6 @@ export default {
   },
   'filterData': {
     handler() {
-      console.log(this.filterData)
       this.$root.$emit('filterData' , this.filterData)
     }
   }
