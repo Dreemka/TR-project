@@ -1,6 +1,6 @@
 <template>
   <div class="t-rr-s-sidebar-wrapper unselectable">
-    <h5 class="first-uppercase">{{ $t('project_files') }}</h5>
+    <h5 class="first-uppercase" style="margin-left: 5px;">{{ $t('project_files') }}</h5>
     <!-- <Tree :treeData="tree"></Tree> -->
     <nav>
       <ul class="t-rr-s-nav-list">
@@ -16,12 +16,12 @@
                 :class="{'active': $route.params.name === item.name}"> 
             <i class="cursor-pointer transporter-Dropdown mr-2"
                @click="openChildFolder(item)"
-               :class="[{'rotate--90' : !item.openFolder} , {'el-not-allowed' : !item.child_folders}]" />
-            <img v-if="item.type === 'folder' && $route.params.name !== item.name" class="mr-1" src="@/assets/transporter-icon/Icon/folder.svg">
-            <img v-if="item.type === 'folder' && $route.params.name === item.name" class="mr-1" src="@/assets/transporter-icon/Icon/folderLink.svg">
- 
+               style="position: relative; top: -2px;"
+               :class="[{'rotate--90' : !item.openFolder} , {'el-not-allowed' : !item.child_folders}]" /> 
             <div @click="openContent(item)"
                  class="cursor-pointer t-rr-s-text-li">
+              <img v-if="item.type === 'folder' && $route.params.name !== item.name" class="mr-2" src="@/assets/transporter-icon/Icon/folder.svg">
+              <img v-if="item.type === 'folder' && $route.params.name === item.name" class="mr-2" src="@/assets/transporter-icon/Icon/folderLink.svg">
               {{item.name}}
             </div>
           </div> 
