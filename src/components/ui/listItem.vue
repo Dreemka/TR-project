@@ -85,23 +85,23 @@
       }
     },
     mounted() {
-      // this.$root.$on('folderData' , (item) => {
-      //   console.log(444)
-      //   console.log(item.id)
-      //   console.log(this.item.id)
-      //   console.log(555)
-      //   item.children = false
+      this.$root.$on('folderData' , (item) => {
+        console.log(444)
+        console.log(item.id)
+        console.log(this.item.id)
+        console.log(555)
+        item.children = false
 
-      //   if(item.id === this.item.id) {
-      //     // console.table(item)
-      //     item.openFolder = false
-      //     item.children = false
-      //     // this.go(item)
-      //     this.childAction(item)
-      //     return
-      //   }
+        if(item.id === this.item.id) {
+          // console.table(item)
+          item.openFolder = false
+          item.children = false
+          // this.go(item)
+          this.childAction(item)
+          return
+        }
         
-      // })
+      })
     },
     methods: {
       go(child){

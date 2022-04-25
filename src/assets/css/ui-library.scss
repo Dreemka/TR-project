@@ -205,18 +205,18 @@ label {
   width: 0px;
   height: 0px;
 }
-// ::-webkit-scrollbar {
-//   width: 7px;
-//   background-color: none;
-// }
-// ::-webkit-scrollbar-track {
-//   -webkit-box-shadow: none;
-//   background: none;
-//   border: none;
-// }
-// ::-webkit-scrollbar-thumb {
-//   background-color: #ccc;
-//   border-radius: 10px;
+::-webkit-scrollbar {
+  width: 7px;
+  background-color: none;
+}
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: none;
+  background: none;
+  border: none;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
 
-// }
+}
 //Style line scroll END
