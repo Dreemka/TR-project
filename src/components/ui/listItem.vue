@@ -15,7 +15,7 @@
              :class="{'active': $route.params.name === child.name}">
           <i class="cursor-pointer mr-2"
              style="position: relative; top: -2px;"
-             @click="go(child)"
+             @click="child.openFolder = !child.openFolder; go(child)"
              :class="[listStyleIcon , {'rotate--90' : !child.openFolder} , {'el-not-allowed' : !child.child_folders}]" />
           <!-- <i :class="iconBefore"
              v-if="iconBefore"
@@ -74,7 +74,7 @@
       },
       idParent: {
         type: Number
-      }
+      },
     },
     created(){
       if(this.urlQuery) {
@@ -86,33 +86,25 @@
     },
     mounted() {
       this.$root.$on('folderData' , (item) => {
-        console.log(444)
-        console.log(item.id)
-        console.log(this.item.id)
-        console.log(555)
-        item.children = false
-
         if(item.id === this.item.id) {
-          // console.table(item)
-          item.openFolder = false
-          item.children = false
-          // this.go(item)
-          this.childAction(item)
-          return
+          this.item.openFolder = true
+          this.childAction(this.item)
+          this.go(this.item , item)
+        } else if(item.parent_folder_id === this.item.folder_id){
+          this.item.openFolder = true
+          this.childAction(this.item)
+          this.go(this.item , item)
+          if (item.id === this.item.id) console.log(true)
         }
-        
       })
     },
     methods: {
-      go(child){
-        // console.log(child)
+      go(child , item = {}){
         let self = this
-        child.openFolder = !child.openFolder
-        // child.openFolder = true
         if(child.children) {
           child.children = false;
           self.renderComponent = false;
-          
+
           self.$nextTick(() => {
             self.renderComponent = true;
           })
@@ -122,25 +114,25 @@
                 hub_id: child.hub_id
             })
             .then((data) => {
-              // console.log(8888888888)
               child.children = data
-              // console.log(child)
+
+              child.children.map(one=>{
+                if (one.id === item.id) {
+                  one.openFolder = true
+                  this.go(one)
+                  this.childAction(one)
+                }
+              })
 
               self.renderComponent = false;
-              
               self.$nextTick(() => {
-                
               self.renderComponent = true;
-              
             });
-              // this.$emit('itemQueryData' , this.idParent , data)
             });
         }
       },
       childAction(child){
-        // console.log(child)
         this.$emit('childAction' ,child)
-        // this.go(child)
       }
     }
   }

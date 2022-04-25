@@ -2,8 +2,8 @@
   <div class="t-rr-s-sidebar-wrapper unselectable">
     <h5 class="first-uppercase" style="margin-left: 5px;">{{ $t('project_files') }}</h5>
     <!-- <Tree :treeData="tree"></Tree> -->
-    <!-- <nav> -->
-      <simplebar class="simplebar" data-simplebar-auto-hide="true">
+    <nav>
+      <!-- <simplebar class="simplebar" data-simplebar-auto-hide="true"> -->
         <ul class="t-rr-s-nav-list">
           <ListItem v-for="(item, index) in listFolder" 
               :key="index"
@@ -28,8 +28,8 @@
             </div> 
           </ListItem>
         </ul>
-      </simplebar>
-    <!-- </nav> -->
+      <!-- </simplebar> -->
+    </nav>
     <div class="flex-column-between">
         <FooterNavbar :actives="isActive" />
     </div>
@@ -41,8 +41,8 @@ import FooterNavbar from "@/components/app/FooterNavbar";
 import {mapGetters , mapActions} from 'vuex'
 import ListItem from '../ui/listItem.vue';
 import QueryMixin from '@/mixins/query-mixin';
-import simplebar from 'simplebar-vue';
-import 'simplebar/dist/simplebar.min.css';
+// import simplebar from 'simplebar-vue';
+// import 'simplebar/dist/simplebar.min.css';
 // import Tree from '../ui/Tree';
 
 
@@ -51,7 +51,7 @@ export default {
   components: {
     FooterNavbar,
     ListItem,
-    simplebar
+    // simplebar
   },
   mixins: [
     QueryMixin,
@@ -70,6 +70,26 @@ export default {
     this.$root.$on('itemData', function (item) {
       self.query(item)
     })
+    // this.$root.$on('folderData' , (item) => {
+    //   console.log(444)
+    //   console.log(item.id)
+    //   item.openFolder = true
+    //   this.$set(this.listFolder, this.listFolder.indexOf(item), item)
+    //   // console.log(this.item.id)
+    //   // item.children = false
+    //     // this.childAction(item)
+    //     // this.go(item)
+    //   // if(item.id === this.item.id) {
+    //   //   // console.table(item)
+    //   // console.log(555)
+
+    //   //   item.openFolder = false
+    //   //   item.children = false
+    //   //   // this.go(item)
+    //   //   return
+    //   // }
+        
+    // })
   },
   computed: {
     ...mapGetters(['dataFolderList']),

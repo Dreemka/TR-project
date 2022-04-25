@@ -369,6 +369,7 @@ export default {
       this.$root.$emit('folderData' , item)
     },
     openPopup(item) {
+      // console.log(222)
       if(item.type === "folder") this.openFolder(item)
 
       if(item.type !== "folder") {
