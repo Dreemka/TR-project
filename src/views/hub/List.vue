@@ -46,12 +46,11 @@ export default {
   },
   computed: mapGetters(['dataContentList']),
   mounted() {
-    // this.$root.$on('folderData' , (item) => {
-    //   this.query(item)
-    // })
-    let self = this
-    this.$root.$on('folderItem', function (item) {
-      self.query(item)
+    this.$root.$on('folderData' , (item) => {
+      this.query(item)
+    })
+    this.$root.$on('folderItem', (item) => {
+      this.query(item)
     })
   },
 }

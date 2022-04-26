@@ -12,8 +12,7 @@
                         :listStyleIcon="listStyleIcon"
                         @childAction="childAction"
                         class="ml-10"
-                        :id="child.id"
-                        v-show="item.openFolder">
+                        :id="child.id">
           <div class="t-rr-s-nav-list-wrapper-content"
                :class="{'active': $route.params.name === child.name}">
             <i class="cursor-pointer mr-2"
@@ -89,13 +88,12 @@
     },
     mounted() {
       this.$root.$on('folderData' , (item) => {
-        this.parentAction(item , this.item)
+        // this.parentAction(item , this.item)
         if(item.id === this.item.id) {
           this.item.openFolder = true
           this.childAction(this.item)
           this.go(this.item , item)
         } else if(item.parent_folder_id === this.item.folder_id){
-          
           this.item.openFolder = true
           this.childAction(this.item)
           this.go(this.item , item)
@@ -105,10 +103,10 @@
     },
     methods: {
       go(child , item = {}){
-        console.log(child.folder_id)
         let self = this
         if(child.children) {
-          // child.children = false;
+          console.log(222)
+          child.children = false;
           // child.openFolder = false
           self.renderComponent = false;
 
@@ -141,37 +139,29 @@
       childAction(child){
         this.$emit('childAction' ,child)
       },
-      parentAction(item , thisItem) {
-        if(item.parent_folder_id === thisItem.folder_id) {
-          console.log(thisItem.parent_folder_id)
-          thisItem.openFolder = true
-        }
-        this.renderComponent = false;
-        this.$nextTick(() => {
-        this.renderComponent = true;
-        });
-        // console.log(item.parent_folder_id)
-        // this.postData("/api/v1/Folder.getFolderList", {
-        //         parent_folder_id: item.parent_folder_id,
-        //         hub_id: child.hub_id
-        //     })
-        //     .then((data) => {
-        //       child.children = data
+      // parentAction(item) {
+      //   // console.log(item.parent_folder_id)
+      //   this.postData("/api/v1/Folder.getFolderList", {
+      //           parent_folder_id: item.parent_folder_id,
+      //           hub_id: child.hub_id
+      //       })
+      //       .then((data) => {
+      //         child.children = data
 
-        //       // child.children.map(one=>{
-        //       //   if (one.id === item.id) {
-        //       //     one.openFolder = true
-        //       //     this.go(one)
-        //       //     this.childAction(one)
-        //       //   }
-        //       // })
+      //         // child.children.map(one=>{
+      //         //   if (one.id === item.id) {
+      //         //     one.openFolder = true
+      //         //     this.go(one)
+      //         //     this.childAction(one)
+      //         //   }
+      //         // })
 
-        //       self.renderComponent = false;
-        //       self.$nextTick(() => {
-        //       self.renderComponent = true;
-        //     });
-        //     });
-      }
+      //         self.renderComponent = false;
+      //         self.$nextTick(() => {
+      //         self.renderComponent = true;
+      //       });
+      //       });
+      // }
     }
   }
 </script>
