@@ -26,6 +26,10 @@
       list-style-type: none;
       padding-left: 0px;
       font-size: $size-sm;
+      ul {
+        list-style-type: none;
+        padding-left: 0px;
+      }
       li {
         .t-rr-s-text-li {
           overflow: hidden;
