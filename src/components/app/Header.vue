@@ -148,7 +148,8 @@ export default {
           folders: foldersArr,
         })
         .then((data) => {
-          document.location.href = data.location;
+          // document.location.href = data.location;
+          window.location.href = data.location;
         });
       // })
   

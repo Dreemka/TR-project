@@ -400,7 +400,8 @@ export default {
         })
         .then((data) => {
           console.log(data)
-          document.location.href = data.location;
+          // document.location.href = data.location;
+          window.location.href = data.location;
         });
     },
     searchFu(filterData) {
