@@ -13,6 +13,7 @@ import '@babel/polyfill'
 import 'mutationobserver-shim'
 import './plugins/bootstrap-vue'
 import 'materialize-css/dist/js/materialize.min'
+// import VueResource from 'vue-resource';
 
 
 Vue.config.productionTip = false
@@ -57,6 +58,21 @@ Vue.use(BroadcastData);
 //     });
 //   },
 // });
+// Vue.use(VueResource);
+// Vue.http.interceptors.push(function(request,next){
+
+//   // modifying request headers
+//   request.headers.set('X-CSRF-TOKEN', 'TOKEN');
+//   request.headers.set('Authorization', 'Bearer TOKEN');
+//   console.log(2222)
+
+//   next(function(response){
+//       //logging the response body
+//       console.log(3333)
+//       console.log(response.body)
+
+//   });
+// })
 
 new Vue({
   router,

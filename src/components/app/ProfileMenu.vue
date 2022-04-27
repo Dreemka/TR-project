@@ -27,11 +27,11 @@ export default {
           title: (this.profile.first_name) ? this.profile.first_name + ' ' + this.profile.last_name : null,
         },
         arrayData: [
-          {
-            icon: 'transporter-Settings_outline_tiny fz-20',
-            title: this.$t('settings'),
-            url: '/list',
-          },
+          // {
+          //   icon: 'transporter-Settings_outline_tiny fz-20',
+          //   title: this.$t('settings'),
+          //   url: '/list',
+          // },
           {
             icon: 'transporter-Document_outline fz-20',
             title: this.$t('quit'),

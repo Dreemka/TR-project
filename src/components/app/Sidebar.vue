@@ -1,32 +1,34 @@
 <template>
   <div class="t-rr-s-sidebar-wrapper unselectable">
-    <h5 class="first-uppercase">{{ $t('project_files') }}</h5>
+    <h5 class="first-uppercase" style="margin-left: 5px;">{{ $t('project_files') }}</h5>
     <!-- <Tree :treeData="tree"></Tree> -->
     <nav>
-      <ul class="t-rr-s-nav-list">
-        <ListItem v-for="(item, index) in listFolder" 
-            :key="index"
-            iconBefore="transporter-doc"
-            listStyleIcon="transporter-Dropdown"
-            :item="item"
-            :idParent='index'
-            v-init:myvar="queryСhildFolders(item)"
-            @childAction="childActionFu">
-          <div class="t-rr-s-nav-list-wrapper-content"
-                :class="{'active': $route.params.name === item.name}"> 
-            <i class="cursor-pointer transporter-Dropdown mr-2"
-               @click="openChildFolder(item)"
-               :class="[{'rotate--90' : !item.openFolder} , {'el-not-allowed' : !item.child_folders}]" />
-            <img v-if="item.type === 'folder' && $route.params.name !== item.name" class="mr-1" src="@/assets/transporter-icon/Icon/folder.svg">
-            <img v-if="item.type === 'folder' && $route.params.name === item.name" class="mr-1" src="@/assets/transporter-icon/Icon/folderLink.svg">
- 
-            <div @click="openContent(item)"
-                 class="cursor-pointer t-rr-s-text-li">
-              {{item.name}}
-            </div>
-          </div> 
-        </ListItem>
-      </ul>
+      <!-- <simplebar class="simplebar" data-simplebar-auto-hide="true"> -->
+        <ul class="t-rr-s-nav-list">
+          <ListItem v-for="(item, index) in listFolder" 
+              :key="index"
+              iconBefore="transporter-doc"
+              listStyleIcon="transporter-Dropdown"
+              :item="item"
+              :idParent='index'
+              v-init:myvar="queryСhildFolders(item)"
+              @childAction="childActionFu">
+            <div class="t-rr-s-nav-list-wrapper-content"
+                  :class="{'active': $route.params.name === item.name}"> 
+              <i class="cursor-pointer transporter-Dropdown mr-2"
+                 @click="openChildFolder(item)"
+                 style="position: relative; top: -2px;"
+                 :class="[{'rotate--90' : !item.openFolder} , {'el-not-allowed' : !item.child_folders}]" /> 
+              <div @click="openContent(item)"
+                   class="cursor-pointer t-rr-s-text-li">
+                <img v-if="item.type === 'folder' && $route.params.name !== item.name" class="mr-2" src="@/assets/transporter-icon/Icon/folder.svg">
+                <img v-if="item.type === 'folder' && $route.params.name === item.name" class="mr-2" src="@/assets/transporter-icon/Icon/folderLink.svg">
+                {{item.name}}
+              </div>
+            </div> 
+          </ListItem>
+        </ul>
+      <!-- </simplebar> -->
     </nav>
     <div class="flex-column-between">
         <FooterNavbar :actives="isActive" />
@@ -39,6 +41,8 @@ import FooterNavbar from "@/components/app/FooterNavbar";
 import {mapGetters , mapActions} from 'vuex'
 import ListItem from '../ui/listItem.vue';
 import QueryMixin from '@/mixins/query-mixin';
+// import simplebar from 'simplebar-vue';
+// import 'simplebar/dist/simplebar.min.css';
 // import Tree from '../ui/Tree';
 
 
@@ -47,6 +51,7 @@ export default {
   components: {
     FooterNavbar,
     ListItem,
+    // simplebar
   },
   mixins: [
     QueryMixin,
@@ -65,6 +70,26 @@ export default {
     this.$root.$on('itemData', function (item) {
       self.query(item)
     })
+    // this.$root.$on('folderData' , (item) => {
+    //   console.log(444)
+    //   console.log(item.id)
+    //   item.openFolder = true
+    //   this.$set(this.listFolder, this.listFolder.indexOf(item), item)
+    //   // console.log(this.item.id)
+    //   // item.children = false
+    //     // this.childAction(item)
+    //     // this.go(item)
+    //   // if(item.id === this.item.id) {
+    //   //   // console.table(item)
+    //   // console.log(555)
+
+    //   //   item.openFolder = false
+    //   //   item.children = false
+    //   //   // this.go(item)
+    //   //   return
+    //   // }
+        
+    // })
   },
   computed: {
     ...mapGetters(['dataFolderList']),

@@ -25,7 +25,7 @@ export default {
       type: String,
     },
     disabled: {
-      type: [String , Object , Boolean],
+      type: [String , Object , Boolean , Array , Number],
     },
   },
   methods: {

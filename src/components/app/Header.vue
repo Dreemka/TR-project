@@ -22,10 +22,10 @@
         <UiButton 
           :title="$t('download')"
           iconAfter="transporter-cloud_outline"
-          :disabled="false"
+          :disabled="!checkFu.length"
           class="mr-20"
-          @click="download()" />
-
+          @click="download()"
+          :key="componentKey" />
         <UiButton 
           :title="$t('upload')"
           iconAfter="false"
@@ -72,6 +72,8 @@ export default {
       isActive: false,
       data: null,
       filterData: '',
+      checkFu: [],
+      componentKey: 0,
     }
   },
   mounted() {
@@ -84,6 +86,11 @@ export default {
         .catch(err => {
           console.log(err)
         })
+    this.$root.$on('checkFu', (checkFu) => {
+       this.checkFu = checkFu
+       console.log(this.checkFu)
+       this.forceRerender()
+    })    
   },
   computed: {
     ...mapGetters(['dataProjectList']),
@@ -141,7 +148,8 @@ export default {
           folders: foldersArr,
         })
         .then((data) => {
-          document.location.href = data.location;
+          // document.location.href = data.location;
+          window.location.href = data.location;
         });
       // })
   
@@ -149,6 +157,9 @@ export default {
     getProfile() {
         let profile = JSON.parse(localStorage.getItem('profile'))
         return profile
+    },
+    forceRerender() {
+      this.componentKey += 1;  
     }
   },
   watch: {
