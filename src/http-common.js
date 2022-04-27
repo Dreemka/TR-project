@@ -4,14 +4,14 @@ import router from './router';
 
 const token = localStorage.getItem('token')
 export const HTTP = axios.create({
-  baseURL: 'https://dev0api.transporter.geekchain.dev/',
+  baseURL: process.env.VUE_APP_API_URL,
   headers: {
     'Authorization': `Bearer ${token}`
 ,
   }
 })
 export const HTTPAUTH = axios.create({
-  baseURL: 'https://dev0api.transporter.geekchain.dev/',
+  baseURL: process.env.VUE_APP_API_URL,
 })
 
 HTTP.interceptors.response.use(function (response) {
