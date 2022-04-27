@@ -1,4 +1,6 @@
-import axios from "axios";
+// import axios from "axios";
+import {HTTP} from "@/http-common";
+
 export default {
   data(){
     return {
@@ -19,7 +21,7 @@ export default {
 
     this.postData = async function postData(url = '', data = {}) {
       let self = this
-      await axios.get(url , {
+      await HTTP.get(url , {
         params: data,
         headers: {
           'Authorization': `Bearer ${token}`
@@ -27,7 +29,7 @@ export default {
       })
       .then(function (response) {
         self.response = response.data.result
-        // console.log(response);
+        // console.log(self.response);
       })
       .catch(function (error) {
         console.log(error);

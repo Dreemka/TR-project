@@ -29,9 +29,9 @@ export default {
       ctx.commit('deleteToken')
 
 
-      await HTTP.post('auth/logout').then(response => {
-        console.log(response.data)}).catch(e => {
-        console.log(e)})
+      // await HTTP.post('auth/v1/logout').then(response => {
+      //   console.log(response.data)}).catch(e => {
+      //   console.log(e)})
     }
   },
   mutations: {
@@ -43,8 +43,11 @@ export default {
     },
     deleteToken(state){
       console.log(state)
+      console.log(333)
       // state.credentials.token = null
       localStorage.removeItem('token')
+      localStorage.removeItem('tokenData')
+
     }
   },
   state: {

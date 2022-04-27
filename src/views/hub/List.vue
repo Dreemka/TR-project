@@ -49,9 +49,8 @@ export default {
     this.$root.$on('folderData' , (item) => {
       this.query(item)
     })
-    let self = this
-    this.$root.$on('folderItem', function (item) {
-      self.query(item)
+    this.$root.$on('folderItem', (item) => {
+      this.query(item)
     })
   },
 }
