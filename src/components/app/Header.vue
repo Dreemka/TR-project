@@ -78,9 +78,7 @@ export default {
   },
   mounted() {
     this.HubList({})
-        .then(response => {
-          console.log(this.dataHubList)
-          console.log(response)
+        .then(() => {
           this.getProjectList(this.dataHubList)
         })
         .catch(err => {
@@ -88,7 +86,6 @@ export default {
         })
     this.$root.$on('checkFu', (checkFu) => {
        this.checkFu = checkFu
-       console.log(this.checkFu)
        this.forceRerender()
     })    
   },
@@ -115,22 +112,6 @@ export default {
       .catch(err => {
         console.log(err)
       })
-    },
-    getContentList(hubdata , projectdata) {
-      console.log(projectdata)
-      console.log(hubdata)
-      // let requestData = {
-      //   hub_id: (hubdata) ? hubdata[0].hub_id : null,
-      //   parent_folder_id: (projectdata) ? projectdata[0].top_folder_id : null
-      // }
-      // this.ContentList(requestData)
-      // .then(response => {
-      //   console.log(this.dataContentList)
-      //   console.log(response)
-      // })
-      // .catch(err => {
-      //   console.log(err)
-      // })
     },
     goToLink() {
       if (this.$route.path !== "/list") this.$router.push({ name: 'list'})
@@ -166,7 +147,6 @@ export default {
   '$route.params.id': {
     immediate: true,
     handler() {
-      // if (!this.$route.params.id) this.getContentList({})
     },
   },
   'filterData': {
