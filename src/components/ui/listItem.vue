@@ -25,8 +25,8 @@
                  class="cursor-pointer t-rr-s-text-li">
               <img v-if="child.type === 'folder' && $route.params.name !== child.name" class="mr-2" src="@/assets/transporter-icon/Icon/folder.svg">
               <img v-if="child.type === 'folder' && $route.params.name === child.name" class="mr-2" src="@/assets/transporter-icon/Icon/folderLink.svg">
-              {{ child.openFolder }} - 
-                 {{ child.id }}
+              <!-- {{ child.openFolder }} -  -->
+                 {{ child.name }}
             </div>
           </div>
          </ChildListItem>
