@@ -97,7 +97,7 @@
       },
       getChildFolder(item) {
         if (!item.isOpen) {
-          this.postData('/api/v1/Folder.getFolderList', {
+          this.getData('/api/v1/Folder.getFolderList', {
               parent_folder_id: item.folder_id,
               hub_id: item.hub_id
           })
