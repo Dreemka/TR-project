@@ -1,33 +1,15 @@
 <template>
   <div class="t-rr-s-sidebar-wrapper unselectable">
     <h5 class="first-uppercase" style="margin-left: 5px;">{{ $t('project_files') }}</h5>
-    <!-- <Tree :treeData="tree"></Tree> -->
-    <nav>
-        <ul class="t-rr-s-nav-list">
-          <ListItem v-for="(item, index) in listFolder" 
-              :key="index"
-              iconBefore="transporter-doc"
-              listStyleIcon="transporter-Dropdown"
-              :item="item"
-              :idParent='index'
-              @childAction="childActionFu">
-            <div class="t-rr-s-nav-list-wrapper-content"
-                  :class="{'active': $route.params.name === item.name}">
-
-              <i class="cursor-pointer transporter-Dropdown mr-2"
-                 @click="openChildFolder(item)"
-                 style="position: relative; top: -2px;"
-                 :class="[{'rotate--90' : !item.openFolder} , {'el-not-allowed' : !item.child_folders}]" />
-
-              <div @click="openContent(item)"
-                   class="cursor-pointer t-rr-s-text-li">
-                <img v-if="item.type === 'folder' && $route.params.name !== item.name" class="mr-2" src="@/assets/transporter-icon/Icon/folder.svg">
-                <img v-if="item.type === 'folder' && $route.params.name === item.name" class="mr-2" src="@/assets/transporter-icon/Icon/folderLink.svg">
-                {{item.name}}
-              </div>
-            </div> 
-          </ListItem>
-        </ul>
+    <nav class="t-rr-s-nav-list">
+      <ul>
+        <li v-for="(item , index) in listFolder" :key="index">
+          <ul>
+          <Tree :item="item"
+                listStyleIcon="transporter-Dropdown"/>
+          </ul>
+        </li>
+      </ul>
     </nav>
     <div class="flex-column-between">
         <FooterNavbar :actives="isActive" />
@@ -38,8 +20,8 @@
 <script>
 import FooterNavbar from "@/components/app/FooterNavbar";
 import {mapGetters , mapActions} from 'vuex'
-import ListItem from '../ui/listItem.vue';
 import QueryMixin from '@/mixins/query-mixin';
+import Tree from '../ui/Tree.vue';
 
 
 
@@ -47,7 +29,8 @@ export default {
   name: "Sidebar",
   components: {
     FooterNavbar,
-    ListItem,
+    // ListItem,
+    Tree,
   },
   mixins: [
     QueryMixin,
@@ -75,6 +58,7 @@ export default {
       this.FolderList({parent_folder_id: item.top_folder_id, hub_id: this.dataHubList[0].hub_id})
           .then(() => {
             this.listFolder = this.dataFolderList
+            this.listFolder.children = this.dataFolderList
             this.openContent(this.dataFolderList[0])
           })
     },
@@ -85,32 +69,14 @@ export default {
     childActionFu(value) {
       this.openContent(value)
     },
-
-    openChildFolder(item){
-      if(!item.openFolder) {
-        this.postData('/api/v1/Folder.getFolderList', {
-                      parent_folder_id: item.folder_id,
-                      hub_id: item.hub_id
-            })
-        .then((data) => {
-          item.children = data
-          item.openFolder = true
-          this.$set(this.listFolder, this.listFolder.indexOf(item), item)
-      });
-      } else {
-          item.openFolder = false
-          this.$set(this.listFolder, this.listFolder.indexOf(item), item)
-      }
-
-    },
     makeActive(item){
-      if (this.$route.params.parentFolderId === item.parent_folder_id) item.activeMenu = true;
+      if (this.$route.params.folderId === item.parent_folder_id) item.activeMenu = true;
     }
   }
 }
 </script>
 
 <style lang="scss">
-@import '/src/assets/css/variables.scss';
-@import '/src/assets/css/sidebar.scss';
+@import 'src/assets/css/variables.scss';
+@import 'src/assets/css/sidebar.scss';
 </style>

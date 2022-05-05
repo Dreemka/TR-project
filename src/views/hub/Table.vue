@@ -368,7 +368,7 @@ export default {
       if(item.type === "folder") this.openFolder(item)
 
       if(item.type !== "folder") {
-        this.postData('/api/v1/Version.getList', {
+        this.getData('/api/v1/Version.getList', {
           item_id: item.item_id,
           hub_id: item.hub_id
         })
@@ -389,7 +389,7 @@ export default {
       this.$set(this.dataFilter, this.dataFilter.indexOf(item), item)
     },
     download(version) {
-        this.postData('/api/v1/Version.download', {
+        this.getData('/api/v1/Version.download', {
           version_id: version.version_id,
           hub_id: version.hub_id
         })
@@ -411,6 +411,7 @@ export default {
     //   return item.size * 0.001
     // }
     convert(item) {
+      if(item < 1) return item
       var i = -1;
       var byteUnits = [' KB', ' MB', ' GB', ' TB', 'PB', 'EB', 'ZB', 'YB'];
       do {

@@ -72,7 +72,7 @@
     },
     created(){
       if(this.urlQuery) {
-        this.postData(this.urlQuery, this.paramsQuery)
+        this.getData(this.urlQuery, this.paramsQuery)
         .then((data) => {
           this.$emit('itemQueryData' , this.idParent , data)
         });
@@ -104,7 +104,7 @@
 
       getChildFolder(child) {
         child.openFolder = !child.openFolder
-          this.postData("/api/v1/Folder.getFolderList", {
+          this.getData("/api/v1/Folder.getFolderList", {
               parent_folder_id: child.folder_id,
               hub_id: child.hub_id
           })

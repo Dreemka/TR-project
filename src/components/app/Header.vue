@@ -120,19 +120,22 @@ export default {
       const foldersArr = this.datalistContentDownload.filter(one => one.type === "folder")
       .map(one=>one.folder_id)
       const itemsArr = this.datalistContentDownload.filter(one => one.type === "item")
-      .map(one=>one.version_id)
+      .map(one=>{
+        const complect = `${one.item_id}?version=${one.version}`
+        return complect
+      })
 
-
-      // this.datalistContentDownload.map(() => {
+      console.log(itemsArr)
+      console.log(foldersArr)
+      console.log(this.datalistContentDownload[0])
         this.postData('/api/v1/Item.getArchive', {
-          version: itemsArr,
+          hub_id: this.datalistContentDownload[0].hub_id,
+          versions: itemsArr,
           folders: foldersArr,
         })
         .then((data) => {
-          // document.location.href = data.location;
           window.location.href = data.location;
         });
-      // })
   
     },
     getProfile() {
@@ -160,6 +163,6 @@ export default {
 
 <style lang="scss">
 // @import '~materialize-css/dist/css/materialize.min.css';
-@import '/src/assets/css/variables.scss';
-@import '/src/assets/css/header.scss';
+@import 'src/assets/css/variables.scss';
+@import 'src/assets/css/header.scss';
 </style>

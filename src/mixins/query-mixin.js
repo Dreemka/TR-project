@@ -8,28 +8,34 @@ export default {
     }
   },
   created(){
-    // this.postData = async function postData(url = '', data = {}) {
-    //   const response = await fetch(url, {
-    //     method: 'POST',
-    //     // body: JSON.stringify(data)
-    //     body: JSON.stringify(data)
-    //   });
-    //   return await response.json();
-    // }
 
     const token = localStorage.getItem('token')
+    const options = {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    };
 
-    this.postData = async function postData(url = '', data = {}) {
+    this.getData = async function getData(url = '', data = {}) {
       let self = this
       await HTTP.get(url , {
         params: data,
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+        ...options,
       })
       .then(function (response) {
         self.response = response.data.result
-        // console.log(self.response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      return await self.response;
+    }
+
+    this.postData = async function postData(url = '', data = {}) {
+      let self = this
+      await HTTP.post(url , data , options)
+      .then(function (response) {
+        self.response = response.data.result
       })
       .catch(function (error) {
         console.log(error);

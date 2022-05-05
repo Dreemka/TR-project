@@ -18,7 +18,9 @@ module.exports = {
     port: 4001,
     public: 'localhost'
   },
+
   publicPath: "/",
+
   chainWebpack: config => {
     config
     .plugin('html')
@@ -26,5 +28,5 @@ module.exports = {
       args[0].title = 'Transporter'
       return args
     })
-  }
+  },
 }
