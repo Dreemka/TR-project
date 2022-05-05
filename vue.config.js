@@ -29,4 +29,11 @@ module.exports = {
       return args
     })
   },
+  css: {
+    loaderOptions: {
+      scss: {
+        prependData: `@import "src/assets/css/variables.scss";`
+      }
+    }
+  }
 }

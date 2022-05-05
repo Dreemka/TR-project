@@ -99,6 +99,6 @@ export default {
 
 <style lang="scss">
 // @import '~materialize-css/dist/css/materialize.min.css';
-@import 'src/assets/css/variables.scss';
+
 @import 'src/assets/css/login-page.scss';
 </style>

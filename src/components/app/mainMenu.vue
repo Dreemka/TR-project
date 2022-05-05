@@ -63,6 +63,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import 'src/assets/css/variables.scss';
+
 @import 'src/assets/css/main-menu.scss';
 </style>
