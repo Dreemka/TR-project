@@ -8,15 +8,6 @@ export default {
     }
   },
   created(){
-    // this.postData = async function postData(url = '', data = {}) {
-    //   const response = await fetch(url, {
-    //     method: 'POST',
-    //     // body: JSON.stringify(data)
-    //     body: JSON.stringify(data)
-    //   });
-    //   return await response.json();
-    // }
-
     const token = localStorage.getItem('token')
 
     this.postData = async function postData(url = '', data = {}) {

@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
@@ -9,7 +8,7 @@ const routes = [
     path: '/',
     name: 'Home',
     meta: {layout: 'main' , redirect: true},
-    component: Home
+    component: () => import('../views/hub/List.vue')
   },
   {
     path: '/login',
@@ -24,14 +23,13 @@ const routes = [
     component: () => import('../views/hub/List.vue'),
   },
   {
-    path: '/list/:parentFolderId-:hubId-:name',
+    path: '/list/:folderId-:hubId',
     name: 'folder',
     meta: {layout: 'main'},
     component: () => import('../views/hub/List.vue'),
     props: (route) => ({
-      parentFolderId: route.params.parentFolderId,
+      folderId: route.params.folderId,
       hubId: route.params.hubId,
-      name: route.params.name,
     }),
   },
 ]

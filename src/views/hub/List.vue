@@ -19,13 +19,13 @@ export default {
       routerData: this.$route.params,
     }
   },
-  props: ["parentFolderId", "hubId" , "name"],
+  props: ["folderId", "hubId" , "name"],
   methods: {
     ...mapActions(['ContentList']),
     query(item){
       this.ContentList({hub_id: item.hub_id , parent_folder_id: item.folder_id})
         .then(() => {
-          this.$router.push({ name: 'folder', params: { parentFolderId: item.parent_folder_id, hubId: item.hub_id, name: item.name} })
+          this.$router.push({ name: 'folder', params: { folderId: item.folder_id, hubId: item.hub_id} })
           .catch(() => {})
           this.listContent = this.dataContentList
           this.listContent.map(one=>one.parentsFolders = item)

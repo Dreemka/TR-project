@@ -122,7 +122,8 @@ export default {
       const itemsArr = this.datalistContentDownload.filter(one => one.type === "item")
       .map(one=>one.version_id)
 
-
+      console.log(itemsArr)
+      console.log(foldersArr)
       // this.datalistContentDownload.map(() => {
         this.postData('/api/v1/Item.getArchive', {
           version: itemsArr,

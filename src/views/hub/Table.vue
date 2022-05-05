@@ -411,6 +411,7 @@ export default {
     //   return item.size * 0.001
     // }
     convert(item) {
+      if(item < 1) return item
       var i = -1;
       var byteUnits = [' KB', ' MB', ' GB', ' TB', 'PB', 'EB', 'ZB', 'YB'];
       do {
