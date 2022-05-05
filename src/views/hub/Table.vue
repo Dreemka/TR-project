@@ -241,11 +241,8 @@ export default {
       if(checkAll) this.dataFilter.map(one=>one.check = true)
       if(!checkAll) this.dataFilter.map(one=>one.check = false)
       let checkFu = this.dataFilter.filter(one=>one.check)
-
-      console.log(checkFu)
       this.$root.$emit('checkFu' , checkFu)
       this.listContentDownloadAdd(checkFu)
-
     },
     choiseFu(item) {
       let checkFu = this.dataFilter.filter(one=>one.check)
@@ -365,11 +362,9 @@ export default {
       }
     },
     openFolder(item) {
-      console.log(item)
       this.$root.$emit('folderData' , item)
     },
     openPopup(item) {
-      // console.log(222)
       if(item.type === "folder") this.openFolder(item)
 
       if(item.type !== "folder") {

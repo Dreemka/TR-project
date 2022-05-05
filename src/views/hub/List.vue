@@ -25,19 +25,10 @@ export default {
     query(item){
       this.ContentList({hub_id: item.hub_id , parent_folder_id: item.folder_id})
         .then(() => {
-          // console.log(item.hub_id)
-          // console.log(item.parent_folder_id)
-          // console.log(this.$route.params)
-
           this.$router.push({ name: 'folder', params: { parentFolderId: item.parent_folder_id, hubId: item.hub_id, name: item.name} })
           .catch(() => {})
-
-          // localStorage.setItem('params', item.parent_folder_id)
-          // console.log(item.name)
           this.listContent = this.dataContentList
-          // this.$root.$emit('folderItem' , item)
-
-          // console.log(this.listContent)
+          this.listContent.map(one=>one.parentsFolders = item)
         })
         .catch(err => {
           console.log(err)

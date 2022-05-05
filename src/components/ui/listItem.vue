@@ -1,6 +1,6 @@
 <template>
-  <ul>
-    <li v-if="renderComponent">
+  <ul :key="componentKey">
+    <li>
       <slot></slot>
       <i :class="iconAfter"
          v-if="iconAfter"
@@ -12,24 +12,23 @@
                         :listStyleIcon="listStyleIcon"
                         @childAction="childAction"
                         class="ml-10"
-                        :id="child.id">
+                        :id="child.folder_id"
+                        v-show="item.openFolder"
+                        :ref="child.folder_id">
           <div class="t-rr-s-nav-list-wrapper-content"
                :class="{'active': $route.params.name === child.name}">
             <i class="cursor-pointer mr-2"
                style="position: relative; top: -2px;"
-               @click="child.openFolder = !child.openFolder; go(child)"
+               @click="getChildFolder(child , item)"
                :class="[listStyleIcon , {'rotate--90' : !child.openFolder} , {'el-not-allowed' : !child.child_folders}]" />
-            <!-- <i :class="iconBefore"
-               v-if="iconBefore"
-               style="font-size: 24px"/>  -->
             <div @click="childAction(child)"
                  class="cursor-pointer t-rr-s-text-li">
               <img v-if="child.type === 'folder' && $route.params.name !== child.name" class="mr-2" src="@/assets/transporter-icon/Icon/folder.svg">
-              <img v-if="child.type === 'folder' && $route.params.name === child.name" class="mr-2" src="@/assets/transporter-icon/Icon/folderLink.svg">   
+              <img v-if="child.type === 'folder' && $route.params.name === child.name" class="mr-2" src="@/assets/transporter-icon/Icon/folderLink.svg">
+              <!-- {{ child.openFolder }} -  -->
                  {{ child.name }}
             </div>
           </div>
-                        
          </ChildListItem>
     </li>
   </ul>
@@ -37,22 +36,15 @@
 
 <script>
   import QueryMixin from '@/mixins/query-mixin';
-  // import ChildListItem from '../ui/childListItem.vue'
 
   export default {
     name: "ChildListItem",
-    components: {
-      // ChildListItem,
-    },
     mixins: [
       QueryMixin,
     ],
     data(){
       return {
-        openFolder: false,
         componentKey: 0,
-        response: [],
-        renderComponent: true,
       }
     },
     props: {
@@ -88,84 +80,51 @@
     },
     mounted() {
       this.$root.$on('folderData' , (item) => {
-        // this.parentAction(item , this.item)
-        if(item.id === this.item.id) {
+        if (item.parent_folder_id === this.item.folder_id) {
           this.item.openFolder = true
-          this.childAction(this.item)
-          this.go(this.item , item)
-        } else if(item.parent_folder_id === this.item.folder_id){
-          this.item.openFolder = true
-          this.childAction(this.item)
-          this.go(this.item , item)
-          // if (item.id === this.item.id) console.log(true)
+          this.getChildFolder(this.item , item)
         }
+          let rec = (item) => {
+            if(item.parentsFolders) {
+              if (item.parentsFolders.parent_folder_id === this.item.folder_id) {
+              this.item.openFolder = true
+              }
+              return rec(item.parentsFolders)
+            } else {
+              return
+            }
+        }
+        rec(item)
       })
     },
     methods: {
-      go(child , item = {}){
-        let self = this
-        if(child.children) {
-          console.log(222)
-          child.children = false;
-          // child.openFolder = false
-          self.renderComponent = false;
+      forceRerender() {
+        this.componentKey += 1;
+      },
 
-          self.$nextTick(() => {
-            self.renderComponent = true;
+      getChildFolder(child) {
+        child.openFolder = !child.openFolder
+          this.postData("/api/v1/Folder.getFolderList", {
+              parent_folder_id: child.folder_id,
+              hub_id: child.hub_id
           })
-        } else {
-            this.postData("/api/v1/Folder.getFolderList", {
-                parent_folder_id: child.folder_id,
-                hub_id: child.hub_id
-            })
-            .then((data) => {
-              child.children = data
-
-              child.children.map(one=>{
-                if (one.id === item.id) {
-                  one.openFolder = true
-                  this.go(one)
-                  this.childAction(one)
-                }
-              })
-
-              self.renderComponent = false;
-              self.$nextTick(() => {
-              self.renderComponent = true;
-            });
-            });
-        }
+          .then((data) => {
+            child.children = data
+            child.children.map(one => one.parentsFolders = child)
+            this.item.openFolder = true
+            this.forceRerender()
+          });
       },
       childAction(child){
         this.$emit('childAction' ,child)
       },
-      // parentAction(item) {
-      //   // console.log(item.parent_folder_id)
-      //   this.postData("/api/v1/Folder.getFolderList", {
-      //           parent_folder_id: item.parent_folder_id,
-      //           hub_id: child.hub_id
-      //       })
-      //       .then((data) => {
-      //         child.children = data
-
-      //         // child.children.map(one=>{
-      //         //   if (one.id === item.id) {
-      //         //     one.openFolder = true
-      //         //     this.go(one)
-      //         //     this.childAction(one)
-      //         //   }
-      //         // })
-
-      //         self.renderComponent = false;
-      //         self.$nextTick(() => {
-      //         self.renderComponent = true;
-      //       });
-      //       });
-      // }
+    },
+    beforeDestroy() {
+      // this.$root.$off('folderData');
     }
   }
 </script>
 
 <style lang="scss">
-@import '/src/assets/css/variables.scss';
+  @import '/src/assets/css/variables.scss';
 </style>
