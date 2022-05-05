@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
@@ -8,8 +7,8 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    meta: {layout: 'main' , auth: true},
-    component: Home
+    meta: {layout: 'main' , redirect: true},
+    component: () => import('../views/hub/List.vue')
   },
   {
     path: '/login',
@@ -20,18 +19,17 @@ const routes = [
   {
     path: '/list',
     name: 'list',
-    meta: {layout: 'main', auth: true},
+    meta: {layout: 'main'},
     component: () => import('../views/hub/List.vue'),
   },
   {
-    path: '/list/:parentFolderId-:hubId-:name',
+    path: '/list/:folderId-:hubId',
     name: 'folder',
-    meta: {layout: 'main', auth: true},
+    meta: {layout: 'main'},
     component: () => import('../views/hub/List.vue'),
     props: (route) => ({
-      parentFolderId: route.params.parentFolderId,
+      folderId: route.params.folderId,
       hubId: route.params.hubId,
-      name: route.params.name,
     }),
   },
 ]
@@ -43,22 +41,13 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to , from , next) => {
-  const token = JSON.parse(localStorage.getItem('tokenData'))
-
-  const requireAuth = to.matched.some(record => record.meta.auth)
-  const requireLogin = to.name === 'login'
-  console.log(requireLogin)
-  
-  if (token) {
-    if ((token.expires_in < 1) && requireAuth) {
-      next('/login')
-    } else {
-      next()
-    }
+  const requireAuth = to.matched.some(record => record.meta.redirect)
+  if (requireAuth) {
+    next('/list')
   } else {
-    if (requireLogin) next()
-    if (!requireLogin) next('/login')
+    next()
   }
-})
+});
+
 
 export default router

@@ -13,7 +13,8 @@
             <div class="el-overflow-white-space">
               {{$t('file_name')}}
             </div>
-            <label for="fileName">
+            <label for="fileName"
+                   class="t-rr-s-for-arrow">
               <i class="transporter-menu_outline" />
             </label>
              <input name="fileName" 
@@ -29,7 +30,8 @@
             <div class="el-overflow-white-space">
               {{$t('version')}}
             </div>
-            <label for="version">
+            <label for="version"
+                   class="t-rr-s-for-arrow">
               <i class="transporter-menu_outline" />
             </label>
              <input name="version" 
@@ -45,7 +47,8 @@
             <div class="el-overflow-white-space">
               {{$t('size')}}
             </div>
-            <label for="size">
+            <label for="size"
+                   class="t-rr-s-for-arrow">
               <i class="transporter-menu_outline" />
             </label>
              <input name="size" 
@@ -61,7 +64,8 @@
             <div class="el-overflow-white-space">
               {{$t('date_of_change')}}
             </div>
-            <label for="dateOfChange">
+            <label for="dateOfChange"
+                   class="t-rr-s-for-arrow">
               <i class="transporter-menu_outline" />
             </label>
              <input name="dateOfChange" 
@@ -77,7 +81,8 @@
             <div class="el-overflow-white-space">
               {{$t('who_changed')}}
             </div>
-             <label for="whoChanged">
+             <label for="whoChanged"
+                    class="t-rr-s-for-arrow">
                 <i class="transporter-menu_outline" />
              </label>
              <input name="whoChanged" 
@@ -102,16 +107,16 @@
         </th>
         <td>
           <div @click="openPopup(item)">
-                 <div class="cursor-pointer">
+                 <div class="cursor-pointer t-rr-s-item">
                     <!-- <i :class="[{'transporter-doc' : item.type === 'folder'}]"
                       style="font-size: 24px"/> -->
-                    <img v-if="item.extension === 'doc' || item.extension === 'docx'" class="mr-1" src="@/assets/transporter-icon/Icon/doc.svg">
+                    <img v-if="item.extension === 'doc' || item.extension === 'docx'" class="mr-2" src="@/assets/transporter-icon/Icon/doc.svg">
                     <!-- <img v-if="item.extension === 'rvt'" class="mr-1" src="@/assets/transporter-icon/Icon/rvt.svg"> -->
-                    <img v-if="item.extension === 'pdf'" class="mr-1" src="@/assets/transporter-icon/Icon/pdf.svg">
-                    <img v-if="item.extension === 'xlxs'" class="mr-1" src="@/assets/transporter-icon/Icon/xls.svg">
-                    <img v-if="item.extension === 'dwg'" class="mr-1" src="@/assets/transporter-icon/Icon/dwg.svg">
-                    <img v-if="item.type === 'folder'" class="mr-1" src="@/assets/transporter-icon/Icon/folder.svg">
-                    <i v-if="item.type !== 'folder' && item.extension !== 'dwg' && item.extension !== 'doc' && item.extension !== 'docx' && item.extension !== 'pdf' && item.extension !== 'xlxs'" class="transporter-file fz-24" />
+                    <img v-if="item.extension === 'pdf'" class="mr-2" src="@/assets/transporter-icon/Icon/pdf.svg">
+                    <img v-if="item.extension === 'xlxs'" class="mr-2" src="@/assets/transporter-icon/Icon/xls.svg">
+                    <img v-if="item.extension === 'dwg'" class="mr-2" src="@/assets/transporter-icon/Icon/dwg.svg">
+                    <img v-if="item.type === 'folder'" class="mr-2" src="@/assets/transporter-icon/Icon/folder.svg">
+                    <i v-if="item.type !== 'folder' && item.extension !== 'dwg' && item.extension !== 'doc' && item.extension !== 'docx' && item.extension !== 'pdf' && item.extension !== 'xlxs'" class="transporter-file fz-24 mr-2" />
 
                    {{item.name}}
                  </div>
@@ -236,20 +241,18 @@ export default {
       if(checkAll) this.dataFilter.map(one=>one.check = true)
       if(!checkAll) this.dataFilter.map(one=>one.check = false)
       let checkFu = this.dataFilter.filter(one=>one.check)
-
-      console.log(checkFu)
+      this.$root.$emit('checkFu' , checkFu)
       this.listContentDownloadAdd(checkFu)
-
     },
     choiseFu(item) {
       let checkFu = this.dataFilter.filter(one=>one.check)
       if(!item.check) this.checkAll = !!checkFu.length
       if(item.check && checkFu.length === this.dataFilter.length) this.checkAll = true
       this.listContentDownloadAdd(checkFu)
-
+      console.log(checkFu)
+      this.$root.$emit('checkFu' , checkFu)
     },
     sortList(column) {
-      console.log(332)
       switch (column) {
         case "file_name":
           if(this.fileName) this.dataFilter.sort(function (a, b) {
@@ -359,14 +362,13 @@ export default {
       }
     },
     openFolder(item) {
-      console.log(item)
       this.$root.$emit('folderData' , item)
     },
     openPopup(item) {
       if(item.type === "folder") this.openFolder(item)
 
       if(item.type !== "folder") {
-        this.postData('/api/v1/Version.getList', {
+        this.getData('/api/v1/Version.getList', {
           item_id: item.item_id,
           hub_id: item.hub_id
         })
@@ -387,13 +389,14 @@ export default {
       this.$set(this.dataFilter, this.dataFilter.indexOf(item), item)
     },
     download(version) {
-        this.postData('/api/v1/Version.download', {
+        this.getData('/api/v1/Version.download', {
           version_id: version.version_id,
           hub_id: version.hub_id
         })
         .then((data) => {
           console.log(data)
-          document.location.href = data.location;
+          // document.location.href = data.location;
+          window.location.href = data.location;
         });
     },
     searchFu(filterData) {
@@ -408,8 +411,9 @@ export default {
     //   return item.size * 0.001
     // }
     convert(item) {
+      if(item < 1) return item
       var i = -1;
-      var byteUnits = [' kB', ' MB', ' GB', ' TB', 'PB', 'EB', 'ZB', 'YB'];
+      var byteUnits = [' KB', ' MB', ' GB', ' TB', 'PB', 'EB', 'ZB', 'YB'];
       do {
           item = item / 1024;
           i++;
@@ -422,6 +426,12 @@ export default {
       handler() {
         this.dataFilter = this.data.slice();
       }
+    },
+    '$route' () {
+      this.checkFu = []
+      this.checkAll = false
+      this.allchoiseFu(this.checkAll)
+      // console.log(777)
     }
   },
   mounted() {

@@ -29,5 +29,4 @@ export default {
 @import 'assets/css/variables.scss';
 @import 'assets/transporter-icon/style.css';
 @import 'assets/css/ui-library.scss';
-
 </style>

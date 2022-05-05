@@ -1,24 +1,26 @@
+import axios from 'axios';
 // import axios from 'axios/dist/axios'
-// export const HTTP = axios.create({
-//   baseUrl: 'https://dev0transporter.etalongroup.com/',
-//   headers: {
-//     'Authorization': 'Bearer {token}',
-//   }
-// })
-// export const HTTPAUTH = axios.create({
-//   baseUrl: 'https://dev0transporter.etalongroup.com/',
-// })
-// if (localStorage.getItem('token')) {}
+import router from './router';
 
 const token = localStorage.getItem('token')
-import axios from 'axios/dist/axios'
 export const HTTP = axios.create({
-  baseURL: 'https://dev0api.transporter.geekchain.dev/',
+  baseURL: process.env.VUE_APP_API_URL,
   headers: {
     'Authorization': `Bearer ${token}`
 ,
   }
 })
 export const HTTPAUTH = axios.create({
-  baseURL: 'https://dev0api.transporter.geekchain.dev/',
+  baseURL: process.env.VUE_APP_API_URL,
 })
+
+HTTP.interceptors.response.use(function (response) {
+  return Promise.resolve(response);
+}, function (error) {
+      const { status, data } = error.response;
+      console.log(data)
+      if (status === 401) {
+          router.push("/login");
+      }
+      return Promise.reject(error);
+});

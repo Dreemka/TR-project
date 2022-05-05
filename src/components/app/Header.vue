@@ -22,10 +22,10 @@
         <UiButton 
           :title="$t('download')"
           iconAfter="transporter-cloud_outline"
-          :disabled="false"
+          :disabled="!checkFu.length"
           class="mr-20"
-          @click="download()" />
-
+          @click="download()"
+          :key="componentKey" />
         <UiButton 
           :title="$t('upload')"
           iconAfter="false"
@@ -72,18 +72,22 @@ export default {
       isActive: false,
       data: null,
       filterData: '',
+      checkFu: [],
+      componentKey: 0,
     }
   },
   mounted() {
     this.HubList({})
-        .then(response => {
-          console.log(this.dataHubList)
-          console.log(response)
+        .then(() => {
           this.getProjectList(this.dataHubList)
         })
         .catch(err => {
           console.log(err)
         })
+    this.$root.$on('checkFu', (checkFu) => {
+       this.checkFu = checkFu
+       this.forceRerender()
+    })    
   },
   computed: {
     ...mapGetters(['dataProjectList']),
@@ -109,22 +113,6 @@ export default {
         console.log(err)
       })
     },
-    getContentList(hubdata , projectdata) {
-      console.log(projectdata)
-      console.log(hubdata)
-      // let requestData = {
-      //   hub_id: (hubdata) ? hubdata[0].hub_id : null,
-      //   parent_folder_id: (projectdata) ? projectdata[0].top_folder_id : null
-      // }
-      // this.ContentList(requestData)
-      // .then(response => {
-      //   console.log(this.dataContentList)
-      //   console.log(response)
-      // })
-      // .catch(err => {
-      //   console.log(err)
-      // })
-    },
     goToLink() {
       if (this.$route.path !== "/list") this.$router.push({ name: 'list'})
     },
@@ -132,30 +120,36 @@ export default {
       const foldersArr = this.datalistContentDownload.filter(one => one.type === "folder")
       .map(one=>one.folder_id)
       const itemsArr = this.datalistContentDownload.filter(one => one.type === "item")
-      .map(one=>one.version_id)
+      .map(one=>{
+        const complect = `${one.item_id}?version=${one.version}`
+        return complect
+      })
 
-
-      // this.datalistContentDownload.map(() => {
+      console.log(itemsArr)
+      console.log(foldersArr)
+      console.log(this.datalistContentDownload[0])
         this.postData('/api/v1/Item.getArchive', {
-          version: itemsArr,
+          hub_id: this.datalistContentDownload[0].hub_id,
+          versions: itemsArr,
           folders: foldersArr,
         })
         .then((data) => {
-          document.location.href = data.location;
+          window.location.href = data.location;
         });
-      // })
   
     },
     getProfile() {
         let profile = JSON.parse(localStorage.getItem('profile'))
         return profile
+    },
+    forceRerender() {
+      this.componentKey += 1;  
     }
   },
   watch: {
   '$route.params.id': {
     immediate: true,
     handler() {
-      // if (!this.$route.params.id) this.getContentList({})
     },
   },
   'filterData': {

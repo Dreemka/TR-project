@@ -19,25 +19,16 @@ export default {
       routerData: this.$route.params,
     }
   },
-  props: ["parentFolderId", "hubId" , "name"],
+  props: ["folderId", "hubId" , "name"],
   methods: {
     ...mapActions(['ContentList']),
     query(item){
       this.ContentList({hub_id: item.hub_id , parent_folder_id: item.folder_id})
         .then(() => {
-          // console.log(item.hub_id)
-          // console.log(item.parent_folder_id)
-          // console.log(this.$route.params)
-
-          this.$router.push({ name: 'folder', params: { parentFolderId: item.parent_folder_id, hubId: item.hub_id, name: item.name} })
+          this.$router.push({ name: 'folder', params: { folderId: item.folder_id, hubId: item.hub_id} })
           .catch(() => {})
-
-          // localStorage.setItem('params', item.parent_folder_id)
-          // console.log(item.name)
           this.listContent = this.dataContentList
-          // this.$root.$emit('folderItem' , item)
-
-          // console.log(this.listContent)
+          this.listContent.map(one=>one.parentsFolders = item)
         })
         .catch(err => {
           console.log(err)
@@ -49,9 +40,8 @@ export default {
     this.$root.$on('folderData' , (item) => {
       this.query(item)
     })
-    let self = this
-    this.$root.$on('folderItem', function (item) {
-      self.query(item)
+    this.$root.$on('folderItem', (item) => {
+      this.query(item)
     })
   },
 }
