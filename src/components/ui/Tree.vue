@@ -16,8 +16,8 @@
                 class="cursor-pointer t-rr-s-text-li"
                 @click="childAction(item)"
                 @dblclick="toggle(item)">
-              <img v-if="item.type === 'folder' && $route.params.folderId !== item.folder_id" class="mr-2" src="@/assets/transporter-icon/Icon/folder.svg">
-              <img v-if="item.type === 'folder' && $route.params.folderId === item.folder_id" class="mr-2" src="@/assets/transporter-icon/Icon/folderLink.svg">
+              <img v-if="item.type === 'folder' && $route.params.folderId !== item.folder_id" class="mr-2" :src="require(`@/assets/img/${project}/folder.svg`)">
+              <img v-if="item.type === 'folder' && $route.params.folderId === item.folder_id" class="mr-2" :src="require(`@/assets/img/${project}/folderLink.svg`)">
                   {{item.name}}
               </div>
             </div>
@@ -57,6 +57,7 @@
     ],
     data() {
       return {
+        project: process.env.VUE_APP_PROJECT || 'transporter',
         componentKey: true,
         changed: 0,
       }

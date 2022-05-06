@@ -14,7 +14,8 @@
   "loaded": "Loaded",
   "quit" : "Quit",
   "settings" : "Settings",
-  "language" : "language",
+  "language" : "Language",
   "TheFolderIsEmpty" : "The folder is empty",
-  "Current" : "Current"
+  "Current" : "Current"    ,
+  "all_rights_reserved" : "All rights reserved"
 }
