@@ -11,7 +11,7 @@
 <script>
 import EmptyLayout from '@/layouts/EmptyLayout'
 import MainLayout from '@/layouts/MainLayout'
-import QAQCLayout from '@/layouts/QAQCLayout'
+import SettingLayout from '@/layouts/SettingLayout'
 export default {
   computed: {
     layout() {
@@ -19,14 +19,13 @@ export default {
     },
   },
   components: {
-    EmptyLayout, MainLayout, QAQCLayout
+    EmptyLayout, MainLayout, SettingLayout
   },
 }
 </script>
 
 <style lang="scss">
 //@import '~materialize-css/dist/css/materialize.min.css';
-@import 'assets/css/variables.scss';
 @import 'assets/transporter-icon/style.css';
 @import 'assets/css/ui-library.scss';
 </style>
