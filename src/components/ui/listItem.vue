@@ -23,8 +23,8 @@
                :class="[listStyleIcon , {'rotate--90' : !child.openFolder} , {'el-not-allowed' : !child.child_folders}]" />
             <div @click="childAction(child)"
                  class="cursor-pointer t-rr-s-text-li">
-              <img v-if="child.type === 'folder' && $route.params.name !== child.name" class="mr-2" src="@/assets/transporter-icon/Icon/folder.svg">
-              <img v-if="child.type === 'folder' && $route.params.name === child.name" class="mr-2" src="@/assets/transporter-icon/Icon/folderLink.svg">
+              <img v-if="child.type === 'folder' && $route.params.name !== child.name" class="mr-2" :src="require(`@/assets/img/${project}/folder.svg`)">
+              <img v-if="child.type === 'folder' && $route.params.name === child.name" class="mr-2" :src="require(`@/assets/img/${project}/folderLink.svg`)">
               <!-- {{ child.openFolder }} -  -->
                  {{ child.name }}
             </div>
@@ -44,6 +44,7 @@
     ],
     data(){
       return {
+        project: process.env.VUE_APP_PROJECT || 'transporter',
         componentKey: 0,
       }
     },
@@ -124,7 +125,3 @@
     }
   }
 </script>
-
-<style lang="scss">
-  @import '/src/assets/css/variables.scss';
-</style>

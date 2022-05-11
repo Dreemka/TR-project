@@ -1,0 +1,25 @@
+$mainColor: rgb(22, 122, 86, 1);
+$mainColorHover: rgba(22, 122, 86, 0.1);
+$greyOne: rgb(146, 166, 157, 1);
+$greyTwo: rgb(197, 212, 206, 1);
+$greyFour: rgb(247, 251, 249, 1);
+$accentOne: rgb(41, 178, 110, 1);
+$accentTwo: rgb(22, 122, 86, 1);
+$accentOneHover: rgba(41, 178, 110, 0.08);
+
+
+$globalBorderRadius: 0;
+
+$white: rgba(255, 255, 255, 1);
+$blackTwo: rgba(15, 27, 56, 1);
+$activeColor: rgba(36, 183, 66, 1);
+$todoColor: #002f6d;
+$acceptColor: rgba(36, 183, 66, 1);
+$childColor: #2d9141;
+$cancelColor: #DC3545;
+$mainGradientColor: linear-gradient(38deg, $mainColor 68%, $activeColor 100%);
+$mainBackground: rgba(255, 255, 255, 1);
+$textColorIn: rgba(255, 255, 255, 1);
+$mainFontSize: 18px !important;
+$size-sm: 0.85em;
+$mainFontFamaly: "FuturaBookC", "Exo 2", Tahoma, sans-serif !important;

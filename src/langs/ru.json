@@ -16,6 +16,7 @@
   "settings" : "Настройки",
   "language" : "Язык",
   "TheFolderIsEmpty" : "Папка пустая",
-  "Current" : "Текущая"
+  "Current" : "Текущая"          ,
+  "all_rights_reserved": "Все права защищены"
 
 }

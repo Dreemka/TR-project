@@ -26,7 +26,7 @@
         td {
           font-weight: 400;
           font-size: 0.9em;
-          padding-top: 15px;
+          vertical-align: middle;
           .t-rr-s-version-block {
             background: $greyFour;
             padding: 3px 6px;
@@ -64,21 +64,21 @@
         }
       }
       .t-rr-s-choise-item-active {
-        background: rgba(70, 96, 227, 0.08);
+        background: $accentOneHover;
       }
       .t-rr-s-choise-item-active:nth-of-type(odd) {
-        background: rgba(70, 96, 227, 0.08);
+        background: $accentOneHover;
       }
       tr:nth-of-type(odd) {
-        // background: rgba(70, 96, 227, 0.08);
+        // background: $accentOneHover;
       }
       tr:hover {
         color: #212529;
-        background: rgba(70, 96, 227, 0.08);
+        background: $accentOneHover;
       }
       .t-rr-s-item {
         display: flex;
-        align-items: baseline;
+        align-items: flex-end;
       }
     }
   }
