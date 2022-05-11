@@ -100,7 +100,7 @@
           :key="idx"
           :class="{'t-rr-s-choise-item-active' : item.check}"
           >
-        <th scope="row">
+        <th scope="row" class="checkbox_wrap">
           <Checkbox :index="idx"
                     v-model="item.check"
                     @change="choiseFu(item)"/>

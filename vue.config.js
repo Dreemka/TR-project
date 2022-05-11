@@ -8,10 +8,10 @@ module.exports = {
         },
         proxy: {
             '/api': {
-                target: 'https://dev0api.transporter.geekchain.dev/',
+                target: 'https://dev0.transporter.geekchain.dev/',
             },
             "/auth": {
-                target: 'https://dev0api.transporter.geekchain.dev/',
+                target: 'https://dev0.transporter.geekchain.dev/',
             },
         },
         disableHostCheck: true,
@@ -29,13 +29,19 @@ module.exports = {
                 const project = process.env.VUE_APP_PROJECT || 'transporter';
                 process.env.VUE_APP_VERSION = require('./package.json').version;
 
+
+                let favicon = `./public/${project}/favicon.ico`;
+
                 if (project === 'transporter') {
                     args[0].title = 'Transporter';
                     args[0].project = 'transporter';
+                    args[0].favicon = favicon;
 
                 } else {
                     args[0].title = 'RuBim';
                     args[0].project = 'rubim';
+                    args[0].favicon = favicon;
+
                 }
 
                 return args
