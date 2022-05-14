@@ -30,7 +30,7 @@ export default {
           {
             icon: 'transporter-Settings_outline_tiny fz-20',
             title: this.$t('settings'),
-            url: '/list',
+            url: '/projectSetting',
           },
           {
             icon: 'transporter-Document_outline fz-20',

@@ -1,6 +1,6 @@
 <template>
   <section class="t-rr-s-main-layout">
-    <Header />
+    <MainHeader />
     <div class="t-rr-s-main-wrapper">
       <Sidebar />
       <main class="app-content">
@@ -13,13 +13,13 @@
 </template>
 
 <script>
-import Header from '@/components/app/Header'
+import MainHeader from '@/components/app/MainHeader'
 import Sidebar from '../components/app/Sidebar.vue'
 
 export default {
   name: "MainLayout",
   components: { 
-    Header , Sidebar
+    MainHeader , Sidebar
   }
 }
 </script>

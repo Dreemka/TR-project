@@ -1,0 +1,25 @@
+.t-rr-s-project-setting-wrapper {
+  .t-rr-s-project-setting-header {
+    display: flex;
+    width: 100%;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 30px;
+    padding-top: 50px;
+    &-setting {
+      display: grid;
+      grid-template-columns: 29% 20% 44%;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  .t-rr-s-project-setting-body {
+    thead {
+      font-size: 18px;
+      th {
+        padding: 0.75rem 30px;
+        font-weight: 100;
+      }
+    }
+  }
+}

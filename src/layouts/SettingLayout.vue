@@ -2,7 +2,7 @@
   <section class="t-rr-s-main-layout">
     <Header />
     <div class="t-rr-s-main-wrapper">
-      <Sidebar />
+      <SidebarSettings />
       <main class="app-content">
         <div class="app-page">
           <router-view />
@@ -14,12 +14,13 @@
 
 <script>
 import Header from '@/components/app/Header'
-import Sidebar from '../components/app/Sidebar.vue'
+import SidebarSettings from '../views/settings/SidebarSettings.vue'
 
 export default {
   name: "MainLayout",
   components: { 
-    Header , Sidebar
+    Header, 
+    SidebarSettings
   }
 }
 </script>
