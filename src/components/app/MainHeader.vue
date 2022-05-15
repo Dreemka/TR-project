@@ -116,18 +116,14 @@ export default {
         const complect = `${one.item_id}?version=${one.version}`
         return complect
       })
-
-      console.log(itemsArr)
-      console.log(foldersArr)
-      console.log(this.datalistContentDownload[0])
-        this.postData('/api/v1/Item.getArchive', {
-          hub_id: this.datalistContentDownload[0].hub_id,
-          versions: itemsArr,
-          folders: foldersArr,
-        })
-        .then((data) => {
-          window.location.href = data.location;
-        });
+      this.postData('/api/v1/Item.getArchive', {
+        hub_id: this.datalistContentDownload[0].hub_id,
+        versions: itemsArr,
+        folders: foldersArr,
+      })
+      .then((data) => {
+        window.location.href = data.location;
+      });
   
     },
     forceRerender() {

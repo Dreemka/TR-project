@@ -1,6 +1,7 @@
 {
   "project_files": "Файлы проекта",
   "download": "Скачать",
+  "Save": "Сохранить",
   "upload": "Загрузить",
   "close": "Закрыть",
   "search": "Поиск",
@@ -17,19 +18,32 @@
   "language" : "Язык",
   "TheFolderIsEmpty" : "Папка пустая",
   "Current" : "Текущая",
+  "Send": "Отправить",
   "Settings" : {
     "Title" : "Настройки",
     "Project" : "Настройки проектов",
     "Users" : "Настройки профиля",
     "TelegramAlert" : "Настройки уведомления",
     "ForgeAPI" : "Forge Api",
-    "project" : {
+    "projectText" : {
       "UpdateProjectList" : "Обновить список проектов",
       "ProjectTitle" : "Название проекта",
       "Synchronization" : "Синхронизация",
       "LastDetour" : "Последний обход",
-      "Progress" : "Прогресс"
-
+      "Progress" : "Прогресс",
+      "Project" : "Проекты"
+    },
+    "userText" : {
+      "UserName" : "Имя",
+      "UserEmail" : "Email",
+      "UserAllowance" : "Допуск",
+      "Users": "Пользователи"
+    },
+    "telegramText": {
+      "TelegramBot": "Телеграм бот",
+      "Token": "Токен",
+      "ChatForAction": "Чат для событий",
+      "TechnicalChat": "Технический чат"
     }
   }
 

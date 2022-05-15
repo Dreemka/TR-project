@@ -1,0 +1,101 @@
+/*el-checkbox-toogle-wrap START*/
+
+
+
+.el-checkbox-toogle-wrap .toggle {
+  /*position: relative;*/
+  /*margin-left: 20px;*/
+  float: right;
+  /*display: block;*/
+  width: 52px;
+  /*height: 20px;*/
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transform: translate3d(0, 0, 0);
+  margin-bottom: 0px;
+
+}
+
+.el-checkbox-toogle-wrap .toggle span {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 16px;
+  height: 16px;
+  display: block;
+  background: $white;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgb(154 153 153 / 50%);
+  transition: all .2s ease;
+}
+
+.el-checkbox-toogle-wrap .toggle span:before {
+  content: "";
+  position: absolute;
+  display: block;
+  margin: -18px;
+  width: 56px;
+  height: 56px;
+  background: #1a3761;
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 1;
+  pointer-events: none;
+}
+// .el-checkbox-toogle-wrap .toggle:before {
+//   content: "";
+//   position: relative;
+//   /*top: 3px;*/
+//   /*left: 3px;*/
+//   width: 42px;
+//   height: 24px;
+//   display: block;
+//   background: $greyOne;
+//   border: 2px solid #3e3f91;
+//   border-radius: 20px;
+//   transition: background .2s ease;
+// }
+
+.el-checkbox-toogle-wrap .toggle:before {
+  content: "";
+  position: relative;
+  /*top: 3px;*/
+  /*left: 3px;*/
+  width: 42px;
+  height: 24px;
+  display: block;
+  background: $greyOne;
+  border: 2px solid #999999;
+  border-radius: 20px;
+  transition: background .2s ease;
+}
+
+.el-checkbox-toogle-wrap .input-ch:checked+.toggle:before {
+  /*background: #1a376170;*/
+  border: 2px solid $accentOne;
+  background: $accentOne;
+
+}
+
+.el-checkbox-toogle-wrap .input-ch:checked+.toggle span {
+  background: $white;
+  transform: translateX(20px);
+  transition: all 0.2s cubic-bezier(0.8, 0.4, 0.3, 1.25), background 0.15s ease;
+  box-shadow: 0 3px 8px rgba(79, 46, 220, 0.2);
+  top: 4px;
+  left: 2px;
+}
+
+.el-checkbox-toogle-wrap .input-ch:checked+.toggle span:before {
+  transform: scale(1);
+  opacity: 0;
+  transition: all .4s ease;
+}
+
+.el-checkbox-toogle-wrap .right {
+  text-align: right;
+  padding-top: 10px;
+}
+
+
+/*el-checkbox-toogle-wrap END*/
