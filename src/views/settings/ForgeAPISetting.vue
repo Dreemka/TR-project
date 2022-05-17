@@ -6,9 +6,9 @@
     </div>
   </div>
   <div class="t-rr-s-telegram-alert-setting-body">
-    <h5>{{$t('Settings.telegramText.TelegramBot')}}</h5>
+    <!-- <h5>{{$t('Settings.telegramText.TelegramBot')}}</h5> -->
     <div class="t-rr-s-telegram-alert-setting-modul">
-      <div class="t-rr-s-telegram-alert-setting-modul-field">
+      <!-- <div class="t-rr-s-telegram-alert-setting-modul-field">
         <div class="title">
           <h6>
             {{$t('Settings.telegramText.Token')}}
@@ -20,31 +20,31 @@
           v-model="inputData"
           class="fz-14 input"/>
         <tooltip-wrapper slot="label" :tooltip="$t('Settings.telegramText.Token')"></tooltip-wrapper>  
-      </div>
+      </div> -->
 
       <div class="t-rr-s-telegram-alert-setting-modul-field">
         <div class="title">
           <h6>
-            {{$t('Settings.telegramText.ChatForAction')}}
+            {{$t('Settings.forgeApiTExt.ClientID')}}
           </h6>
         </div>
         <UIinput 
           :mask="null"
           icon='false'
-          v-model="inputData"
+          v-model="clientId"
           class="fz-14 input"/>
       </div>
 
       <div class="t-rr-s-telegram-alert-setting-modul-field">
         <div class="title">
           <h6>
-            {{$t('Settings.telegramText.TechnicalChat')}}
+            {{$t('Settings.forgeApiTExt.СlientSecret')}}
           </h6>
         </div>
         <UIinput 
           :mask="null"
           icon='false'
-          v-model="inputData"
+          v-model="clientSecret"
           class="fz-14 input"/>
       </div>
       <div class="t-rr-s-telegram-alert-setting-modul-field">
@@ -62,28 +62,46 @@
 <script>
 import UiButton from '@/components/ui/Button'
 import UIinput from '@/components/ui/Input'
-import tooltipWrapper from '@/components/ui/TooltipWrapper'
-// import btnSec from '@/components/ui/BtnSec'
-// import UiMark from '@/components/ui/Mark'
-// import UiTabs from '@/components/ui/Tabs'
-// import {HTTP} from "@/http-common";
+import QueryMixin from '@/mixins/query-mixin'
+
+// import tooltipWrapper from '@/components/ui/TooltipWrapper'
+
 
 export default {
   components: {
     UiButton,
     UIinput,
-    tooltipWrapper,
-    // DropDownSt,
-    // Toogle
+    // tooltipWrapper,
+
   },
+  mixins: [
+    QueryMixin,
+  ],
   data() {
     return {
-      inputData: ''
+      clientId: '',
+      clientSecret: '',
     }
+  },
+  mounted() {
+    this.postData('/api/v1/Settings.getForgeToken', {
+    })
+    .then((data) => {
+      console.log(data)
+      this.clientId = data.client_id
+      this.clientSecret = data.client_secret
+      console.log(this.logChatId)
+    });
   },
   methods: {
     action() {
-      console.log(444);
+    this.postData('/api/v1/Settings.setForgeToken', {
+      client_id: this.clientId,
+      client_secret: this.clientSecret,
+    })
+    .then((data) => {
+      console.log(data)
+    });
     }
   }
 }

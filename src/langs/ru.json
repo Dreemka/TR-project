@@ -22,7 +22,7 @@
   "Settings" : {
     "Title" : "Настройки",
     "Project" : "Настройки проектов",
-    "Users" : "Настройки профиля",
+    "Users" : "Настройки пользователей",
     "TelegramAlert" : "Настройки уведомления",
     "ForgeAPI" : "Forge Api",
     "projectText" : {
@@ -44,6 +44,10 @@
       "Token": "Токен",
       "ChatForAction": "Чат для событий",
       "TechnicalChat": "Технический чат"
+    },
+    "forgeApiTExt": {
+      "ClientID": "ID - клиента",
+      "СlientSecret": "Ключ клиента"
     }
   }
 

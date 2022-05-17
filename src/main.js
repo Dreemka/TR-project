@@ -27,52 +27,8 @@ Vue.directive('init', {
     vnode.context[binding.arg] = binding.value; 
   } 
 });
-// function b64DecodeUnicode(str) {
-//   // Going backwards: from bytestream, to percent-encoding, to original string.
-//   return decodeURIComponent(atob(str).split('').map(function(c) {
-//       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-//   }).join(''));
-// }
-// Vue.prototype.$http = Axios;
-
-
-// console.log(localStorage.getItem('token'));
-// if (token) {
-//   Vue.prototype.$http.defaults.headers.common['Authorization'] = token;
-// }
-// this.$router.push({ name: 'login'})
-
 
 Vue.use(BroadcastData);
-// Vue.use({
-//   install(vue) {
-//     vue.prototype.$broadcast = null;
-//     vue.mixin({
-//       beforeCreate() {
-//         if (this.$options.$module) {
-//           this.$broadcast = new Vue();  // <--
-//         } else if (this.$parent && this.$parent.$broadcast) {
-//           this.$broadcast = this.$parent.$broadcast;  // <--
-//         }
-//       },
-//     });
-//   },
-// });
-// Vue.use(VueResource);
-// Vue.http.interceptors.push(function(request,next){
-
-//   // modifying request headers
-//   request.headers.set('X-CSRF-TOKEN', 'TOKEN');
-//   request.headers.set('Authorization', 'Bearer TOKEN');
-//   console.log(2222)
-
-//   next(function(response){
-//       //logging the response body
-//       console.log(3333)
-//       console.log(response.body)
-
-//   });
-// })
 
 new Vue({
   router,

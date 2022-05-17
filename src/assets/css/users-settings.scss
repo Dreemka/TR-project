@@ -8,7 +8,7 @@
     padding-top: 50px;
     &-setting {
       display: grid;
-      grid-template-columns: 37% 22% 222px;
+      grid-template-columns: 37% 160px;
       align-items: center;
       justify-content: end;
       grid-gap: 20px;
@@ -24,7 +24,7 @@
       background: #f4f4f6;
       position: sticky;
       z-index: 2;
-      top: 0;
+      top: -1px;
       th {
         padding: 0.75rem 30px;
         font-weight: 100;

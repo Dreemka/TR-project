@@ -42,7 +42,7 @@ export default {
 
   methods: {
     action(item){
-      this.$root.$emit('itemData' , item)
+      // this.$root.$emit('itemData' , item)
       this.$emit('item-data' , item)
     },
   }

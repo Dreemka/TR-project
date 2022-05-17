@@ -17,7 +17,8 @@
           :mask="$t('to_choise')"
           iconAfter="transporter-cloud_outline"
           :disabled="false"
-          class="mr-20" />
+          class="mr-20"
+          @item-data="getProject" />
       </div>
       <div class="t-rr-s-download-upload-wrapper">
         <UiButton 
@@ -128,6 +129,9 @@ export default {
     },
     forceRerender() {
       this.componentKey += 1;  
+    },
+    getProject(value) {
+      this.$root.$emit('itemData' , value)
     }
   },
   watch: {

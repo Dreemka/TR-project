@@ -5,24 +5,16 @@
       <h5>{{$t('Settings.projectText.Project')}}</h5>
     </div>
     <div class="t-rr-s-project-setting-header-setting">
-        <DropDownSt
-          :title="$t('download')"
-          :dropDownData="dataProjectList"
-          :mask="$t('to_choise')"
-          iconAfter="transporter-cloud_outline"
-          :disabled="false"
-          class="fz-14"
-          @item-data="getProject" />
-        <UIinput 
-          :mask="$t('search')"
-          icon='transporter-Search_tiny'
-          v-model="filterData"
-          class="fz-14"/>
         <UiButton 
           :title="$t('Settings.projectText.UpdateProjectList')"
           :disabled="false"
           class="fz-14"
           @click="reloadListProject()" />
+        <UIinput 
+          :mask="$t('search')"
+          icon='transporter-Search_tiny'
+          v-model="filterData"
+          class="fz-14"/>
     </div>
   </div>
   <div class="t-rr-s-project-setting-body">
@@ -82,20 +74,14 @@
 <script>
 import UiButton from '@/components/ui/Button'
 import UIinput from '@/components/ui/Input'
-import DropDownSt from '@/components/ui/DropDownSt';
 import {mapGetters , mapActions} from 'vuex';
 import QueryMixin from '@/mixins/query-mixin'
 import Toogle from '@/components/ui/CheckboxToogle'
-
-// import UiMark from '@/components/ui/Mark'
-// import UiTabs from '@/components/ui/Tabs'
-// import {HTTP} from "@/http-common";
 
 export default {
   components: {
     UiButton,
     UIinput,
-    DropDownSt,
     Toogle
   },
   data() {
@@ -111,39 +97,23 @@ export default {
     QueryMixin,
   ],
   computed: {
-    ...mapGetters(['dataProjectList']),
     ...mapGetters(['dataHubList']),
   },
   mounted(){
     this.HubList({})
         .then(() => {
-          this.getProjectList(this.dataHubList)
+          this.getProject(this.dataHubList)
         })
         .catch(err => {
           console.log(err)
         })
   },
   methods: {
-    ...mapActions(['ProjectList']),
     ...mapActions(['HubList']),
-
-    getProjectList(hubdata) {
-      let requestData = {
-        hub_id : (hubdata) ? hubdata[0].hub_id : null
-      }
-      this.ProjectList(requestData)
-      .then(() => {
-        console.log(this.dataProjectList)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-    },
     getProject(value) {
       console.log(value)
       this.postData('/api/v1/Settings.projectList', {
         hub_id : (this.dataHubList) ? this.dataHubList[0].hub_id : null,
-        // key : value.id
       })
       .then((data) => {
         console.log(data)

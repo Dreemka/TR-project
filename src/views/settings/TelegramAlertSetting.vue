@@ -8,7 +8,7 @@
   <div class="t-rr-s-telegram-alert-setting-body">
     <h5>{{$t('Settings.telegramText.TelegramBot')}}</h5>
     <div class="t-rr-s-telegram-alert-setting-modul">
-      <div class="t-rr-s-telegram-alert-setting-modul-field">
+      <!-- <div class="t-rr-s-telegram-alert-setting-modul-field">
         <div class="title">
           <h6>
             {{$t('Settings.telegramText.Token')}}
@@ -20,8 +20,7 @@
           v-model="inputData"
           class="fz-14 input"/>
         <tooltip-wrapper slot="label" :tooltip="$t('Settings.telegramText.Token')"></tooltip-wrapper>  
-      </div>
-
+      </div> -->
       <div class="t-rr-s-telegram-alert-setting-modul-field">
         <div class="title">
           <h6>
@@ -31,7 +30,7 @@
         <UIinput 
           :mask="null"
           icon='false'
-          v-model="inputData"
+          v-model=" eventChatId"
           class="fz-14 input"/>
       </div>
 
@@ -44,7 +43,7 @@
         <UIinput 
           :mask="null"
           icon='false'
-          v-model="inputData"
+          v-model="logChatId"
           class="fz-14 input"/>
       </div>
       <div class="t-rr-s-telegram-alert-setting-modul-field">
@@ -62,28 +61,46 @@
 <script>
 import UiButton from '@/components/ui/Button'
 import UIinput from '@/components/ui/Input'
-import tooltipWrapper from '@/components/ui/TooltipWrapper'
-// import btnSec from '@/components/ui/BtnSec'
-// import UiMark from '@/components/ui/Mark'
-// import UiTabs from '@/components/ui/Tabs'
-// import {HTTP} from "@/http-common";
+import QueryMixin from '@/mixins/query-mixin'
+// import messages from "@/plugins/utils/messages"
+
+// import tooltipWrapper from '@/components/ui/TooltipWrapper'
+
 
 export default {
   components: {
     UiButton,
     UIinput,
-    tooltipWrapper,
-    // DropDownSt,
-    // Toogle
+    // tooltipWrapper,
   },
+  mixins: [
+    QueryMixin,
+  ],
   data() {
     return {
-      inputData: ''
+      logChatId: '',
+      eventChatId: '',
     }
+  },
+  mounted() {
+    this.postData('/api/v1/Settings.getTelegram', {
+    })
+    .then((data) => {
+      console.log(data)
+      this.logChatId = data.log_chat_id
+      this.eventChatId = data.event_chat_id
+      console.log(this.logChatId)
+    });
   },
   methods: {
     action() {
-      console.log(444);
+    this.postData('api/v1/Settings.setTelegram', {
+      log_chat_id: this.logChatId,
+      event_chat_id: this.eventChatId,
+    })
+    .then((data) => {
+      console.log(data)
+    });
     }
   }
 }

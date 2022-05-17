@@ -12,17 +12,12 @@
           iconAfter="transporter-cloud_outline"
           :disabled="false"
           class="fz-14"
-          @item-data="getProject" />
+          @item-data="getUserList" />
         <UIinput 
           :mask="$t('search')"
           icon='transporter-Search_tiny'
           v-model="filterData"
           class="fz-14"/>
-        <UiButton 
-          :title="$t('Settings.projectText.UpdateProjectList')"
-          :disabled="false"
-          class="fz-14"
-          @click="reloadListProject()" />
     </div>
   </div>
   <div class="t-rr-s-user-setting-body">
@@ -48,23 +43,16 @@
         <th scope="col">
           {{$t('Settings.userText.UserAllowance')}}
         </th>
-        <!-- <th scope="col">
-          {{$t('Settings.projectText.Progress')}}
-        </th> -->
       </tr>
       </thead>
       <tbody>
         <tr v-for="( item , idx ) in dataFilter" :key="idx">
           <td>
             {{item.name}}
-            <!-- {{item.first_name}} -->
           </td>
           <td>
             {{item.email}}
           </td>
-          <!-- <td>
-            {{item.updated_at | date('date')}}
-          </td> -->
           <td>
             <UiButton 
               :title="$t('Send')"
@@ -84,18 +72,12 @@ import UIinput from '@/components/ui/Input'
 import DropDownSt from '@/components/ui/DropDownSt';
 import {mapGetters , mapActions} from 'vuex';
 import QueryMixin from '@/mixins/query-mixin'
-// import Toogle from '@/components/ui/CheckboxToogle'
-
-// import UiMark from '@/components/ui/Mark'
-// import UiTabs from '@/components/ui/Tabs'
-// import {HTTP} from "@/http-common";
 
 export default {
   components: {
     UiButton,
     UIinput,
     DropDownSt,
-    // Toogle
   },
   data() {
     return {
@@ -109,7 +91,6 @@ export default {
     QueryMixin,
   ],
   computed: {
-    // ...mapGetters(['dataProjectList']),
     ...mapGetters(['dataProjectSettingList']),
     ...mapGetters(['dataHubList']),
   },
@@ -117,13 +98,13 @@ export default {
     this.HubList({})
         .then(() => {
           this.getProjectSettingList(this.dataHubList)
+          this.getUserList()
         })
         .catch(err => {
           console.log(err)
         })
   },
   methods: {
-    // ...mapActions(['ProjectList']),
     ...mapActions(['ProjectSettingList']),
     ...mapActions(['HubList']),
 
@@ -139,11 +120,10 @@ export default {
         console.log(err)
       })
     },
-    getProject(value) {
-      console.log(value)
+    getUserList(value) {
       this.postData('/api/v1/Settings.userList', {
         hub_id : (this.dataHubList) ? this.dataHubList[0].hub_id : null,
-        project_id: value.project_id
+        project_id: (value) ? value.project_id : null
       })
       .then((data) => {
         console.log(data)
@@ -153,6 +133,7 @@ export default {
         })
         this.listProject = data
         this.dataFilter = this.listProject
+        console.log(this.dataFilter)
       });
     },
     disabledProject(value) {
@@ -166,7 +147,7 @@ export default {
       });
     },
     reloadListProject() {
-      this.getProject()
+      this.getUserList()
     },
     sendAllow(item) {
       console.log(item)
@@ -204,12 +185,6 @@ export default {
           break;
       }
     },
-    // choiseFu(item) {
-    //   console.log(item)
-    //   if (item.check === true) item.disabled = 1
-    //   if (item.check === false) item.disabled = 0
-    //   this.disabledProject(item)
-    // }
   },
   watch: {
   'filterData': {
