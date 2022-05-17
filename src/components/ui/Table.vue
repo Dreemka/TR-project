@@ -38,6 +38,6 @@ methods: {
 </script>
 
 <style lang="scss">
-@import 'src/assets/css/variables.scss';
+
 @import 'src/assets/css/table.scss';
 </style>

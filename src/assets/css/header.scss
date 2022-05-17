@@ -52,6 +52,11 @@
         font-size: 14px;
         margin-right: 30px;
         width: 10%;
+        .input-wrapper {
+          input {
+            height: 39px;
+          }
+        }
       }
       .t-rr-s-download-upload-wrapper {
         display: flex;

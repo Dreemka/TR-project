@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import auth from './modules/auth'
 // import Sectors from "./modules/sector"
 import ProjectList from "./modules/projectList"
+import ProjectSettingList from "./modules/projectSettingList"
 import HubtList from "./modules/hubList"
 import ContentList from "./modules/contentList"
 import FolderList from "./modules/folderList"
@@ -22,6 +23,7 @@ export default new Vuex.Store ({
     HubtList,
     ContentList,
     ProjectList,
+    ProjectSettingList,
     FolderList,
     listContentDownload,
     profile,

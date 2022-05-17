@@ -38,9 +38,12 @@ export default {
   mounted() {
     this.valueItem = this.mask
   },
+  emits: ['item-data'],
+
   methods: {
     action(item){
-      this.$root.$emit('itemData' , item)
+      // this.$root.$emit('itemData' , item)
+      this.$emit('item-data' , item)
     },
   }
 
@@ -48,6 +51,6 @@ export default {
 </script>
 
 <style lang="scss" >
-@import 'src/assets/css/variables.scss';
+
 @import 'src/assets/css/drop-down-st.scss';
 </style>

@@ -64,17 +64,14 @@
         }
       }
       .t-rr-s-choise-item-active {
-        background: rgba(70, 96, 227, 0.08);
+        background: rgba($accentOne, 0.08);
       }
       .t-rr-s-choise-item-active:nth-of-type(odd) {
-        background: rgba(70, 96, 227, 0.08);
-      }
-      tr:nth-of-type(odd) {
-        // background: rgba(70, 96, 227, 0.08);
+        background: rgba($accentOne, 0.08);
       }
       tr:hover {
         color: #212529;
-        background: rgba(70, 96, 227, 0.08);
+        background: rgba($accentOne, 0.08);
       }
       .t-rr-s-item {
         display: flex;

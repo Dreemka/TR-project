@@ -1,6 +1,7 @@
 {
   "project_files": "Project Files",
   "download": "Download",
+  "Save": "Save",
   "upload": "Upload",
   "search": "Search",
   "close": "Close",
@@ -16,5 +17,38 @@
   "settings" : "Settings",
   "language" : "language",
   "TheFolderIsEmpty" : "The folder is empty",
-  "Current" : "Current"
+  "Current" : "Current",
+  "Send": "Send",
+  "Settings" : {
+    "Title" : "Settings",
+    "Project" : "Project Settings",
+    "Users" : "Profile Settings",
+    "TelegramAlert" : "Notification Settings",
+    "ForgeAPI" : "Forge Api",
+    "projectText" : {
+      "UpdateProjectList" : "Update Project List",
+      "ProjectTitle" : "Project Title",
+      "Synchronization" : "Synchronization",
+      "LastDetour" : "Last detour",
+      "Progress" : "Progress",
+      "Project" : "Projects"
+    },
+    "userText" : {
+      "UserName" : "Name",
+      "UserEmail" : "Email",
+      "UserAllowance" : "Allowance",
+      "Users": "Users"
+    },
+    "telegramText": {
+      "TelegramBot": "Telegram bot",
+      "Token": "Token",
+      "ChatForAction": "Chat for action",
+      "TechnicalChat": "Technical chat"
+    },
+    "forgeApiTExt": {
+      "ClientID": "Client ID",
+      "СlientSecret": "Сlient Secret key"
+    }
+    
+  }
 }
