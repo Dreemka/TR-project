@@ -4,8 +4,9 @@
     width: 100%;
     align-items: flex-end;
     justify-content: space-between;
-    padding: 30px;
-    padding-top: 50px;
+    align-items: center;
+    height: 64px;
+    padding: 0px 30px;
     &-setting {
       display: grid;
       grid-template-columns: 230px 160px;
@@ -16,7 +17,7 @@
     }
   }
   .t-rr-s-project-setting-body {
-    height: 77vh;
+    height: 84vh;
     overflow: auto;
     font-size: 0.9em;
 

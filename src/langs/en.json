@@ -15,9 +15,10 @@
   "loaded": "Loaded",
   "quit" : "Quit",
   "settings" : "Settings",
-  "language" : "language",
+  "language" : "Language",
   "TheFolderIsEmpty" : "The folder is empty",
-  "Current" : "Current",
+  "Current" : "Current"    ,
+  "all_rights_reserved" : "All rights reserved",
   "Send": "Send",
   "Settings" : {
     "Title" : "Settings",
@@ -48,7 +49,8 @@
     "forgeApiTExt": {
       "ClientID": "Client ID",
       "СlientSecret": "Сlient Secret key"
-    }
-    
+    },
+    "Support": "Support",
+    "FAQ": "FAQ"
   }
 }

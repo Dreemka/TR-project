@@ -107,7 +107,7 @@
           :key="idx"
           :class="{'t-rr-s-choise-item-active' : item.check}"
           >
-        <th scope="row">
+        <th scope="row" class="checkbox_wrap">
           <Checkbox :index="idx"
                     v-model="item.check"
                     @change="choiseFu(item)"/>
@@ -122,8 +122,9 @@
                     <img v-if="item.extension === 'pdf'" class="mr-2" src="@/assets/transporter-icon/Icon/pdf.svg">
                     <img v-if="item.extension === 'xlxs'" class="mr-2" src="@/assets/transporter-icon/Icon/xls.svg">
                     <img v-if="item.extension === 'dwg'" class="mr-2" src="@/assets/transporter-icon/Icon/dwg.svg">
-                    <img v-if="item.type === 'folder' && (item.child_folders < 1 && item.child_items < 1)" class="mr-2" src="@/assets/transporter-icon/Icon/folder.svg">
-                    <img v-if="item.type === 'folder' && (item.child_folders > 0 || item.child_items > 0)" class="mr-2" src="@/assets/transporter-icon/Icon/folderFull.svg">
+
+                    <img v-if="item.type === 'folder' && (item.child_folders < 1 && item.child_items < 1)" class="mr-2" :src="require(`@/assets/img/${project}/folder24.svg`)">
+                    <img v-if="item.type === 'folder' && (item.child_folders > 0 || item.child_items > 0)" class="mr-2" :src="require(`@/assets/img/${project}/folderFull.svg`)">
 
                     <i v-if="item.type !== 'folder' && item.extension !== 'dwg' && item.extension !== 'doc' && item.extension !== 'docx' && item.extension !== 'pdf' && item.extension !== 'xlxs'" class="transporter-file fz-24 mr-2" />
 
@@ -225,6 +226,7 @@ export default {
   ],
   data() {
     return {
+      project: process.env.VUE_APP_PROJECT || 'transporter',
       checkAll: false,
       lovingVue: false,
       fileName: false,

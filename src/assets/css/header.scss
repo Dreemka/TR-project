@@ -8,7 +8,7 @@
       justify-content: space-between;
       align-items: center;
       height: 76px;
-      padding: 0px 30px;
+      padding: 0 30px;
       .t-rr-s-profile-wrapper {
         color: $white;
         font-size: 1.2em;
@@ -38,7 +38,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #D7D7DB;
+      background: $greyTwo;
       height: 66px;
       .t-rr-s-header-function-bar-filter {
         width: 28%;
