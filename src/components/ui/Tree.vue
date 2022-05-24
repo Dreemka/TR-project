@@ -18,6 +18,12 @@
                 @dblclick="toggle(item)">
               <img v-if="item.type === 'folder' && $route.params.folderId !== item.folder_id" class="mr-2" :src="require(`@/assets/img/${project}/folder.svg`)">
               <img v-if="item.type === 'folder' && $route.params.folderId === item.folder_id" class="mr-2" :src="require(`@/assets/img/${project}/folderLink.svg`)">
+
+              <!-- <img v-if="item.type === 'folder' && (item.child_folders < 1 && item.child_items < 1) && $route.params.folderId !== item.folder_id" class="mr-2" src="@/assets/transporter-icon/Icon/folder.svg">
+              <img v-if="item.type === 'folder' && (item.child_folders > 0 || item.child_items > 0) && $route.params.folderId !== item.folder_id" class="mr-2" src="@/assets/transporter-icon/Icon/folderFull.svg">
+
+              <img v-if="item.type === 'folder' && $route.params.folderId === item.folder_id" class="mr-2" src="@/assets/transporter-icon/Icon/folderLink.svg"> -->
+
                   {{item.name}}
               </div>
             </div>
@@ -94,6 +100,7 @@
         this.componentKey += 1;
       },
       childAction(item){
+        console.log(item)
         this.$root.$emit('folderItem' , item)
       },
       getChildFolder(item) {

@@ -38,9 +38,12 @@ export default {
   mounted() {
     this.valueItem = this.mask
   },
+  emits: ['item-data'],
+
   methods: {
     action(item){
-      this.$root.$emit('itemData' , item)
+      // this.$root.$emit('itemData' , item)
+      this.$emit('item-data' , item)
     },
   }
 

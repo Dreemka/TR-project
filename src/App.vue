@@ -11,7 +11,7 @@
 <script>
 import EmptyLayout from '@/layouts/EmptyLayout'
 import MainLayout from '@/layouts/MainLayout'
-import QAQCLayout from '@/layouts/QAQCLayout'
+import SettingLayout from '@/layouts/SettingLayout'
 export default {
   computed: {
     layout() {
@@ -19,7 +19,7 @@ export default {
     },
   },
   components: {
-    EmptyLayout, MainLayout, QAQCLayout
+    EmptyLayout, MainLayout, SettingLayout
   },
 }
 </script>

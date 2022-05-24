@@ -26,5 +26,5 @@ export default {
 
 <style lang="scss">
 
-@import 'src/assets/css/sidebar.scss';
+// @import 'src/assets/css/sidebar.scss';
 </style>

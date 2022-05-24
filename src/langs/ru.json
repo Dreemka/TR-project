@@ -1,6 +1,7 @@
 {
   "project_files": "Файлы проекта",
   "download": "Скачать",
+  "Save": "Сохранить",
   "upload": "Загрузить",
   "close": "Закрыть",
   "search": "Поиск",
@@ -17,6 +18,37 @@
   "language" : "Язык",
   "TheFolderIsEmpty" : "Папка пустая",
   "Current" : "Текущая"          ,
-  "all_rights_reserved": "Все права защищены"
-
+  "all_rights_reserved": "Все права защищены",
+  "Send": "Отправить",
+  "Settings" : {
+    "Title" : "Настройки",
+    "Project" : "Настройки проектов",
+    "Users" : "Настройки пользователей",
+    "TelegramAlert" : "Настройки уведомления",
+    "ForgeAPI" : "Forge Api",
+    "projectText" : {
+      "UpdateProjectList" : "Обновить список проектов",
+      "ProjectTitle" : "Название проекта",
+      "Synchronization" : "Синхронизация",
+      "LastDetour" : "Последний обход",
+      "Progress" : "Прогресс",
+      "Project" : "Проекты"
+    },
+    "userText" : {
+      "UserName" : "Имя",
+      "UserEmail" : "Email",
+      "UserAllowance" : "Допуск",
+      "Users": "Пользователи"
+    },
+    "telegramText": {
+      "TelegramBot": "Телеграм бот",
+      "Token": "Токен",
+      "ChatForAction": "Чат для событий",
+      "TechnicalChat": "Технический чат"
+    },
+    "forgeApiTExt": {
+      "ClientID": "ID - клиента",
+      "СlientSecret": "Ключ клиента"
+    }
+  }
 }
