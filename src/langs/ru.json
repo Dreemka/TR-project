@@ -49,6 +49,8 @@
     "forgeApiTExt": {
       "ClientID": "ID - клиента",
       "СlientSecret": "Ключ клиента"
-    }
+    },
+    "Support": "Поддержка",
+    "FAQ": "FAQ"
   }
 }

@@ -18,7 +18,20 @@
       </ul>
     </nav>
     <div class="flex-column-between">
-        <!-- <FooterNavbar /> -->
+      <nav class="t-rr-s-nav-list">
+        <ul class="t-rr-s-menu-wrap">
+          <li v-for="(item , index) in listMenuFooterFu" :key="index" 
+              class="t-rr-s-menu-list"
+              :class="{'active' : item.route === $route.path}">
+            <router-link :to="item.route">
+              <!-- <i class="mr-10 transporter-Settings_outline_tiny" /> -->
+              <img class="mr-2 item-icon" :src="item.icon">
+              
+              {{item.name}}
+              </router-link>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 </template>
@@ -57,6 +70,20 @@ export default {
           route: "/forgeAPISetting",
           icon: require("@/assets/transporter-icon/Icon/ForgeApi.svg")
         }
+      ]
+    },
+    listMenuFooterFu() {
+      return [
+        {
+          name: this.$t('Settings.Support'),
+          route: "",
+          icon: require("@/assets/transporter-icon/Icon/Support.svg")
+        },
+        {
+          name: this.$t('Settings.FAQ'),
+          route: "",
+          icon: require("@/assets/transporter-icon/Icon/FAQ.svg")
+        },
       ]
     }
   }

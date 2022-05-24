@@ -19,7 +19,7 @@
     align-items: flex-end;
     justify-content: space-between;
     align-items: center;
-    height: 70px;
+    height: 85px;
     padding: 0px 36px;
     border-bottom: 1px solid #ccc;
   }
@@ -68,11 +68,14 @@
         .item-icon {
           filter: opacity(1)!important;
         }
+        a {
+          color: $blackOne!important;
+        }
       }
       .t-rr-s-menu-list {
-        padding: 20px 35px;
+        padding: 16px 35px;
         a {
-          color: $blackOne;
+          color: $greyOne;
           display: flex;
           align-items: center;
           &:hover {

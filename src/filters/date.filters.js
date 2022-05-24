@@ -13,5 +13,6 @@ export default function dateFilter(value , format = 'date'){
     options.minute = '2-digit'
     options.second = '2-digit'
   }
-  if(value) return new Intl.DateTimeFormat('ru-RU' , options).format(new Date(value * 1000))
+  let date = new Intl.DateTimeFormat('ru-RU' , options).format(new Date(value * 1000)).replace(/,/, 'в');
+  if(value) return date
 }
