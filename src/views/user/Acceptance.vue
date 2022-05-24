@@ -220,6 +220,5 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-@import '/src/assets/css/variables.scss';
 @import '/src/assets/css/acceptance.scss';
 </style>
