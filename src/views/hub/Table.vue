@@ -123,10 +123,8 @@
                     <img v-if="item.extension === 'xlxs'" class="mr-2" src="@/assets/transporter-icon/Icon/xls.svg">
                     <img v-if="item.extension === 'dwg'" class="mr-2" src="@/assets/transporter-icon/Icon/dwg.svg">
 
-                    <img v-if="item.type === 'folder'" class="mr-2" :src="require(`@/assets/img/${project}/folder24.svg`)">
-
-                    <!-- <img v-if="item.type === 'folder' && (item.child_folders < 1 && item.child_items < 1)" class="mr-2" src="@/assets/transporter-icon/Icon/folder.svg">
-                    <img v-if="item.type === 'folder' && (item.child_folders > 0 || item.child_items > 0)" class="mr-2" src="@/assets/transporter-icon/Icon/folderFull.svg"> -->
+                    <img v-if="item.type === 'folder' && (item.child_folders < 1 && item.child_items < 1)" class="mr-2" :src="require(`@/assets/img/${project}/folder24.svg`)">
+                    <img v-if="item.type === 'folder' && (item.child_folders > 0 || item.child_items > 0)" class="mr-2" :src="require(`@/assets/img/${project}/folderFull.svg`)">
 
                     <i v-if="item.type !== 'folder' && item.extension !== 'dwg' && item.extension !== 'doc' && item.extension !== 'docx' && item.extension !== 'pdf' && item.extension !== 'xlxs'" class="transporter-file fz-24 mr-2" />
 

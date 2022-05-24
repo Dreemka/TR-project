@@ -1,13 +1,7 @@
 <template>
-        <!-- <ul class="tree ml-10" v-if="componentKey" @click="toggle"> -->
           <li v-if="componentKey" >
-            <!-- {{isOpen}}
-            {{isFolder}} -->
-            <!-- <div @click="toggle">toggle</div> -->
-
             <div class="t-rr-s-nav-list-wrapper-content"
                  :class="{'active': $route.params.folderId === item.folder_id}">
-              <!-- <span @click="toggle(item)">+</span> -->
               <i class="cursor-pointer mr-2"
                style="position: relative; top: -2px;"
                @click="toggle(item)"
@@ -16,14 +10,9 @@
                 class="cursor-pointer t-rr-s-text-li"
                 @click="childAction(item)"
                 @dblclick="toggle(item)">
-              <img v-if="item.type === 'folder' && $route.params.folderId !== item.folder_id" class="mr-2" :src="require(`@/assets/img/${project}/folder.svg`)">
+              <img v-if="item.type === 'folder' && (item.child_folders < 1 && item.child_items < 1) && $route.params.folderId !== item.folder_id" class="mr-2" :src="require(`@/assets/img/${project}/folder.svg`)">
+              <img v-if="item.type === 'folder' && (item.child_folders > 0 || item.child_items > 0) && $route.params.folderId !== item.folder_id" class="mr-2" :src="require(`@/assets/img/${project}/folderFull.svg`)">
               <img v-if="item.type === 'folder' && $route.params.folderId === item.folder_id" class="mr-2" :src="require(`@/assets/img/${project}/folderLink.svg`)">
-
-              <!-- <img v-if="item.type === 'folder' && (item.child_folders < 1 && item.child_items < 1) && $route.params.folderId !== item.folder_id" class="mr-2" src="@/assets/transporter-icon/Icon/folder.svg">
-              <img v-if="item.type === 'folder' && (item.child_folders > 0 || item.child_items > 0) && $route.params.folderId !== item.folder_id" class="mr-2" src="@/assets/transporter-icon/Icon/folderFull.svg">
-
-              <img v-if="item.type === 'folder' && $route.params.folderId === item.folder_id" class="mr-2" src="@/assets/transporter-icon/Icon/folderLink.svg"> -->
-
                   {{item.name}}
               </div>
             </div>
@@ -39,7 +28,6 @@
               </NodeTree>
             </ul>
           </li>
-        <!-- </ul> -->
 </template>
 
 <script>
